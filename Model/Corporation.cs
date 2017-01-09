@@ -7,6 +7,93 @@ namespace HR.Model
 {
     public class Corporation
     {
-        
+        /// <summary>
+        /// Id
+        /// </summary>
+        public int CorpId { get; set; }
+        /// <summary>
+        /// 企业编号
+        /// </summary>
+        public string CorpCode { get; set; }
+        /// <summary>
+        /// 企业名称
+        /// </summary>
+        public string CorpName { get; set; }
+        /// <summary>
+        /// 企业英文名
+        /// </summary>
+        public string CorpEName { get; set; }
+        /// <summary>
+        /// 地址
+        /// </summary>
+        public string CorpAddress { get; set; }
+        /// <summary>
+        /// 联系人
+        /// </summary>
+        public string CorpContacts { get; set; }
+        /// <summary>
+        /// 电话
+        /// </summary>
+        public string CorpTel { get; set; }
+        /// <summary>
+        /// 传真
+        /// </summary>
+        public string CorpFax { get; set; }
+        /// <summary>
+        /// 邮编
+        /// </summary>
+        public string CorpZip { get; set; }
+        /// <summary>
+        /// 邮箱
+        /// </summary>
+        public string CorpEmail { get; set; }
+        /// <summary>
+        /// 组织结构代码
+        /// </summary>
+        public string OrganizationCode { get; set; }
+        /// <summary>
+        /// 网上办事密码
+        /// </summary>
+        public string InternetPWD { get; set; }
+        /// <summary>
+        /// 社会保险登记码
+        /// </summary>
+        public string SocialRegCode { get; set; }
+        /// <summary>
+        /// 参保结算区域
+        /// </summary>
+        public int SettlementArea { get; set; }
+        /// <summary>
+        /// 公积金账号
+        /// </summary>
+        public string HouseAccount { get; set; }
+        /// <summary>
+        /// 公积金开户行
+        /// </summary>
+        public string HouseBank { get; set; }
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public int CorpStatus { get; set; }
+        /// <summary>
+        /// 备注
+        /// </summary>
+        public string Memo { get; set; }
+        /// <summary>
+        /// Id
+        /// </summary>
+        public int CreatorId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime CreateTime { get; set; }
+        /// <summary>
+        /// Id
+        /// </summary>
+        public int LastModifyId { get; set; }
+        /// <summary>
+        /// Id
+        /// </summary>
+        public DateTime LastModifyTime { get; set; }
     }
 }
