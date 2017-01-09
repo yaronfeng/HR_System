@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using HR.Common;
 
 namespace HR.Model
 {
-    public class Employeecs
+    public class Employeecs : MasterModel
     {
         /// <summary>
         /// Id
@@ -131,21 +132,5 @@ namespace HR.Model
         /// 备注
         /// </summary>
         public string Memo { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int CreatorId { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public DateTime CreateTime { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public int LastModifyId { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public DateTime LastModifyTime { get; set; }
     }
 }

@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using HR.Common;
 
 namespace HR.Model
 {
-    public class Corporation
+    public class Corporation : MasterModel
     {
         /// <summary>
         /// Id
@@ -79,21 +80,5 @@ namespace HR.Model
         /// 备注
         /// </summary>
         public string Memo { get; set; }
-        /// <summary>
-        /// Id
-        /// </summary>
-        public int CreatorId { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public DateTime CreateTime { get; set; }
-        /// <summary>
-        /// Id
-        /// </summary>
-        public int LastModifyId { get; set; }
-        /// <summary>
-        /// Id
-        /// </summary>
-        public DateTime LastModifyTime { get; set; }
     }
 }
