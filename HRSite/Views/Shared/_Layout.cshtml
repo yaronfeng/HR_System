@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=8,10" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="派遣业务系统" />
+    <meta name="keywords" content="派遣业务系统" />
+    <meta name="copyright" content="Copyright@英达国际 all rights reserved 2017" />
+    <!-- favicon -->
+    <link href="../img/favicon.ico" rel="shortcut icon" />
+    <!-- css -->
+    <link rel="stylesheet" href="~/Content/assets/css/amazeui.min.css" />
+    <link rel="stylesheet" href="~/Content/assets/css/admin.css" />
+</head>
+<body>
+    <header class="am-topbar am-topbar-inverse admin-header">
+        <div class="am-topbar-brand">
+            <strong>INTELHR</strong> <small>System</small>
+        </div>
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+            @RenderPage("~/Views/Header.cshtml")
+        </div>
+    </header>
+    <div class="am-cf admin-main">
+        <!-- sidebar start -->
+        <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+            @RenderPage("~/Views/Sidebar.cshtml")
+        </div>
+        <!-- sidebar end -->
+        <!-- content start -->
+        <div class="admin-content">
+            <div class="admin-content-body">
+                @RenderBody()
+            </div>
+            <footer class="admin-content-footer">
+                <hr>
+                <p class="am-padding-left">© 2017 IntelHR, all rights reserved 2017.</p>
+            </footer>
+        </div>
+        <!-- content end -->
+    </div>
+    <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="/Content/assets/js/jquery-1.11.1.min.js"></script>
+    <!--<![endif]-->
+    <script src="/Content/assets/js/amazeui.min.js"></script>
+    <script src="/Content/assets/js/app.js"></script>
+</body>
+</html>

@@ -5,6 +5,9 @@ using HR.Common;
 
 namespace Model
 {
+    /// <summary>
+    /// 供应商
+    /// </summary>
     public class Supplier : MasterModel
     {
         /// <summary>
