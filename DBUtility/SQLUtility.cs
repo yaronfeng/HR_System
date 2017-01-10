@@ -2,7 +2,7 @@
 using System.Configuration;
 using System.Data.SqlClient;
 
-namespace DBUtility
+namespace HR.DBUtility
 {
     public class SQLUtility
     {

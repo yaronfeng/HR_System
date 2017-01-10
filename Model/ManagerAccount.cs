@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using HR.Common;
 
-namespace Model
+namespace HR.Model
 {
     public class ManagerAccount : MasterModel
     {
