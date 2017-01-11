@@ -17,6 +17,7 @@
     <link href="../img/favicon.ico" rel="shortcut icon" />
     <!-- css -->
     <link rel="stylesheet" href="~/Content/assets/css/amazeui.min.css" />
+    <script type="text/javascript" src="~/JS/jquery-1.11.1.min.js"></script>
     <style>
         .header {
             text-align: center;
@@ -32,12 +33,43 @@
                 font-size: 14px;
             }
     </style>
+    <script type="text/javascript">
+      function Login(){
+            $("#")
+            var accountName = $("#accountName").val();
+            var password = $("#password").val();
+
+            if (accountName.length == 0) { alert("必须输入用户名"); return; }
+            if (password.length == 0) { alert("必须输入密码"); return; }
+
+            var user = {
+                accountName: accountName,
+                password: password
+            };
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/Account/LoginCheck",
+                data: JSON.stringify(user),
+                dataType: "json",
+                success: function (result) {
+                    if (result == "1"){
+                        window.location.href = "/home/index";
+                    }
+                    else{
+                        alert("登录失败");
+                    }
+                }
+            });
+        };
+    </script>
 </head>
 <body>
     <div class="header">
         <div class="am-g">
-            <h1>Web ide</h1>
-            <p>Integrated Development Environment<br />代码编辑，代码生成</p>
+            <h1>英达国际人才</h1>
+            <p>人才派遣管理系统<br /></p>
         </div>
         <hr />
     </div>
@@ -50,9 +82,9 @@
             </div>
             <br>
             <br>
-            <form method="post" class="am-form">
+            <div class="am-form">
                 <label for="email">邮箱:</label>
-                <input type="email" name="" id="email" value="">
+                <input type="text" name="" id="accountName" value="">
                 <br>
                 <label for="password">密码:</label>
                 <input type="password" name="" id="password" value="">
@@ -63,9 +95,9 @@
                 </label>
                 <br />
                 <div class="am-cf">
-                    <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
+                    <input type="submit" name="" onclick="javascript: Login();" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
                 </div>
-            </form>
+            </div>
             <hr>
             <p>© 2017 IntelHR, all rights reserved 2017.</p>
         </div>

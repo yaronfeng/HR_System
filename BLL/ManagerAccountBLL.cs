@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HR.SQLServerDAL;
 using HR.Model;
+using HR.Common;
 
 namespace HR.BLL
 {
@@ -20,7 +21,6 @@ namespace HR.BLL
         /// <returns></returns>
         public ManagerAccount Login(string account, string passWord)
         {
-
             return sql_insrance.Login(account, passWord);
         }
     }

@@ -39,15 +39,25 @@ namespace HR.SQLServerDAL
 
         public ManagerAccount Login(string account,string passWord)
         {
-            string sql = string.Format(@"select count(1) from Sys_ManagerAccount where ManAccount = @ManAccount and ManPassWord = @ManPassWord and ManStatus = {0}",(int)Common.StatusEnum.已完成);
+            string sql = string.Format(@"select * from Sys_ManagerAccount where ManAccount = @ManAccount and ManPassWord = @ManPassWord and ManStatus = {0}",(int)Common.StatusEnum.已完成);
 
             SqlParameter[] parmes = new[]
             {
-                new SqlParameter() {ParameterName="@ManAccount",Value=account },
-                new SqlParameter() {ParameterName="@ManPassWord",Value=passWord }
+                new SqlParameter("@ManAccount", SqlDbType.VarChar,100),
+                new SqlParameter("@ManPassWord", SqlDbType.VarChar,100)
             };
+            parmes[0].Value = account;
+            parmes[1].Value = passWord;
 
-            return (ManagerAccount)SqlHelper.ExecuteScalar(ConnectString, CommandType.StoredProcedure, sql, parmes);
+            ManagerAccount manAccount = null;
+            using (SqlDataReader rd = SqlHelper.ExecuteReader(ConnectString, CommandType.Text, sql, parmes))
+            {
+                while (rd.Read())
+                {
+                    manAccount = SetOneRow(rd);
+                }
+            }
+            return manAccount;
         }
     }
 }
