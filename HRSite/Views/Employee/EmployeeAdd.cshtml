@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "EmployeeAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" src="/JS/Employee/EmployeeAdd.js"></script>
+<link rel="stylesheet" href="~/jqwidgets/styles/jqx.base.css" type="text/css" />
+<link href="~/jqwidgets/styles/jqx.jm.css" rel="stylesheet" type="text/css" />
+<div class="am-cf am-padding am-padding-bottom-0">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">添加员工</strong> / <small>Personal information</small></div>
+</div>
+<hr />
+<div class="am-g">
+    <div class="am-u-sm-12 am-u-sm-centered">
+        <div class="am-panel am-panel-default">
+            <div class="am-g">
+                <div class="am-u-sm-12 am-u-md-3">
+                    <div class="am-form-group">
+                        <select data-am-selected="{btnSize: 'sm'}" style="display: none;">
+                            <option value="option1">所有类别</option>
+                            <option value="option2">IT业界</option>
+                            <option value="option3">数码产品</option>
+                            <option value="option3">笔记本电脑</option>
+                            <option value="option3">平板电脑</option>
+                            <option value="option3">只能手机</option>
+                            <option value="option3">超极本</option>
+                        </select></div>
+                </div>
+            </div>
+
+            <ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 am-thumbnails">
+                <li><span>申请日期：</span><div class="txb" id="tmEntryDate"></div></li>
+                <li><span>申请日期：</span><div class="txb" id="tmEntryDate1"></div></li>
+                <li><span>申请日期：</span><div class="txb" id="tmEntryDate2"></div></li>
+                <li><span>申请日期：</span><div class="txb" id="tmEntryDate3"></div></li>
+            </ul>
+         </div>
+    </div>
+</div>
+
