@@ -1,0 +1,10 @@
+﻿[
+    {
+        "SexId": 1,
+        "SexName": "男"
+    },
+   {
+        "SexId": 2,
+        "SexName": "女"
+    }
+]

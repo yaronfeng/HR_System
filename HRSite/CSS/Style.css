@@ -1,0 +1,45 @@
+﻿body {
+}
+/* Content */
+.am-panel .p1 {
+	background: #fff;
+	margin-bottom: 10px;
+}
+.am-panel .p1 ul {
+	padding: 20px 30px 10px 30px;
+	font-size: 14px;
+	color: #000000;
+	overflow: hidden;
+	clear: both;
+}
+.am-panel .p1 ul li {
+	float: left;
+	height: 40px;
+	width: 320px;
+	display: block;
+}
+.am-panel .p1 ul li span {
+	width: 100px;
+	display: block;
+	float: left;
+	line-height: 25px;
+	text-align: right;
+}
+.am-panel .p1 ul li.txb {
+	float: left;
+	margin-left: 5px;
+	width: 200px;
+}
+
+.i2 {
+	font-size: 14px;
+	line-height: 25px;
+	height: 25px;
+	width: 55%;
+	padding: 2px 10px;
+	border: 1px #dedee0 solid;
+	-moz-border-radius: 5px;      /* Gecko browsers */
+	-webkit-border-radius: 5px;   /* Webkit browsers */
+	border-radius: 5px;            /* W3C syntax */
+	background-color: #fff;
+}

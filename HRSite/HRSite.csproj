@@ -89,6 +89,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BaseData\bank.txt" />
+    <Content Include="BaseData\degree.txt" />
+    <Content Include="BaseData\payCity.txt" />
+    <Content Include="BaseData\sex.txt" />
     <Content Include="Content\assets\css\admin.css" />
     <Content Include="Content\assets\css\amazeui.css" />
     <Content Include="Content\assets\css\amazeui.flat.css" />
@@ -118,6 +122,7 @@
     <Content Include="Content\assets\js\app.js" />
     <Content Include="Content\assets\js\handlebars.min.js" />
     <Content Include="Content\assets\js\jquery-1.11.1.min.js" />
+    <Content Include="CSS\Style.css" />
     <Content Include="Global.asax" />
     <Content Include="jqwidgets\globalization\globalize.culture.cs-CZ.js" />
     <Content Include="jqwidgets\globalization\globalize.culture.de-DE.js" />

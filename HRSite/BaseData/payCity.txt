@@ -1,0 +1,10 @@
+﻿[
+    {
+        "payCityId": 1,
+        "payCityName": "北京"
+    },
+   {
+        "payCityId": 2,
+        "payCityName": "北京"
+    }
+]

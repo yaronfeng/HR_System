@@ -1,0 +1,20 @@
+﻿[
+    {
+        "DegreeId": 10,
+        "DegreeName": "初中"
+    },
+   {
+        "DegreeId": 20,
+        "DegreeName": "高中"
+    }
+,
+   {
+        "DegreeId": 30,
+        "DegreeName": "大专"
+    }
+,
+   {
+        "DegreeId": 40,
+        "DegreeName": "本科"
+    }
+]

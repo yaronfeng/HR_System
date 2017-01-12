@@ -1,0 +1,25 @@
+﻿[
+    {
+        "BankId": 10,
+        "BankName": "中国工商银行"
+    },
+   {
+        "BankId": 20,
+        "BankName": "中国农业银行"
+    }
+,
+   {
+        "BankId": 30,
+        "BankName": "中国银行"
+    }
+,
+   {
+        "BankId": 40,
+        "BankName": "中国建设银行"
+    }
+	,
+   {
+        "BankId": 50,
+        "BankName": "中国光大银行"
+    }
+]
