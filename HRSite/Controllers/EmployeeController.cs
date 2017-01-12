@@ -18,5 +18,9 @@ namespace HRSite.Controllers
         {
             return View();
         }
+        public ActionResult EmployeeList()
+        {
+            return View();
+        }
     }
 }

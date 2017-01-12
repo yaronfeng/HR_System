@@ -54,7 +54,7 @@ namespace HR.Model
         /// <summary>
         /// 岗位
         /// </summary>
-        public int Jobs { get; set; }
+        public string Jobs { get; set; }
         /// <summary>
         /// 应发工资
         /// </summary>
@@ -82,7 +82,7 @@ namespace HR.Model
         /// <summary>
         /// 公积金账号
         /// </summary>
-        public decimal HouseAccount { get; set; }
+        public string HouseAccount { get; set; }
         /// <summary>
         /// 是否劳动手册
         /// </summary>
@@ -94,7 +94,7 @@ namespace HR.Model
         /// <summary>
         /// 银行
         /// </summary>
-        public string Bank { get; set; }
+        public int Bank { get; set; }
         /// <summary>
         /// 银行账号
         /// </summary>
