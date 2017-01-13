@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using HR.Model;
 using System.Data.SqlClient;
 using System.Data;
+using HR.Common;
 
 namespace HR.SQLServerDAL
 {
@@ -85,17 +86,117 @@ namespace HR.SQLServerDAL
             return employee;
         }
 
-        public int AddProductExtion(Employee emp)
+        /// <summary>
+        /// 员工新增
+        /// </summary>
+        /// <param name="emp"></param>
+        /// <returns></returns>
+        public int AddEmployee(Employee emp)
         {
-            var sql = @"delete product_extend where product_id = @pid and product_ver = @ver
-insert into product_extend (product_id,product_ver,product_memo,product_rule)values(@pid,@ver,@memo,@rule)";
-            var parms = new List<SqlParameter>();
-            parms.Add(new SqlParameter() { ParameterName = "@pid", Value = emp.EmpId });
-            parms.Add(new SqlParameter() { ParameterName = "@ver", Value = emp.EmpName });
+            var sql = @"INSERT INTO [HR_System].[dbo].[Usr_Employee] 
+([EmpName],[Sex],[CardNo],[Address],[Phone],[EntryDate],[ConStartDate],[ConEndDate],[LeaveDate],[Degree],[Jobs],[TotalAmount],[SocialFundNum],[HouseFundNum],[PayCity],[SocialStartDate],[HouseStartDate],[HouseAccount],[HandBook],[ResidentPermit],[Bank],[BankAccount],[ContractNo],[EmployDate],[SocialSignDate],[IsBirthIns],[InsCardNo],[EmpEmail],[EmpStatus],[Memo],[CreatorId],[CreateTime],[LastModifyId],[LastModifyTime])
+     VALUES
+(@EmpName,@Sex,@CardNo,@Address,@Phone,@EntryDate,@ConStartDate,@ConEndDate,@LeaveDate,@Degree,@Jobs,@TotalAmount,@SocialFundNum,@HouseFundNum,@PayCity,@SocialStartDate ,@HouseStartDate,@HouseAccount,@HandBook,@ResidentPermit ,@Bank,@BankAccount,@ContractNo,@EmployDate,@SocialSignDate,@IsBirthIns,@InsCardNo ,@EmpEmail,@EmpStatus,@Memo,@CreatorId ,getdate(),@LastModifyId,getdate())";
+            SqlParameter[] parmes = new[]
+            {
+                new SqlParameter("@EmpName", SqlDbType.VarChar,100),
+                new SqlParameter("@Sex", SqlDbType.Int,4),
+                new SqlParameter("@CardNo", SqlDbType.VarChar,100),
+                new SqlParameter("@Address", SqlDbType.VarChar,100),
+                new SqlParameter("@Phone", SqlDbType.VarChar,100),
+                new SqlParameter("@EntryDate", SqlDbType.DateTime,8),
+                new SqlParameter("@ConStartDate", SqlDbType.DateTime,8),
+                new SqlParameter("@ConEndDate", SqlDbType.DateTime,8),
+                new SqlParameter("@LeaveDate", SqlDbType.DateTime,8),
+                new SqlParameter("@Degree", SqlDbType.Int,4),
+                new SqlParameter("@Jobs", SqlDbType.VarChar,100),
+                new SqlParameter("@TotalAmount", SqlDbType.Decimal,9),
+                new SqlParameter("@SocialFundNum", SqlDbType.Decimal,9),
+                new SqlParameter("@HouseFundNum", SqlDbType.Decimal,9),
+                new SqlParameter("@PayCity", SqlDbType.Int,4),
+                new SqlParameter("@SocialStartDate", SqlDbType.DateTime,8),
+                new SqlParameter("@HouseStartDate", SqlDbType.DateTime,8),
+                new SqlParameter("@HouseAccount", SqlDbType.VarChar,100),
+                new SqlParameter("@HandBook", SqlDbType.Int,4),
+                new SqlParameter("@ResidentPermit", SqlDbType.Int,4),
+                new SqlParameter("@Bank", SqlDbType.Int,4),
+                new SqlParameter("@BankAccount", SqlDbType.VarChar,100),
+                new SqlParameter("@ContractNo", SqlDbType.VarChar,100),
+                new SqlParameter("@EmployDate", SqlDbType.DateTime,8),
+                new SqlParameter("@SocialSignDate", SqlDbType.DateTime,8),
+                new SqlParameter("@IsBirthIns", SqlDbType.Int,4),
+                new SqlParameter("@InsCardNo", SqlDbType.VarChar,100),
+                new SqlParameter("@EmpEmail", SqlDbType.VarChar,100),
+                new SqlParameter("@EmpStatus", SqlDbType.Int,4),
+                new SqlParameter("@Memo", SqlDbType.VarChar,100),
+                new SqlParameter("@CreatorId", SqlDbType.Int,4),
+                new SqlParameter("@LastModifyId", SqlDbType.Int,100),
+            };
+            parmes[0].Value = emp.EmpName;
+            parmes[1].Value = emp.Sex;
+            parmes[2].Value = emp.CardNo;
+            parmes[3].Value = emp.Address;
+            parmes[4].Value = emp.Phone;
+            parmes[5].Value = emp.EntryDate;
+            parmes[6].Value = emp.ConStartDate;
+            parmes[7].Value = emp.ConEndDate;
+            parmes[8].Value = emp.LeaveDate;
+            parmes[9].Value = emp.Degree;
+            parmes[10].Value = emp.Jobs;
+            parmes[11].Value = emp.TotalAmount;
+            parmes[12].Value = emp.SocialFundNum;
+            parmes[13].Value = emp.HouseFundNum;
+            parmes[14].Value = emp.PayCity;
+            parmes[15].Value = emp.SocialStartDate;
+            parmes[16].Value = emp.HouseStartDate;
+            parmes[17].Value = emp.HouseAccount;
+            parmes[18].Value = emp.HandBook;
+            parmes[19].Value = emp.ResidentPermit;
+            parmes[20].Value = emp.Bank;
+            parmes[21].Value = emp.BankAccount;
+            parmes[22].Value = emp.ContractNo;
+            parmes[23].Value = emp.EmployDate;
+            parmes[24].Value = emp.SocialSignDate;
+            parmes[25].Value = emp.IsBirthIns;
+            parmes[26].Value = emp.InsCardNo;
+            parmes[27].Value = emp.EmpEmail;
+            parmes[28].Value = emp.EmpStatus;
+            parmes[29].Value = emp.Memo;
+            parmes[30].Value = emp.CreatorId;
+            parmes[31].Value = emp.LastModifyId;
+
             using (SqlConnection conn = new SqlConnection(ConnectString))
             {
-                return (int)SqlHelper.ExecuteScalar(conn, CommandType.Text, sql, parms.ToArray());
+                return (int)SqlHelper.ExecuteNonQuery(conn, CommandType.Text, sql, parmes.ToArray());
             }
+        }
+
+        public List<Employee> EmployeeListSelect(int pageIndex, int pageSize, string orderStr)
+        {
+            SelectModel select = new SelectModel();
+
+            select.PageIndex = pageIndex;
+            select.PageSize = pageSize;
+            if (string.IsNullOrEmpty(orderStr))
+                select.OrderStr = "di.DeliveryInId desc";
+            else
+                select.OrderStr = orderStr;
+
+            select.ColumnName = "DeliveryInId,inCorp.CorpName as InCorpName,outCorp.CorpName as OutCorpName,PromptDate,brk.BrokerName,std.DetailName as PositionDirection,ass.AssetName,exc.ExchangeName,fuc.TradeCode,PositionWeight,Lots,uni.UnitName,StrikePrice,Spread,styd.DetailName as OpenPositionType,sd.StatusName,di.PositionStatus";
+
+            System.Text.StringBuilder sb = new StringBuilder();
+            sb.Append(" dbo.St_DeliveryIn di ");
+
+            select.TableName = sb.ToString();
+
+            sb.Length = 0;
+
+            sb.AppendFormat(" and di.PositionStatus >{0} ", (int)StatusEnum.已作废);
+
+            select.WhereStr = sb.ToString();
+
+            List<Employee> empList = new List<Employee>();
+            return empList;
         }
     }
 }

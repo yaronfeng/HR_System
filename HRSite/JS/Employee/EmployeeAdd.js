@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    //绑定
     $("#txbEmpName").jqxInput({ minLength: 1, height: 25, width: 200 });
     $("#txbCardNo").jqxInput({ minLength: 1, height: 25, width: 200 });
     $("#txbAddress").jqxInput({ minLength: 1, height: 25, width: 200 });
@@ -15,37 +16,95 @@
 
     $("#tmConStartDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd" });
     $("#tmConEndDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd" });
-    $("#tmLeaveDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd" });
+    $("#tmLeaveDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd" ,value: new Date(1900, 0, 1)});
     $("#tmSocialStartDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd" });
     $("#tmHouseStartDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd" });
     $("#tmEmployDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd" });
-    $("#tmSocialSignDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd" });
+    $("#tmSocialSignDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd", value: new Date(1900, 0, 1) });
 
     $("#numTotalAmount").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
     $("#numSocialFundNum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
     $("#numHouseFundNum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
 
-    var currencyUrl = "../BaseData/sex.txt";
-    var currencySource = { datatype: "json", datafields: [{ name: "SexId" }, { name: "SexName" }], url: currencyUrl, async: false };
-    var currencyDataAdapter = new $.jqx.dataAdapter(currencySource);
-    $("#selSex").jqxComboBox({ source: currencyDataAdapter, displayMember: "SexName", valueMember: "SexId", autoComplete: true, searchMode: "contains", selectedIndex: 0 });
+    $("#selSex").jqxDropDownList({ source: SexSource, displayMember: "text", valueMember: "value",autoDropDownHeight: true, selectedIndex: 0 });
 
-    var currencyUrl = "../BaseData/degree.txt";
-    var currencySource = { datatype: "json", datafields: [{ name: "DegreeId" }, { name: "DegreeName" }], url: currencyUrl, async: false };
-    var currencyDataAdapter = new $.jqx.dataAdapter(currencySource);
-    $("#SelDegree").jqxComboBox({ source: currencyDataAdapter, displayMember: "DegreeName", valueMember: "DegreeId", autoComplete: true, searchMode: "contains", selectedIndex: 0 });
+    $("#selDegree").jqxDropDownList({ source: DegreeSource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 });
 
-    var currencyUrl = "../BaseData/bank.txt";
-    var currencySource = { datatype: "json", datafields: [{ name: "BankId" }, { name: "BankName" }], url: currencyUrl, async: false };
-    var currencyDataAdapter = new $.jqx.dataAdapter(currencySource);
-    $("#selBank").jqxComboBox({ source: currencyDataAdapter, displayMember: "BankName", valueMember: "BankId", autoComplete: true, searchMode: "contains"});
+    $("#selBank").jqxDropDownList({ source: BankSource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 });
 
-    var currencyUrl = "../BaseData/payCity.txt";
-    var currencySource = { datatype: "json", datafields: [{ name: "payCityId" }, { name: "payCityName" }], url: currencyUrl, async: false };
-    var currencyDataAdapter = new $.jqx.dataAdapter(currencySource);
-    $("#selPayCity").jqxComboBox({ source: currencyDataAdapter, displayMember: "payCityName", valueMember: "payCityId", autoComplete: true, searchMode: "contains", selectedIndex: 0 });
+    $("#selPayCity").jqxDropDownList({ source: PayCitySource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 });
 
     $("#chkIsHandBook").jqxCheckBox();
     $("#chkIsResidentPermit").jqxCheckBox();
     $("#chkIsBirthIns").jqxCheckBox();
+
+
+    //校验
+    $("#jqxValidator").jqxValidator({
+        position: "topcenter",
+        rules:
+            [
+                {
+                    input: "#txbEmpName", message: "员工姓名必填", action: "keyup, blur,valuechange", rule: function (input, commit) {
+                        return $("#txbEmpName").val() != "";
+                    }
+                },
+                {
+                    input: "#txbCardNo", message: "身份证必填", action: "keyup, blur,valuechange", rule: function (input, commit) {
+                        return $("#txbCardNo").val() != "";
+                    }
+                }
+            ]
+    });
+
+
+    $("#btnCreate").click(function () {
+        var isCanSubmit = $("#jqxValidator").jqxValidator("validate");
+        if (!isCanSubmit) { return; }
+
+        var employee = {
+            EmpName: $("#txbEmpName").val(),
+            Sex: $("#selSex").val(),
+            CardNo: $("#txbCardNo").val(),
+            Address: $("#txbAddress").val(),
+            Phone: $("#txbPhone").val(),
+            EntryDate: $("#tmEntryDate").val(),
+            ConStartDate: $("#tmConStartDate").val(),
+            ConEndDate: $("#tmConEndDate").val(),
+            LeaveDate: $("#tmLeaveDate").val(),
+            Degree: $("#selDegree").val(),
+            Jobs: $("#txbJobs").val(),
+            TotalAmount: $("#numTotalAmount").val(),
+            SocialFundNum: $("#numSocialFundNum").val(),
+            HouseFundNum: $("#numHouseFundNum").val(),
+            PayCity: $("#selPayCity").val(),
+            SocialStartDate: $("#tmSocialStartDate").val(),
+            HouseStartDate: $("#tmHouseStartDate").val(),
+            HouseAccount: $("#txbHouseAccount").val(),
+            HandBook: $("#chkIsHandBook").val(),
+            ResidentPermit: $("#chkIsResidentPermit").val(),
+            Bank: $("#selBank").val(),
+            BankAccount: $("#txbBankAccount").val(),
+            ContractNo: $("#txbContractNo").val(),
+            EmployDate: $("#tmEmployDate").val(),
+            SocialSignDate: $("#tmSocialSignDate").val(),
+            IsBirthIns: $("#chkIsBirthIns").val(),
+            InsCardNo: $("#txbInsCardNo").val(),
+            EmpEmail: $("#txbEmpEmail").val(),
+            Memo: $("#txbMemo").val()
+        };
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "../Employee/Insert",
+            data: JSON.stringify(employee),
+            dataType: "json",
+            success: function (result) {
+                var obj = result;
+                alert(obj);
+            }
+        });
+
+    });
 });
