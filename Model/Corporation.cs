@@ -63,7 +63,7 @@ namespace HR.Model
         /// <summary>
         /// 参保结算区域
         /// </summary>
-        public int SettlementArea { get; set; }
+        public int PayCity { get; set; }
         /// <summary>
         /// 公积金账号
         /// </summary>
@@ -71,7 +71,11 @@ namespace HR.Model
         /// <summary>
         /// 公积金开户行
         /// </summary>
-        public string HouseBank { get; set; }
+        public int HouseBank { get; set; }
+        /// <summary>
+        /// 公积金密码
+        /// </summary>
+        public string HousePWD { get; set; }
         /// <summary>
         /// 状态
         /// </summary>

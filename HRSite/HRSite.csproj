@@ -546,7 +546,11 @@
     <Content Include="jqwidgets\styles\jqx.web.css" />
     <Content Include="jqwidgets\styles\jqx.windowsphone.css" />
     <Content Include="JS\CommonData.js" />
+    <Content Include="JS\Corporation\CorporationAdd.js" />
+    <Content Include="JS\Corporation\CorporationList.js" />
     <Content Include="JS\Employee\EmployeeAdd.js" />
+    <Content Include="JS\Employee\EmployeeDetail.js" />
+    <Content Include="JS\Employee\EmployeeList.js" />
     <Content Include="JS\jquery-1.11.1.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -556,6 +560,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Cache\CacheProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CorporationController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -578,7 +583,6 @@
     <Content Include="Views\Sidebar.cshtml" />
     <Content Include="Views\Header.cshtml" />
     <Content Include="Views\Employee\EmployeeAdd.cshtml" />
-    <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="jqwidgets\styles\images\colorpicker\Thumbs.db" />
     <Content Include="jqwidgets\styles\images\darkness\Thumbs.db" />
     <Content Include="jqwidgets\styles\images\le-frog\Thumbs.db" />
@@ -590,6 +594,10 @@
     <Content Include="jqwidgets\styles\images\sunny\Thumbs.db" />
     <Content Include="jqwidgets\styles\images\Thumbs.db" />
     <Content Include="Views\Employee\EmployeeList.cshtml" />
+    <Content Include="Views\Employee\EmployeeDetail.cshtml" />
+    <Content Include="Views\Employee\EmployeeUpdate.cshtml" />
+    <Content Include="Views\Corporation\CorporationAdd.cshtml" />
+    <Content Include="Views\Corporation\CorporationList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -636,7 +644,7 @@
           </IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>True</UseCustomServer>
-          <CustomServerUrl>http://192.168.1.246:8055</CustomServerUrl>
+          <CustomServerUrl>http://192.168.1.11:8055</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

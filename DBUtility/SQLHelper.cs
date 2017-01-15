@@ -434,6 +434,32 @@ namespace HR.DBUtility
 
         #endregion ExecuteNonQuery方法结束
 
+        #region
+        /// <summary>
+        /// 执行数据库语句,返回DataTable
+        /// </summary>
+        /// <param name="connectionString">数据库连接字符串</param>
+        /// <param name="cmdText">执行语句</param>
+        /// <param name="paras">参数</param>
+        /// <param name="type">执行类型</param>
+        /// <returns>DataTable</returns>
+        public static DataTable ExecuteDataTable(string connectionString, string cmdText, SqlParameter[] paras, CommandType type)
+        {
+            DataSet ds = new DataSet();
+            SqlCommand cmd = new SqlCommand();
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                bool mustCloseConnection = false;
+                PrepareCommand(cmd, conn, null, type, cmdText, paras, out mustCloseConnection);
+                SqlDataAdapter dp = new SqlDataAdapter(cmd);
+                dp.Fill(ds);
+
+                return ds.Tables[0];
+            }
+        }
+        #endregion
+
         #region ExecuteDataset方法
 
         /// <summary> 

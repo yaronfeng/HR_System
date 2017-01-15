@@ -43,10 +43,18 @@
     <Compile Include="ConfigValue.cs" />
     <Compile Include="IModel.cs" />
     <Compile Include="MasterModel.cs" />
+    <Compile Include="Operate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultModel.cs" />
     <Compile Include="SelectModel.cs" />
     <Compile Include="StatusEnum.cs" />
     <Compile Include="UserModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBUtility\DBUtility.csproj">
+      <Project>{0c538626-44e8-4d41-b2b6-b6055fc0df55}</Project>
+      <Name>DBUtility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,13 +1,15 @@
 ﻿
 @{
-    ViewBag.Title = "新增员工";
+    ViewBag.Title = "员工信息";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script type="text/javascript" src="/JS/Employee/EmployeeAdd.js"></script>
+
+<script type="text/javascript" src="/JS/Employee/EmployeeDetail.js"></script>
 
 
 <div class="am-cf am-padding am-padding-bottom-0">
-    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新增员工</strong> / <small>Personal information</small></div>
+    <input type="hidden" id="hidId" value="@Request.QueryString["id"]" />
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">员工明细</strong> / <small>Personal information</small></div>
 </div>
 <hr />
 <div class="am-g">
@@ -73,7 +75,7 @@
                     <li>
                         <span>岗位：</span>
                         <div class="txb">
-                            <input type="text" id="txbJobs"/>
+                            <input type="text" id="txbJobs" />
                         </div>
                     </li>
                     <li>
@@ -130,7 +132,7 @@
                     <li>
                         <span>卡号：</span>
                         <div class="txb">
-                            <input type="text" id="txbBankAccount"  />
+                            <input type="text" id="txbBankAccount" />
                         </div>
                     </li>
                     <li>
@@ -163,7 +165,7 @@
                     <li>
                         <span>邮箱：</span>
                         <div class="txb">
-                            <input type="text" id="txbEmpEmail"/>
+                            <input type="text" id="txbEmpEmail" />
                         </div>
                     </li>
                     <li>
@@ -176,9 +178,5 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="am-margin">
-    <button type="button" class="am-btn am-btn-primary am-btn-sm" id="btnCreate">保存</button>
 </div>
 
