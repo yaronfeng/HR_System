@@ -20,6 +20,10 @@ namespace HR.Model
         /// </summary>
         public int Sex { get; set; }
         /// <summary>
+        /// 所属企业
+        /// </summary>
+        public int CorpId { get; set; }
+        /// <summary>
         /// 身份证
         /// </summary>
         public string CardNo { get; set; }

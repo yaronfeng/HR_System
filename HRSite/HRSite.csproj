@@ -547,7 +547,9 @@
     <Content Include="jqwidgets\styles\jqx.windowsphone.css" />
     <Content Include="JS\CommonData.js" />
     <Content Include="JS\Corporation\CorporationAdd.js" />
+    <Content Include="JS\Corporation\CorporationDetail.js" />
     <Content Include="JS\Corporation\CorporationList.js" />
+    <Content Include="JS\Corporation\CorporationUpdate.js" />
     <Content Include="JS\Employee\EmployeeAdd.js" />
     <Content Include="JS\Employee\EmployeeDetail.js" />
     <Content Include="JS\Employee\EmployeeList.js" />
@@ -598,6 +600,8 @@
     <Content Include="Views\Employee\EmployeeUpdate.cshtml" />
     <Content Include="Views\Corporation\CorporationAdd.cshtml" />
     <Content Include="Views\Corporation\CorporationList.cshtml" />
+    <Content Include="Views\Corporation\CorporationDetail.cshtml" />
+    <Content Include="Views\Corporation\CorporationUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

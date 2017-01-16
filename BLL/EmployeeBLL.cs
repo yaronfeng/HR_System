@@ -30,6 +30,8 @@ namespace HR.BLL
             employee.EmpName = rd["EmpName"].ToString();
             if (rd["Sex"] != DBNull.Value)
                 employee.Sex = int.Parse(rd["Sex"].ToString());
+            if (rd["CorpId"] != DBNull.Value)
+                employee.CorpId = int.Parse(rd["CorpId"].ToString());
             employee.CardNo = rd["CardNo"].ToString();
             employee.Address = rd["Address"].ToString();
             employee.Phone = rd["Phone"].ToString();
@@ -86,6 +88,15 @@ namespace HR.BLL
             if (rd["LastModifyTime"] != DBNull.Value)
                 employee.LastModifyTime = Convert.ToDateTime(rd["LastModifyTime"]);
             return employee;
+        }
+
+        public override List<SqlParameter> CreateUpdateParameters(IModel obj)
+        {
+            Corporation corp = (Corporation)obj;
+
+            List<SqlParameter> paras = new List<SqlParameter>();
+
+            return paras;
         }
 
         public int AddEmployee(Employee emp)

@@ -34,6 +34,11 @@
 
     $("#selPayCity").jqxDropDownList({ source: PayCitySource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 });
 
+    var outCorpUrl = "../Corporation/Corps";
+    var outCorpSource = { datatype: "json", datafields: [{ name: "CorpId" }, { name: "CorpName" }], url: outCorpUrl };
+    var outCorpDataAdapter = new $.jqx.dataAdapter(outCorpSource);
+    $("#selCorpId").jqxComboBox({ source: outCorpDataAdapter, displayMember: "CorpName", valueMember: "CorpId", autoComplete: true, searchMode: "contains", height: 25 });
+
     $("#chkIsHandBook").jqxCheckBox();
     $("#chkIsResidentPermit").jqxCheckBox();
     $("#chkIsBirthIns").jqxCheckBox();

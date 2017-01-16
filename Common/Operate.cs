@@ -25,6 +25,20 @@ namespace HR.Common
         /// <param name="dr">reader对象</param>
         /// <returns></returns>
         protected abstract IModel CreateModel(SqlDataReader dr);
+
+        /// <summary>
+        /// 通过Reader创建实体。泛型方法
+        /// </summary>
+        /// <typeparam name="T">实体类型</typeparam>
+        /// <param name="dr">reader对象</param>
+        /// <returns></returns>
+        protected virtual T CreateModel<T>(SqlDataReader dr)
+            where T : class, IModel
+        {
+            IModel model = this.CreateModel(dr);
+            T t = (T)model;
+            return t;
+        }
         /// <summary>
         /// 通过ID获取实体
         /// </summary>
@@ -83,6 +97,129 @@ namespace HR.Common
                     result.Message = "无数据或读取失败";
                     result.AffectCount = 0;
                 }
+            }
+            catch (Exception ex)
+            {
+                result.ResultStatus = -1;
+                result.Message = ex.Message;
+            }
+            finally
+            {
+                if (dr != null)
+                    dr.Dispose();
+            }
+            return result;
+        }
+
+        public virtual ResultModel<T> Get<T>(int id)
+            where T : class, IModel
+        {
+            if (id < 1)
+            {
+                ResultModel<T> result = new ResultModel<T>();
+                result.Message = "序号不能小于1";
+                return result;
+            }
+
+            List<SqlParameter> paras = new List<SqlParameter>();
+            SqlParameter para = new SqlParameter("@id", SqlDbType.Int, 4);
+            para.Value = id;
+            paras.Add(para);
+
+            return this.Get<T>(CommandType.StoredProcedure, this.GetName, paras.ToArray());
+        }
+
+        /// <summary>
+        /// 通过查询语句获取实体
+        /// </summary>
+        /// <param name="user">当前用户</param>
+        /// <param name="cmdType">执行类型</param>
+        /// <param name="cmdText">SQL语句</param>
+        /// <param name="paras">SQL参数</param>
+        /// <returns></returns>
+        public virtual ResultModel<T> Get<T>(CommandType cmdType, string cmdText, SqlParameter[] paras)
+            where T : class, IModel
+        {
+            ResultModel<T> result = new ResultModel<T>();
+
+            SqlDataReader dr = null;
+            try
+            {
+                dr = SqlHelper.ExecuteReader(ConnectString, cmdType, cmdText, paras);
+
+                T model = default(T);
+
+                if (dr.Read())
+                {
+                    model = CreateModel<T>(dr);
+
+                    result.AffectCount = 1;
+                    result.Message = "读取成功";
+                    result.ResultStatus = 0;
+                    result.ReturnValue = model;
+                }
+                else
+                {
+                    result.Message = "无数据或读取失败";
+                    result.AffectCount = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                result.ResultStatus = -1;
+                result.Message = ex.Message;
+            }
+            finally
+            {
+                if (dr != null)
+                    dr.Dispose();
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// 获取所有数据行
+        /// </summary>
+        /// <typeparam name="T">泛型，实体类型</typeparam>
+        /// <param name="user">当前用户</param>
+        /// <returns>返回数据实体集合</returns>
+        public virtual ResultModel<T> Load<T>()
+            where T : class, IModel
+        {
+            return this.Load<T>( CommandType.StoredProcedure, this.LoadName);
+        }
+
+        /// <summary>
+        /// 根据查询语句，获取数据行
+        /// </summary>
+        /// <typeparam name="T">泛型，实体类型</typeparam>
+        /// <param name="user">当前用户</param>
+        /// <param name="cmdType">System.Data.CommandType值之一</param>
+        /// <param name="cmdText">查询语句</param>
+        /// <returns>返回数据实体集合</returns>
+        public virtual ResultModel<T> Load<T>(CommandType cmdType, string cmdText)
+            where T : class, IModel
+        {
+            ResultModel<T> result = new ResultModel<T>();
+
+            SqlDataReader dr = null;
+            try
+            {
+                dr = SqlHelper.ExecuteReader(ConnectString, cmdType, cmdText, null);
+                List<T> models = new List<T>();
+
+                int i = 0;
+                while (dr.Read())
+                {
+                    T t = this.CreateModel<T>(dr);
+                    models.Add(t);
+                    i++;
+                }
+
+                result.AffectCount = i;
+                result.Message = "获取列表成功";
+                result.ResultStatus = 0;
+                result.ReturnValues = models;
             }
             catch (Exception ex)
             {
@@ -179,6 +316,9 @@ namespace HR.Common
 
             return result;
         }
+
+        #endregion
+
         /// <summary>
         /// 新增实体
         /// </summary>
@@ -223,7 +363,45 @@ namespace HR.Common
         }
 
         protected abstract List<SqlParameter> CreateInsertParameters(IModel obj, ref SqlParameter returnValue);
-        #endregion
+
+        public virtual ResultModel Update(IModel obj)
+        {
+            ResultModel result = new ResultModel();
+
+            try
+            {
+                if (obj == null)
+                {
+                    result.Message = "更新对象不能为null";
+                    return result;
+                }
+
+                int i = SqlHelper.ExecuteNonQuery(ConnectString, CommandType.StoredProcedure, this.UpdateName, CreateUpdateParameters(obj).ToArray());
+
+                if (i == 1)
+                {
+                    result.Message = "更新成功";
+                    result.ResultStatus = 0;
+                }
+                else
+                {
+                    result.ResultStatus = -1;
+                    result.Message = "更新失败";
+                }
+
+                result.AffectCount = i;
+                result.ReturnValue = i;
+            }
+            catch (Exception ex)
+            {
+                result.ResultStatus = -1;
+                result.Message = ex.Message;
+            }
+
+            return result;
+        }
+
+        public abstract List<SqlParameter> CreateUpdateParameters(IModel obj);
 
         #region 存储过程名获取
         /// <summary>
@@ -234,11 +412,25 @@ namespace HR.Common
             get { return string.Format("{0}_{1}", this.TableName, "Get"); }
         }
         /// <summary>
+        /// Load存储过程名
+        /// </summary>
+        protected virtual string LoadName
+        {
+            get { return string.Format("{0}_{1}", this.TableName, "Load"); }
+        }
+        /// <summary>
         /// Insert存储过程名
         /// </summary>
         protected virtual string InsertName
         {
             get { return string.Format("{0}_{1}", this.TableName, "Insert"); }
+        }
+        /// <summary>
+        /// Update存储过程名
+        /// </summary>
+        protected virtual string UpdateName
+        {
+            get { return string.Format("{0}_{1}", this.TableName, "Update"); }
         }
         #endregion
     }

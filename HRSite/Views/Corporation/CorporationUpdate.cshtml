@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "客户修改";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="/JS/Corporation/CorporationUpdate.js"></script>
+
+<div class="am-cf am-padding am-padding-bottom-0">
+    <input type="hidden" id="hidId" value="@Request.QueryString["id"]" />
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">客户修改</strong> / <small>Personal information</small></div>
+</div>
+<hr />
+<div class="am-g">
+    <div class="am-u-sm-12 am-u-sm-centered">
+        <div class="am-panel am-panel-default" id="jqxValidator">
+            <!---001 start-->
+            <div class="p1">
+                <ul>
+                    <li>
+                        <span>客户名称：</span>
+                        <div class="txb">
+                            <input type="text" id="txbCorpName" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>英文名称：</span>
+                        <div class="txb">
+                            <input type="text" id="txbCorpEName" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>客户编号：</span>
+                        <div class="txb">
+                            <input type="text" id="txbCorpCode" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>地址：</span>
+                        <div class="txb">
+                            <input type="text" id="txbCorpAddress" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>联系人：</span>
+                        <div class="txb">
+                            <input type="text" id="txbCorpContacts" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>联系电话：</span>
+                        <div class="txb">
+                            <input type="text" id="txbCorpTel" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>传真：</span>
+                        <div class="txb">
+                            <input type="text" id="txbCorpFax" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>邮编：</span>
+                        <div class="txb">
+                            <input type="text" id="txbCorpZip" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>邮箱：</span>
+                        <div class="txb">
+                            <input type="text" id="txbCorpEmail" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>组织机构代码：</span>
+                        <div class="txb">
+                            <input type="text" id="txbOrganizationCode" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>网上办事密码：</span>
+                        <div class="txb">
+                            <input type="text" id="txbInternetPWD" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>社保登记码：</span>
+                        <div class="txb">
+                            <input type="text" id="txbSocialRegCode" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>缴费区域：</span>
+                        <div class="txb" id="selPayCity">
+                        </div>
+                    </li>
+                    <li>
+                        <span>公积金帐号：</span>
+                        <div class="txb">
+                            <input type="text" id="txbHouseAccount" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>公积金开户行：</span>
+                        <div class="txb" id="selHouseBank">
+                        </div>
+                    </li>
+                    <li>
+                        <span>公积金密码：</span>
+                        <div class="txb">
+                            <input type="text" id="txbHousePWD" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>备注：</span>
+                        <div class="txb">
+                            <input type="text" id="txbMemo" class="i2" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="am-margin">
+    <button type="button" class="am-btn am-btn-primary am-btn-sm" id="btnUpdate">修改</button>
+</div>
+
+
