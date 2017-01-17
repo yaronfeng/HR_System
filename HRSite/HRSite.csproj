@@ -553,7 +553,9 @@
     <Content Include="JS\Employee\EmployeeAdd.js" />
     <Content Include="JS\Employee\EmployeeDetail.js" />
     <Content Include="JS\Employee\EmployeeList.js" />
+    <Content Include="JS\Employee\EmployeeUpdate.js" />
     <Content Include="JS\jquery-1.11.1.min.js" />
+    <Content Include="JS\Supplier\SupplierAdd.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -565,6 +567,7 @@
     <Compile Include="Controllers\CorporationController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -602,6 +605,10 @@
     <Content Include="Views\Corporation\CorporationList.cshtml" />
     <Content Include="Views\Corporation\CorporationDetail.cshtml" />
     <Content Include="Views\Corporation\CorporationUpdate.cshtml" />
+    <Content Include="Views\Supplier\SupplierAdd.cshtml" />
+    <Content Include="Views\Supplier\SupplierList.cshtml" />
+    <Content Include="Views\Supplier\SupplierDetail.cshtml" />
+    <Content Include="Views\Supplier\SupplierUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

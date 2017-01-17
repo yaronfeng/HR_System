@@ -17,39 +17,39 @@ namespace HR.Model
         /// <summary>
         /// 供应商编号
         /// </summary>
-        public int SupCode { get; set; }
+        public string SupCode { get; set; }
         /// <summary>
         /// 供应商名称
         /// </summary>
-        public int SupName { get; set; }
+        public string SupName { get; set; }
         /// <summary>
         /// 供应商英文名
         /// </summary>
-        public int SupEName { get; set; }
+        public string SupEName { get; set; }
         /// <summary>
         /// 地址
         /// </summary>
-        public int SupAddress { get; set; }
+        public string SupAddress { get; set; }
         /// <summary>
         /// 联系人
         /// </summary>
-        public int SupContacts { get; set; }
+        public string SupContacts { get; set; }
         /// <summary>
         /// 电话
         /// </summary>
-        public int SupTel { get; set; }
+        public string SupTel { get; set; }
         /// <summary>
         /// 传真
         /// </summary>
-        public int SupFax { get; set; }
+        public string SupFax { get; set; }
         /// <summary>
         /// 邮编
         /// </summary>
-        public int SupZip { get; set; }
+        public string SupZip { get; set; }
         /// <summary>
         /// 邮箱
         /// </summary>
-        public int SupEmail { get; set; }
+        public string SupEmail { get; set; }
         /// <summary>
         /// 银行
         /// </summary>
@@ -57,11 +57,11 @@ namespace HR.Model
         /// <summary>
         /// 银行账号
         /// </summary>
-        public int BankAccount { get; set; }
+        public string BankAccount { get; set; }
         /// <summary>
         /// 服务费
         /// </summary>
-        public int ServiceAmount { get; set; }
+        public string ServiceAmount { get; set; }
         /// <summary>
         /// 状态
         /// </summary>
@@ -69,6 +69,6 @@ namespace HR.Model
         /// <summary>
         /// 备注
         /// </summary>
-        public int Memo { get; set; }
+        public string Memo { get; set; }
     }
 }

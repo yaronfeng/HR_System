@@ -37,8 +37,8 @@ namespace HRSite.Controllers
         {
             string jsonStr = string.Empty;
             var corps = HR.BLL.BaseProvider.Corporations.OrderBy(temp => temp.CorpName);
-            jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(corps);
-            return Json(jsonStr);
+            //jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(corps);
+            return Json(corps);
         }
 
         [HttpPost]

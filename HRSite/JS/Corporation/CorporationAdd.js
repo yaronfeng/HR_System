@@ -64,7 +64,7 @@
             dataType: "json",
             success: function (result) {
                 var obj = result;
-                alert(obj);
+                alert(obj.Message);
             }
         });
 

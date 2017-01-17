@@ -19,5 +19,9 @@ namespace HR.Model
         /// Id
         /// </summary>
         public int EmpSalaryId { get; set; }
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public int DetailStatus { get; set; }
     }
 }

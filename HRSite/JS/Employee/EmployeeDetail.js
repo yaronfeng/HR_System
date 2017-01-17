@@ -59,6 +59,7 @@
                 //设置原值
                 $("#txbEmpName").val(rtnObj.EmpName),
                 $("#selSex").val(rtnObj.Sex),
+                $("#selCorpId").val(rtnObj.CorpId),
                 $("#txbCardNo").val(rtnObj.CardNo),
                 $("#txbAddress").val(rtnObj.Address),
                 $("#txbPhone").val(rtnObj.Phone),

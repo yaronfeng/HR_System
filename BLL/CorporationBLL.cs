@@ -15,13 +15,6 @@ namespace HR.BLL
     {
         private CorporationSQL sql_insrance = new CorporationSQL();
 
-        public ResultModel LoadCorporationList(int pageIndex, int pageSize, string orderStr)
-        {
-            SelectModel select = sql_insrance.CorporationListSelect(pageIndex, pageSize, orderStr);
-            ResultModel result = Load(select);
-
-            return result;
-        }
         protected override List<SqlParameter> CreateInsertParameters(IModel obj, ref SqlParameter returnValue)
         {
             Corporation corp = (Corporation)obj;
@@ -302,6 +295,14 @@ namespace HR.BLL
             paras.Add(lastmodifyidpara);
 
             return paras;
+        }
+
+        public ResultModel LoadCorporationList(int pageIndex, int pageSize, string orderStr)
+        {
+            SelectModel select = sql_insrance.CorporationListSelect(pageIndex, pageSize, orderStr);
+            ResultModel result = Load(select);
+
+            return result;
         }
 
         public override string TableName

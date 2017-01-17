@@ -23,6 +23,16 @@ namespace HRSite.Controllers
             return View();
         }
 
+        public ActionResult EmployeeDetail()
+        {
+
+            return View();
+        }
+        public ActionResult EmployeeUpdate()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult LoadEmployeeList(int pageIndex, int pageSize, string orderField, string sortOrder)
         {
@@ -74,20 +84,70 @@ namespace HRSite.Controllers
             //string json = Newtonsoft.Json.JsonConvert.SerializeObject(employee);
 
             EmployeeBLL employeeBLL = new EmployeeBLL();
-            int result = employeeBLL.AddEmployee(employee);
-            if (result > 0)
-                return Content("1000");
-            return Content("1001");
+            ResultModel result = employeeBLL.Insert(employee);
+            if (result.ResultStatus != 0)
+                return Json(result);
+
+            result.Message = "员工新增成功";
+            result.ReturnValue = "";
+            result.ResultStatus = 0;
+            return Json(result);
         }
 
-        public ActionResult EmployeeDetail()
+        [HttpPost]
+        public ActionResult Update(Employee employee)
         {
-            
-            return View();
-        }
-        public ActionResult EmployeeUpdate()
-        {
-            return View();
+            EmployeeBLL empBLL = new EmployeeBLL();
+
+            //获取客户信息
+            ResultModel<Employee> empResult = empBLL.Get<Employee>(employee.EmpId);
+            if (empResult == null || empResult.ResultStatus != 0)
+                new ResultModel("用户获取失败或不存在");
+
+            Employee rtnEmployee = empResult.ReturnValue;
+            if (rtnEmployee == null || rtnEmployee.CorpId <= 0)
+                new ResultModel("用户获取失败或不存在");
+
+            rtnEmployee.EmpName = employee.EmpName;
+            rtnEmployee.Sex = employee.Sex;
+            rtnEmployee.CorpId = employee.CorpId;
+            rtnEmployee.CardNo = employee.CardNo;
+            rtnEmployee.Address = employee.Address;
+            rtnEmployee.Phone = employee.Phone;
+            rtnEmployee.EntryDate = employee.EntryDate;
+            rtnEmployee.ConStartDate = employee.ConStartDate;
+            rtnEmployee.ConEndDate = employee.ConEndDate;
+            rtnEmployee.LeaveDate = employee.LeaveDate;
+            rtnEmployee.Degree = employee.CorpId;
+            rtnEmployee.Jobs = employee.Jobs;
+            rtnEmployee.TotalAmount = employee.TotalAmount;
+            rtnEmployee.SocialFundNum = employee.SocialFundNum;
+            rtnEmployee.HouseFundNum = employee.HouseFundNum;
+            rtnEmployee.PayCity = employee.PayCity;
+            rtnEmployee.SocialStartDate = employee.SocialStartDate;
+            rtnEmployee.HouseStartDate = employee.HouseStartDate;
+            rtnEmployee.HouseAccount = employee.HouseAccount;
+            rtnEmployee.HandBook = employee.HandBook;
+            rtnEmployee.ResidentPermit = employee.ResidentPermit;
+            rtnEmployee.Bank = employee.Bank;
+            rtnEmployee.BankAccount = employee.BankAccount;
+            rtnEmployee.ContractNo = employee.ContractNo;
+            rtnEmployee.EmployDate = employee.EmployDate;
+            rtnEmployee.SocialSignDate = employee.SocialSignDate;
+            rtnEmployee.IsBirthIns = employee.IsBirthIns;
+            rtnEmployee.InsCardNo = employee.InsCardNo;
+            rtnEmployee.EmpEmail = employee.EmpEmail;
+            rtnEmployee.Memo = employee.Memo;
+
+            ResultModel result = empBLL.Update(employee);
+            if (result.ResultStatus != 0)
+                return Json(result);
+
+            result.Message = "用户修改成功";
+            result.ReturnValue = "";
+            result.ResultStatus = 0;
+            return Json(result);
+
         }
 
         protected string ModelName

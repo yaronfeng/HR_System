@@ -4,5 +4,188 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EmployeeUpdate</h2>
+<script type="text/javascript" src="/JS/Employee/EmployeeUpdate.js"></script>
+
+
+<div class="am-cf am-padding am-padding-bottom-0">
+    <input type="hidden" id="hidId" value="@Request.QueryString["id"]" />
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">修改员工</strong> / <small>Personal information</small></div>
+</div>
+<hr />
+<div class="am-g">
+    <div class="am-u-sm-12 am-u-sm-centered">
+        <div class="am-panel am-panel-default" id="jqxValidator">
+            <!---001 start-->
+            <div class="p1">
+                <ul>
+                    <li>
+                        <span>姓名：</span>
+                        <div class="txb">
+                            <input type="text" id="txbEmpName" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>所属企业：</span>
+                        <div class="txb" id="selCorpId">
+                        </div>
+                    </li>
+                    <li>
+                        <span>性别：</span>
+                        <div class="txb" id="selSex">
+                        </div>
+                    </li>
+                    <li>
+                        <span>身份证：</span>
+                        <div class="txb">
+                            <input type="text" id="txbCardNo" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>地址：</span>
+                        <div class="txb">
+                            <input type="text" id="txbAddress" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>联系电话：</span>
+                        <div class="txb">
+                            <input type="text" id="txbPhone" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>入职日期：</span>
+                        <div class="txb" id="tmEntryDate">
+                        </div>
+                    </li>
+                    <li>
+                        <span>合同起始日：</span>
+                        <div class="txb" id="tmConStartDate">
+                        </div>
+                    </li>
+                    <li>
+                        <span>合同截止日：</span>
+                        <div class="txb" id="tmConEndDate">
+                        </div>
+                    </li>
+                    <li>
+                        <span>离职日期：</span>
+                        <div class="txb" id="tmLeaveDate">
+                        </div>
+                    </li>
+                    <li>
+                        <span>学历：</span>
+                        <div class="txb" id="selDegree">
+                        </div>
+                    </li>
+                    <li>
+                        <span>岗位：</span>
+                        <div class="txb">
+                            <input type="text" id="txbJobs" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>应发工资：</span>
+                        <div class="txb" id="numTotalAmount">
+                        </div>
+                    </li>
+                    <li>
+                        <span>社保基数：</span>
+                        <div class="txb" id="numSocialFundNum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>公积金基数：</span>
+                        <div class="txb" id="numHouseFundNum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>缴纳地：</span>
+                        <div class="txb" id="selPayCity">
+                        </div>
+                    </li>
+                    <li>
+                        <span>社保起缴月：</span>
+                        <div class="txb" id="tmSocialStartDate">
+                        </div>
+                    </li>
+                    <li>
+                        <span>公积金起缴月：</span>
+                        <div class="txb" id="tmHouseStartDate">
+                        </div>
+                    </li>
+                    <li>
+                        <span>公积金账号：</span>
+                        <div class="txb">
+                            <input type="text" id="txbHouseAccount" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>劳动手册：</span>
+                        <div class="txb" id="chkIsHandBook" style="margin-top:5px;">
+                        </div>
+                    </li>
+                    <li>
+                        <span>居住证：</span>
+                        <div class="txb" id="chkIsResidentPermit" style="margin-top:5px;">
+                        </div>
+                    </li>
+                    <li>
+                        <span>银行：</span>
+                        <div class="txb" id="selBank">
+                        </div>
+                    </li>
+                    <li>
+                        <span>卡号：</span>
+                        <div class="txb">
+                            <input type="text" id="txbBankAccount" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>合同编号：</span>
+                        <div class="txb">
+                            <input type="text" id="txbContractNo" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>录用办理日：</span>
+                        <div class="txb" id="tmEmployDate">
+                        </div>
+                    </li>
+                    <li>
+                        <span>社保办理日：</span>
+                        <div class="txb" id="tmSocialSignDate">
+                        </div>
+                    </li>
+                    <li>
+                        <span>生育保险：</span>
+                        <div class="txb" id="chkIsBirthIns" style="margin-top:5px;">
+                        </div>
+                    </li>
+                    <li>
+                        <span>保险卡号：</span>
+                        <div class="txb">
+                            <input type="text" id="txbInsCardNo" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>邮箱：</span>
+                        <div class="txb">
+                            <input type="text" id="txbEmpEmail" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>备注：</span>
+                        <div class="txb">
+                            <input type="text" id="txbMemo" class="i2" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="am-margin">
+    <button type="button" class="am-btn am-btn-primary am-btn-sm" id="btnUpdate">修改</button>
+</div>
 
