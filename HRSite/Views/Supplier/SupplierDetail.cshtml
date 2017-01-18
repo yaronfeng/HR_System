@@ -1,8 +1,107 @@
 ﻿
 @{
-    ViewBag.Title = "SupplierDetail";
+    ViewBag.Title = "供应商修改";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SupplierDetail</h2>
+<script type="text/javascript" src="/JS/Supplier/SupplierUpdate.js"></script>
 
+
+<div class="am-cf am-padding am-padding-bottom-0">
+    <input type="hidden" id="hidId" value="@Request.QueryString["id"]" />
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">供应商修改</strong> / <small>Personal information</small></div>
+</div>
+<hr />
+<div class="am-g">
+    <div class="am-u-sm-12 am-u-sm-centered">
+        <div class="am-panel am-panel-default" id="jqxValidator">
+            <!---001 start-->
+            <div class="p1">
+                <ul>
+                    <li>
+                        <span>供应商名称：</span>
+                        <div class="txb">
+                            <input type="text" id="txbSupName" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>英文名：</span>
+                        <div class="txb">
+                            <input type="text" id="txbSupEName" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>编号：</span>
+                        <div class="txb">
+                            <input type="text" id="txbSupCode" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>地址：</span>
+                        <div class="txb">
+                            <input type="text" id="txbSupAddress" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>联系人：</span>
+                        <div class="txb">
+                            <input type="text" id="txbSupContacts" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>联系电话：</span>
+                        <div class="txb">
+                            <input type="text" id="txbSupTel" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>传真：</span>
+                        <div class="txb">
+                            <input type="text" id="txbSupFax" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>邮编：</span>
+                        <div class="txb">
+                            <input type="text" id="txbSupZip" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>邮箱：</span>
+                        <div class="txb">
+                            <input type="text" id="txbSupEmail" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>银行：</span>
+                        <div class="txb" id="selBank">
+                        </div>
+                    </li>
+                    <li>
+                        <span>银行账号：</span>
+                        <div class="txb">
+                            <input type="text" id="txbBankAccount" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>服务费：</span>
+                        <div class="txb">
+                            <input type="text" id="txbServiceAmount" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>备注：</span>
+                        <div class="txb">
+                            <input type="text" id="txbMemo" class="i2" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="am-margin">
+    <button type="button" class="am-btn am-btn-primary am-btn-sm" id="btnUpdate">修改</button>
+</div>

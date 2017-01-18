@@ -1,30 +1,23 @@
 ﻿$(document).ready(function () {
-    var CorpUrl = "../Corporation/Corps";
-    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "CorpId" }, { name: "CorpName" }], url: CorpUrl };
-    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
-    $("#selCorpId").jqxComboBox({ source: CorpDataAdapter, displayMember: "CorpName", valueMember: "CorpId", autoComplete: true, searchMode: "contains", height: 25 });
 
-
-    var url = "../Employee/LoadEmployeeList";
+    var url = "../Supplier/LoadSupplierList";
     var source =
     {
         datatype: "json",
         datafields:
         [
-           { name: "EmpId", type: "int" },
-           { name: "EmpName", type: "string" },
-           { name: "CorpName", type: "string" },
-           { name: "Sex", type: "string" },
-           { name: "CardNo", type: "string" },
-           { name: "Phone", type: "string" },
-           { name: "ConStartDate", type: "date" },
-           { name: "ConEndDate", type: "date" },
-           { name: "TotalAmount", type: "decimal" },
-           { name: "Degree", type: "string" },
-           { name: "PayCity", type: "string" },
-           { name: "EmpEmail", type: "string" },
-           { name: "EmpStatus", type: "int" },
-           { name: "StatusName", type: "string" },
+           { name: "SupId", type: "int" },
+           { name: "SupName", type: "string" },
+           { name: "SupEName", type: "string" },
+           { name: "SupContacts", type: "string" },
+           { name: "SupTel", type: "string" },
+           { name: "SupFax", type: "string" },
+           { name: "SupZip", type: "string" },
+           { name: "SupEmail", type: "string" },
+           { name: "Bank", type: "int" },
+           { name: "BankAccount", type: "string" },
+           { name: "SupStatus", type: "int" },
+
         ],
         sort: function () {
             $("#jqxListGrid").jqxGrid("updatebounddata", "sort");
@@ -47,7 +40,7 @@
             return returnData;
         },
         type: "POST",
-        sortcolumn: "EmpId",
+        sortcolumn: "SupId",
         sortdirection: "desc",
         formatdata: function (data) {
 
@@ -71,7 +64,6 @@
     });
 
     var numberrenderer = function (row, column, value) {
-
         return "<div style=\"text-align: center; margin-top: 5px;\">" + (1 + row) + "</div>";
     }
 
@@ -79,9 +71,9 @@
 
         var item = $("#jqxListGrid").jqxGrid("getrowdata", row);
         var cellHtml = "<div style=\"overflow: hidden; text-overflow: ellipsis; padding:0px 0px 2px 10px; margin:4px 0px 0px 5px;\">";
-        cellHtml += "<a target=\"_self\" href=\"EmployeeDetail?id=" + value + "\">明细</a>";
+        cellHtml += "<a target=\"_self\" href=\"SupplierDetail?id=" + value + "\">明细</a>";
 
-        cellHtml += "&nbsp;&nbsp;&nbsp<a target=\"_self\" href=\"EmployeeUpdate?id=" + value + "\">修改</a>";
+        cellHtml += "&nbsp;&nbsp;&nbsp<a target=\"_self\" href=\"SupplierUpdate?id=" + value + "\">修改</a>";
 
         cellHtml += "</div>";
         return cellHtml;
@@ -102,20 +94,18 @@
             return args.data;
         },
         columns: [
-          { text: "操作", datafield: "EmpId", cellsrenderer: cellsrenderer, width: 100, sortable: false, enabletooltips: false, menu: false, resizable: false, pinned: true },
+          { text: "操作", datafield: "SupId", cellsrenderer: cellsrenderer, width: 100, sortable: false, enabletooltips: false, menu: false, resizable: false, pinned: true },
           { text: "序号", cellsrenderer: numberrenderer, width: 40, sortable: false, enabletooltips: false, menu: false, resizable: false, pinned: true },
-          { text: "姓名", datafield: "EmpName", pinned: true, width: 90 },
-          { text: "所属企业", datafield: "CorpName", pinned: true, width: 120 },
-          { text: "性别", datafield: "Sex", width: 60 },
-          { text: "身份证", datafield: "CardNo", width: 150 },
-          { text: "手机号", datafield: "Phone", width: 90 },
-          { text: "合同起始日", datafield: "ConStartDate", cellsformat: "yyyy-MM-dd", width: 90 },
-          { text: "合同截止日", datafield: "ConEndDate", cellsformat: "yyyy-MM-dd", width: 90 },
-          { text: "应发工资", datafield: "TotalAmount", width: 90 },
-          { text: "学历", datafield: "Degree", width: 90 },
-          { text: "缴费城市", datafield: "PayCity", width: 90 },
-          { text: "邮箱", datafield: "EmpEmail", width: 90 },
-          { text: "状态", datafield: "StatusName", width: 90 }
+          { text: "公司名称", datafield: "SupName", pinned: true, width: 150 },
+          { text: "联系人", datafield: "SupContacts", width: 90 },
+          { text: "电话", datafield: "SupTel", width: 90 },
+          { text: "传真", datafield: "SupFax", width: 90 },
+          { text: "邮编", datafield: "SupZip", width: 90 },
+          { text: "邮箱", datafield: "SupEmail", width: 90 },
+          { text: "银行", datafield: "Bank", width: 90 },
+          { text: "银行账号", datafield: "BankAccount", width: 90 },
+          { text: "服务费", datafield: "ServiceAmount", width: 90 },
+          { text: "状态", datafield: "SupStatus", width: 90 }
         ]
     });
 });

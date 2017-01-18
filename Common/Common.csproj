@@ -48,6 +48,7 @@
     <Compile Include="ResultModel.cs" />
     <Compile Include="SelectModel.cs" />
     <Compile Include="StatusEnum.cs" />
+    <Compile Include="StyleTypeEnum.cs" />
     <Compile Include="UserModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,7 +13,15 @@ namespace HR.BLL
 {
     public class SupplierBLL : Operate
     {
-        private CorporationSQL sql_insrance = new CorporationSQL();
+        private SupplierSQL sql_insrance = new SupplierSQL();
+
+        public ResultModel LoadSupplierList(int pageIndex, int pageSize, string orderStr)
+        {
+            SelectModel select = sql_insrance.SupplierListSelect(pageIndex, pageSize, orderStr);
+            ResultModel result = Load(select);
+
+            return result;
+        }
 
         protected override List<SqlParameter> CreateInsertParameters(IModel obj, ref SqlParameter returnValue)
         {

@@ -546,6 +546,7 @@
     <Content Include="jqwidgets\styles\jqx.web.css" />
     <Content Include="jqwidgets\styles\jqx.windowsphone.css" />
     <Content Include="JS\CommonData.js" />
+    <Content Include="JS\CorpBill\CorpBillAdd.js" />
     <Content Include="JS\Corporation\CorporationAdd.js" />
     <Content Include="JS\Corporation\CorporationDetail.js" />
     <Content Include="JS\Corporation\CorporationList.js" />
@@ -556,6 +557,9 @@
     <Content Include="JS\Employee\EmployeeUpdate.js" />
     <Content Include="JS\jquery-1.11.1.min.js" />
     <Content Include="JS\Supplier\SupplierAdd.js" />
+    <Content Include="JS\Supplier\SupplierDetail.js" />
+    <Content Include="JS\Supplier\SupplierList.js" />
+    <Content Include="JS\Supplier\SupplierUpdate.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -564,6 +568,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Cache\CacheProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CorpBillController.cs" />
     <Compile Include="Controllers\CorporationController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -609,6 +614,10 @@
     <Content Include="Views\Supplier\SupplierList.cshtml" />
     <Content Include="Views\Supplier\SupplierDetail.cshtml" />
     <Content Include="Views\Supplier\SupplierUpdate.cshtml" />
+    <Content Include="Views\CorpBill\CorpBillList.cshtml" />
+    <Content Include="Views\CorpBill\CorpBillAdd.cshtml" />
+    <Content Include="Views\CorpBill\CorpBillDetail.cshtml" />
+    <Content Include="Views\CorpBill\CorpBillUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

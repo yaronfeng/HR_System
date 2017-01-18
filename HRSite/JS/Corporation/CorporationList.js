@@ -14,7 +14,8 @@
            { name: "CorpEmail", type: "string" },
            { name: "PayCity", type: "int" },
            { name: "CorpStatus", type: "int" },
-
+           { name: "StatusName", type: "string" },
+           
         ],
         sort: function () {
             $("#jqxListGrid").jqxGrid("updatebounddata", "sort");
@@ -99,7 +100,7 @@
           { text: "电话", datafield: "CorpTel", width: 90 },
           { text: "邮箱", datafield: "CorpEmail", width: 150 },
           { text: "缴费城市", datafield: "PayCity", width: 90 },
-          { text: "状态", datafield: "CorpStatus", width: 90 }
+          { text: "状态", datafield: "StatusName", width: 90 }
         ]
     });
 });

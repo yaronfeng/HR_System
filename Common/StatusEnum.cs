@@ -10,7 +10,7 @@ namespace HR.Common
     [Serializable]
     public enum StatusEnum
     {
-        已作废 = -10,
+        已关闭 = -10,
         已完成 = 100,
     }
 }

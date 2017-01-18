@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HR.DBUtility;
 using HR.Model;
 using System.Data.SqlClient;
 using System.Data;
 using HR.Common;
-using HR.DBUtility;
 
 namespace HR.SQLServerDAL
 {
-    public class CorporationSQL
+    public class SupplierSQL
     {
         private string ConnectString
         {
@@ -20,23 +20,22 @@ namespace HR.SQLServerDAL
                 return SQLConnString.GetConnSting();
             }
         }
-        public SelectModel CorporationListSelect(int pageIndex, int pageSize, string orderStr)
+
+        public SelectModel SupplierListSelect(int pageIndex, int pageSize, string orderStr)
         {
             SelectModel select = new SelectModel();
 
             select.PageIndex = pageIndex;
             select.PageSize = pageSize;
             if (string.IsNullOrEmpty(orderStr))
-                select.OrderStr = " CorpId desc";
+                select.OrderStr = " SupId desc";
             else
                 select.OrderStr = orderStr;
 
-            select.ColumnName = "CorpId,CorpName,CorpAddress,CorpContacts,CorpTel,CorpEmail,sdcity.DetailName as PayCity,CorpStatus,sd.DetailName as StatusName";
+            select.ColumnName = "SupId,SupCode,SupName,SupEName,SupAddress,SupContacts,SupTel,SupFax,SupZip,SupEmail,Bank,BankAccount,ServiceAmount,SupStatus";
 
             System.Text.StringBuilder sb = new StringBuilder();
-            sb.Append(" Usr_Corporation corp");
-            sb.AppendFormat(" inner join bd_StyleDetail sd on sd.DetailId = corp.CorpStatus and sd.StyleId = {0}", (int)StyleTypeEnum.通用状态);
-            sb.AppendFormat(" inner join bd_StyleDetail sdcity on sdcity.DetailId = corp.PayCity and sdcity.StyleId = {0}", (int)StyleTypeEnum.缴费城市类型);
+            sb.Append(" Usr_Supplier ");
 
             select.TableName = sb.ToString();
 
