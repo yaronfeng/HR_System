@@ -547,6 +547,7 @@
     <Content Include="jqwidgets\styles\jqx.windowsphone.css" />
     <Content Include="JS\CommonData.js" />
     <Content Include="JS\CorpBill\CorpBillAdd.js" />
+    <Content Include="JS\CorpBill\CorpBillReadyList.js" />
     <Content Include="JS\Corporation\CorporationAdd.js" />
     <Content Include="JS\Corporation\CorporationDetail.js" />
     <Content Include="JS\Corporation\CorporationList.js" />
@@ -571,6 +572,7 @@
     <Compile Include="Controllers\CorpBillController.cs" />
     <Compile Include="Controllers\CorporationController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EmployeeSalaryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Global.asax.cs">
@@ -618,6 +620,8 @@
     <Content Include="Views\CorpBill\CorpBillAdd.cshtml" />
     <Content Include="Views\CorpBill\CorpBillDetail.cshtml" />
     <Content Include="Views\CorpBill\CorpBillUpdate.cshtml" />
+    <Content Include="Views\EmployeeSalary\EmployeeSalaryList.cshtml" />
+    <Content Include="Views\CorpBill\CorpBillReadyList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

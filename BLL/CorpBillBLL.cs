@@ -22,6 +22,24 @@ namespace HR.BLL
         {
         }
 
+        private CorpBillSQL sql_insrance = new CorpBillSQL();
+
+        public ResultModel LoadCorpBillReadyList(int pageIndex, int pageSize, string orderStr)
+        {
+            SelectModel select = sql_insrance.CorpBillReadyList(pageIndex, pageSize, orderStr);
+            ResultModel result = Load(select);
+
+            return result;
+        }
+
+        public ResultModel LoadCorpEmployeeList(int pageIndex, int pageSize, string orderStr,int corpId)
+        {
+            SelectModel select = sql_insrance.EmployeeByCorpIdSelect(pageIndex, pageSize, orderStr, corpId);
+            ResultModel result = Load(select);
+
+            return result;
+        }
+
         #endregion
         protected override List<SqlParameter> CreateInsertParameters(IModel obj, ref SqlParameter returnValue)
         {

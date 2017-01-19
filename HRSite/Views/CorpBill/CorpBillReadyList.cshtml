@@ -1,28 +1,25 @@
 ﻿
 @{
-    ViewBag.Title = "企业账单列表";
+    ViewBag.Title = "可生成企业列表";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script type="text/javascript" src="/JS/CorpBill/CorpBillList.js"></script>
+
+<script type="text/javascript" src="/JS/CorpBill/CorpBillReadyList.js"></script>
 
 
 <div class="am-cf am-padding am-padding-bottom-0">
-    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">企业账单列表</strong> / <small>Table</small></div>
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">可生成企业列表</strong> / <small>Table</small></div>
 </div>
 <hr>
 <div class="am-g">
-    <div class="am-u-sm-12 am-u-md-6">
-        <div class="am-btn-toolbar">
-            <div class="am-btn-group am-btn-group-xs">
-                <a class="am-btn am-btn-danger" href="/CorpBill/CorpBillReadyList"> <span class="am-icon-plus"></span> 新增账单</a>
-            </div>
-        </div>
-    </div>
+
     <div class="am-u-sm-12 am-u-md-3">
         <div class="am-form-group">
-            <div class="txb" id="selCorpId">
-            </div>
+            <select data-am-selected="{btnSize: 'sm'}">
+                <option value="option1">已完成</option>
+                <option value="option2">已作废</option>
+            </select>
         </div>
     </div>
     <div class="am-u-sm-12 am-u-md-3">
@@ -32,6 +29,7 @@
                 <button class="am-btn am-btn-default" type="button" id="btnSearch">搜索</button>
             </span>
         </div>
+
     </div>
 </div>
 
@@ -40,4 +38,3 @@
         <div id="jqxListGrid"></div>
     </div>
 </div>
-

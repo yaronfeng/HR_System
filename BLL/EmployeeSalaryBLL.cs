@@ -147,8 +147,8 @@ namespace HR.BLL
             emphousefundpara.Value = usr_employeesalary.EmpHouseFund;
             paras.Add(emphousefundpara);
 
-            SqlParameter enprepinjuryinspara = new SqlParameter("@EnpRepInjuryIns", SqlDbType.Decimal, 9);
-            enprepinjuryinspara.Value = usr_employeesalary.EnpRepInjuryIns;
+            SqlParameter enprepinjuryinspara = new SqlParameter("@EmpRepInjuryIns", SqlDbType.Decimal, 9);
+            enprepinjuryinspara.Value = usr_employeesalary.EmpRepInjuryIns;
             paras.Add(enprepinjuryinspara);
 
             SqlParameter emptotalpara = new SqlParameter("@EmpTotal", SqlDbType.Decimal, 9);
@@ -346,10 +346,10 @@ namespace HR.BLL
             {
                 employeesalary.EmpHouseFund = Convert.ToDecimal(dr[indexEmpHouseFund]);
             }
-            int indexEnpRepInjuryIns = dr.GetOrdinal("EnpRepInjuryIns");
-            if (dr[indexEnpRepInjuryIns] != DBNull.Value)
+            int indexEmpRepInjuryIns = dr.GetOrdinal("EmpRepInjuryIns");
+            if (dr[indexEmpRepInjuryIns] != DBNull.Value)
             {
-                employeesalary.EnpRepInjuryIns = Convert.ToDecimal(dr[indexEnpRepInjuryIns]);
+                employeesalary.EmpRepInjuryIns = Convert.ToDecimal(dr[indexEmpRepInjuryIns]);
             }
             int indexEmpTotal = dr.GetOrdinal("EmpTotal");
             if (dr[indexEmpTotal] != DBNull.Value)
@@ -554,9 +554,9 @@ namespace HR.BLL
             emphousefundpara.Value = usr_employeesalary.EmpHouseFund;
             paras.Add(emphousefundpara);
 
-            SqlParameter enprepinjuryinspara = new SqlParameter("@EnpRepInjuryIns", SqlDbType.Decimal, 9);
-            enprepinjuryinspara.Value = usr_employeesalary.EnpRepInjuryIns;
-            paras.Add(enprepinjuryinspara);
+            SqlParameter emprepinjuryinspara = new SqlParameter("@EmpRepInjuryIns", SqlDbType.Decimal, 9);
+            emprepinjuryinspara.Value = usr_employeesalary.EmpRepInjuryIns;
+            paras.Add(emprepinjuryinspara);
 
             SqlParameter emptotalpara = new SqlParameter("@EmpTotal", SqlDbType.Decimal, 9);
             emptotalpara.Value = usr_employeesalary.EmpTotal;

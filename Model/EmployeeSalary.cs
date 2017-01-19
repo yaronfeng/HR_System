@@ -122,7 +122,7 @@ namespace HR.Model
         /// <summary>
         /// Id
         /// </summary>
-        public decimal EnpRepInjuryIns { get; set; }
+        public decimal EmpRepInjuryIns { get; set; }
         /// <summary>
         /// Id
         /// </summary>
