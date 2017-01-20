@@ -45,6 +45,7 @@
     <Compile Include="EmployeeSQL.cs" />
     <Compile Include="ManagerAccountSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocialBaseSQL.cs" />
     <Compile Include="SupplierSQL.cs" />
   </ItemGroup>
   <ItemGroup>

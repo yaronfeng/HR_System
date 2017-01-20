@@ -51,6 +51,7 @@
     <Compile Include="EmployeeSalaryBLL.cs" />
     <Compile Include="ManagerAccountBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocialBaseBLL.cs" />
     <Compile Include="SupplierBLL.cs" />
   </ItemGroup>
   <ItemGroup>

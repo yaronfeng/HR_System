@@ -557,6 +557,8 @@
     <Content Include="JS\Employee\EmployeeList.js" />
     <Content Include="JS\Employee\EmployeeUpdate.js" />
     <Content Include="JS\jquery-1.11.1.min.js" />
+    <Content Include="JS\SocialBase\SocialBaseAdd.js" />
+    <Content Include="JS\SocialBase\SocialBaseList.js" />
     <Content Include="JS\Supplier\SupplierAdd.js" />
     <Content Include="JS\Supplier\SupplierDetail.js" />
     <Content Include="JS\Supplier\SupplierList.js" />
@@ -574,6 +576,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EmployeeSalaryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SocialBaseController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -622,6 +625,10 @@
     <Content Include="Views\CorpBill\CorpBillUpdate.cshtml" />
     <Content Include="Views\EmployeeSalary\EmployeeSalaryList.cshtml" />
     <Content Include="Views\CorpBill\CorpBillReadyList.cshtml" />
+    <Content Include="Views\SocialBase\SocialBaseAdd.cshtml" />
+    <Content Include="Views\SocialBase\SocialBaseList.cshtml" />
+    <Content Include="Views\SocialBase\SocialBaseDetail.cshtml" />
+    <Content Include="Views\SocialBase\SocialBaseUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
