@@ -187,6 +187,10 @@ namespace HR.BLL
             paydatepara.Value = usr_employeesalary.PayDate;
             paras.Add(paydatepara);
 
+            SqlParameter corpbillIdpara = new SqlParameter("@CorpBillId", SqlDbType.Int, 4);
+            corpbillIdpara.Value = usr_employeesalary.CorpBillId;
+            paras.Add(corpbillIdpara);
+
             SqlParameter empsalarystatuspara = new SqlParameter("@EmpSalaryStatus", SqlDbType.Int, 4);
             empsalarystatuspara.Value = usr_employeesalary.EmpSalaryStatus;
             paras.Add(empsalarystatuspara);
@@ -396,6 +400,11 @@ namespace HR.BLL
             {
                 employeesalary.PayDate = Convert.ToDateTime(dr[indexPayDate]);
             }
+            int indexCorpBillId = dr.GetOrdinal("CorpBillId");
+            if (dr[indexCorpBillId] != DBNull.Value)
+            {
+                employeesalary.CorpBillId = Convert.ToInt32(dr[indexCorpBillId]);
+            }
             int indexEmpSalaryStatus = dr.GetOrdinal("EmpSalaryStatus");
             if (dr[indexEmpSalaryStatus] != DBNull.Value)
             {
@@ -593,6 +602,10 @@ namespace HR.BLL
             SqlParameter paydatepara = new SqlParameter("@PayDate", SqlDbType.DateTime, 8);
             paydatepara.Value = usr_employeesalary.PayDate;
             paras.Add(paydatepara);
+
+            SqlParameter corpbillIdpara = new SqlParameter("@CorpBillId", SqlDbType.Int, 4);
+            corpbillIdpara.Value = usr_employeesalary.CorpBillId;
+            paras.Add(corpbillIdpara);
 
             SqlParameter empsalarystatuspara = new SqlParameter("@EmpSalaryStatus", SqlDbType.Int, 4);
             empsalarystatuspara.Value = usr_employeesalary.EmpSalaryStatus;

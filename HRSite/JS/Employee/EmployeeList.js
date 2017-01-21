@@ -80,7 +80,6 @@
         var item = $("#jqxListGrid").jqxGrid("getrowdata", row);
         var cellHtml = "<div style=\"overflow: hidden; text-overflow: ellipsis; padding:0px 0px 2px 10px; margin:4px 0px 0px 5px;\">";
         cellHtml += "<a target=\"_self\" href=\"EmployeeDetail?id=" + value + "\">明细</a>";
-
         cellHtml += "&nbsp;&nbsp;&nbsp<a target=\"_self\" href=\"EmployeeUpdate?id=" + value + "\">修改</a>";
 
         cellHtml += "</div>";

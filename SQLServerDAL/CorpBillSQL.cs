@@ -57,13 +57,13 @@ namespace HR.SQLServerDAL
             else
                 select.OrderStr = orderStr;
 
-            select.ColumnName = "EmpId,EmpName,CardNo,sdcity.DetailName as PayCity,SocialFundNum,HouseFundNum,0 as CorpPensionIns,0 as CorpMedicalIns,0 as CorpUnempIns,0 as CorpInjuryIns,0 as CorpBirthIns,0 as CorpDisabledIns,0 as CorpIllnessIns,0 as CorpHeatAmount,0 as CorpHouseFund,0 as CorpRepInjuryIns,0 as CorpTotal,0 as EmpPensionIns,0 as EmpMedicalIns,0 as EmpUnempIns,0 as EmpInjuryIns,0 as EmpBirthIns,0 as EmpDisabledIns,0 as EmpIllnessIns,0 as EmpHeatAmount,0 as EmpHouseFund,0 as EmpRepInjuryIns,0 as EmpTotal,0 as PersonalTax,0 as TotalAmount,0 as RepairAmount,0 as GrossAmount,0 as FinalAmount,0 as ServiceAmount,0 as RefundAmount,0 as AllTotalAmount";
+            select.ColumnName = "EmpId,EmpName,CardNo,sdcity.DetailName as PayCity,SocialFundNum,HouseFundNum,SocialFundNum * 0.19 as CorpPensionIns,SocialFundNum * 0.19 as CorpMedicalIns,SocialFundNum * 0.19 as CorpUnempIns,SocialFundNum * 0.19 as CorpInjuryIns,SocialFundNum * 0.19 as CorpBirthIns,SocialFundNum * 0.19 as CorpDisabledIns,SocialFundNum * 0.19 as CorpIllnessIns,SocialFundNum * 0.19 as CorpHeatAmount,SocialFundNum * 0.11 as CorpHouseFund,0 as CorpRepInjuryIns,0 as CorpTotal,0 as EmpPensionIns,0 as EmpMedicalIns,0 as EmpUnempIns,0 as EmpInjuryIns,0 as EmpBirthIns,0 as EmpDisabledIns,0 as EmpIllnessIns,0 as EmpHeatAmount,0 as EmpHouseFund,0 as EmpRepInjuryIns,0 as EmpTotal,0 as PersonalTax,0 as TotalAmount,0 as RepairAmount,0 as GrossAmount,0 as FinalAmount,20 as ServiceAmount,0 as RefundAmount,0 as AllTotalAmount";
 
             System.Text.StringBuilder sb = new StringBuilder();
             sb.Append(" Usr_Employee emp");
             sb.Append(" inner join Usr_Corporation corp on corp.CorpId = emp.CorpId");
-            sb.AppendFormat(" inner join bd_StyleDetail sd on sd.DetailId = emp.EmpStatus and sd.StyleId = {0}", (int)StyleTypeEnum.通用状态);
-            sb.AppendFormat(" inner join bd_StyleDetail sdcity on sdcity.DetailId = emp.PayCity and sdcity.StyleId = {0}", (int)StyleTypeEnum.缴费城市类型);
+            sb.AppendFormat(" left join bd_StyleDetail sd on sd.DetailId = emp.EmpStatus and sd.StyleId = {0}", (int)StyleTypeEnum.通用状态);
+            sb.AppendFormat(" left join bd_StyleDetail sdcity on sdcity.DetailId = emp.PayCity and sdcity.StyleId = {0}", (int)StyleTypeEnum.缴费城市类型);
 
             select.TableName = sb.ToString();
 

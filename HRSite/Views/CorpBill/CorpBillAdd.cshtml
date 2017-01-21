@@ -9,6 +9,7 @@
 
 <div class="am-cf am-padding am-padding-bottom-0">
     <input type="hidden" id="hidId" value="@Request.QueryString["id"]" />
+    <input type="hidden" id="hidJsonOpt" value="@ViewData["JsonOptData"]" />
     <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新增账单</strong> / <small>Personal information</small></div>
 </div>
 <hr />
@@ -110,8 +111,7 @@
                     </li>
                     <li>
                         <span>总金额：</span>
-                        <div class="txb">
-                            <input type="text" id="numTotalAmount" />
+                        <div class="txb" id="numTotalAmount">
                         </div>
                     </li>
                     <li>

@@ -162,6 +162,10 @@ namespace HR.Model
         /// <summary>
         /// Id
         /// </summary>
+        public int CorpBillId { get; set; }
+        /// <summary>
+        /// Id
+        /// </summary>
         public int EmpSalaryStatus { get; set; }
         /// <summary>
         /// Id
