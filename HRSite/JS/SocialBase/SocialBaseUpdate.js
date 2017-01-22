@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+    var id = $("#hidId").val();
     //绑定
     $("#selCityId").jqxDropDownList({ source: PayCitySource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 });
     $("#txbSocName").jqxInput({ minLength: 1, height: 25, width: 200 });
@@ -56,13 +57,66 @@
             ]
     });
 
-    $("#btnCreate").click(function () {
+    //获取实体
+    var temp = new Object();
+    temp.id = id;
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/SocialBase/Get",
+        data: JSON.stringify(temp),
+        dataType: "json",
+        success: function (result) {
+
+            var obj = result;
+            if (obj.ResultStatus == 0) {
+
+                var rtnObj = JSON.parse(obj.ReturnValue);
+
+                //设置原值
+                $("#selCityId").val(rtnObj.CityId),
+                $("#txbSocName").val(rtnObj.SocName),
+
+                $("#numSocialFundNum").val(rtnObj.SocialFundNum),
+                $("#numHouseFundNum").val(rtnObj.HouseFundNum),
+                $("#numCorpPensionInsPoint").val(rtnObj.CorpPensionInsPoint),
+                $("#numCorpMedicalInsPoint").val(rtnObj.CorpMedicalInsPoint),
+                $("#numCorpUnempInsPoint").val(rtnObj.CorpUnempInsPoint),
+                $("#numCorpInjuryInsPoint").val(rtnObj.CorpInjuryInsPoint),
+                $("#numCorpBirthInsPoint").val(rtnObj.CorpBirthInsPoint),
+                $("#numCorpDisabledInsPoint").val(rtnObj.CorpDisabledInsPoint),
+                $("#numCorpIllnessInsPoint").val(rtnObj.CorpIllnessInsPoint),
+                $("#numCorpHeatAmountPoint").val(rtnObj.CorpHeatAmountPoint),
+                $("#numCorpHouseFundPoint").val(rtnObj.CorpHouseFundPoint),
+                $("#numCorpRepInjuryInsPoint").val(rtnObj.CorpRepInjuryInsPoint),
+
+                $("#numEmpPensionInsPoint").val(rtnObj.EmpPensionInsPoint),
+                $("#numEmpMedicalInsPoint").val(rtnObj.EmpMedicalInsPoint),
+                $("#numEmpUnempInsPoint").val(rtnObj.EmpUnempInsPoint),
+                $("#numEmpInjuryInsPoint").val(rtnObj.EmpInjuryInsPoint),
+                $("#numEmpBirthInsPoint").val(rtnObj.EmpBirthInsPoint),
+                $("#numEmpDisabledInsPoint").val(rtnObj.EmpDisabledInsPoint),
+                $("#numEmpIllnessInsPoint").val(rtnObj.EmpIllnessInsPoint),
+                $("#numEmpHeatAmountPoint").val(rtnObj.EmpHeatAmountPoint),
+                $("#numEmpHouseFundPoint").val(rtnObj.EmpHouseFundPoint),
+                $("#numEmpRepInjuryInsPoint").val(rtnObj.EmpRepInjuryInsPoint)
+            }
+            else {
+                alert(obj.Message);
+                document.location.href = obj.ReturnValue;
+            }
+        }
+    });
+
+    $("#btnUpdate").click(function () {
         var isCanSubmit = $("#jqxValidator").jqxValidator("validate");
         if (!isCanSubmit) { return; }
 
-        if (!confirm("确认新增社保比例？")) { return; }
+        if (!confirm("确认修改社保比例？")) { return; }
 
         var socialBase = {
+            SocId: id,
             CityId: $("#selCityId").val(),
             SocName: $("#txbSocName").val(),
             SocialFundNum: $("#numSocialFundNum").val(),
@@ -93,7 +147,7 @@
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "../SocialBase/Insert",
+            url: "../SocialBase/Update",
             data: JSON.stringify(socialBase),
             dataType: "json",
             success: function (result) {

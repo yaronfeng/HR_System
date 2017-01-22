@@ -1,8 +1,158 @@
 ﻿
 @{
-    ViewBag.Title = "SocialBaseUpdate";
+    ViewBag.Title = "社保比例修改";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SocialBaseUpdate</h2>
+<script type="text/javascript" src="/JS/SocialBase/SocialBaseUpdate.js"></script>
 
+
+<div class="am-cf am-padding am-padding-bottom-0">
+    <input type="hidden" id="hidId" value="@Request.QueryString["id"]" />
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">社保比例修改</strong> / <small>Personal information</small></div>
+</div>
+<hr />
+<div class="am-g">
+    <div class="am-u-sm-12 am-u-sm-centered">
+        <div class="am-panel am-panel-default" id="jqxValidator">
+            <!---001 start-->
+            <div class="p1">
+                <ul>
+                    <li>
+                        <span>社保城市：</span>
+                        <div class="txb" id="selCityId">
+                        </div>
+                    </li>
+                    <li>
+                        <span>名称：</span>
+                        <div class="txb">
+                            <input type="text" id="txbSocName" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>社保基数：</span>
+                        <div class="txb" id="numSocialFundNum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>公积金基数：</span>
+                        <div class="txb" id="numHouseFundNum">
+                        </div>
+                    </li>
+                </ul>
+                <hr />
+                <span>企业比例</span>
+                <ul>
+                    <li>
+                        <span>养老保险：</span>
+                        <div class="txb" id="numCorpPensionInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>医疗保险：</span>
+                        <div class="txb" id="numCorpMedicalInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>失业保险：</span>
+                        <div class="txb" id="numCorpUnempInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>工伤保险：</span>
+                        <div class="txb" id="numCorpInjuryInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>生育保险：</span>
+                        <div class="txb" id="numCorpBirthInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>残疾人保险：</span>
+                        <div class="txb" id="numCorpDisabledInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>大病保险：</span>
+                        <div class="txb" id="numCorpIllnessInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>取暖费：</span>
+                        <div class="txb" id="numCorpHeatAmountPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>公积金：</span>
+                        <div class="txb" id="numCorpHouseFundPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>补充工伤：</span>
+                        <div class="txb" id="numCorpRepInjuryInsPoint">
+                        </div>
+                    </li>
+                </ul>
+                <hr />
+                <span>个人比例</span>
+                <ul>
+                    <li>
+                        <span>养老保险：</span>
+                        <div class="txb" id="numEmpPensionInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>医疗保险：</span>
+                        <div class="txb" id="numEmpMedicalInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>失业保险：</span>
+                        <div class="txb" id="numEmpUnempInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>工伤保险：</span>
+                        <div class="txb" id="numEmpInjuryInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>生育保险：</span>
+                        <div class="txb" id="numEmpBirthInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>残疾人保险：</span>
+                        <div class="txb" id="numEmpDisabledInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>大病保险：</span>
+                        <div class="txb" id="numEmpIllnessInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>取暖费：</span>
+                        <div class="txb" id="numEmpHeatAmountPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>公积金：</span>
+                        <div class="txb" id="numEmpHouseFundPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>补充工伤：</span>
+                        <div class="txb" id="numEmpRepInjuryInsPoint">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="am-margin">
+    <button type="button" class="am-btn am-btn-primary am-btn-sm" id="btnUpdate">保存</button>
+</div>

@@ -1,8 +1,138 @@
 ﻿
 @{
-    ViewBag.Title = "CorpBillUpdate";
+    ViewBag.Title = "修改账单";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>CorpBillUpdate</h2>
+<script type="text/javascript" src="/JS/CorpBill/CorpBillAdd1.js"></script>
+
+
+<div class="am-cf am-padding am-padding-bottom-0">
+    <input type="hidden" id="hidId" value="@Request.QueryString["id"]" />
+    <input type="hidden" id="hidJsonOpt" value="@ViewData["JsonOptData"]" />
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">新增账单</strong> / <small>Personal information</small></div>
+</div>
+<hr />
+<div class="am-g">
+    <div class="am-u-sm-12 am-u-sm-centered">
+        <div class="am-panel am-panel-default" id="jqxValidator">
+            <!---001 start-->
+            <div class="p1">
+                <ul>
+                    <li>
+                        <span>账单时间：</span>
+                        <div class="txb" id="tmBillDate">
+                        </div>
+                    </li>
+                    <li>
+                        <span>结算日期：</span>
+                        <div class="txb" id="tmPayDate">
+                        </div>
+                    </li>
+                    <li>
+                        <span>缴费城市：</span>
+                        <div class="txb" id="selPayCity">
+                        </div>
+                    </li>
+                    <li>
+                        <span>客户名称：</span>
+                        <div class="txb" id="selCorpId">
+                        </div>
+                    </li>
+                    <li>
+                        <span>供应商名称：</span>
+                        <div class="txb" id="selSupId">
+                        </div>
+                    </li>
+                    <li>
+                        <span>养老保险：</span>
+                        <div class="txb" id="numBillPensionIns">
+                        </div>
+                    </li>
+                    <li>
+                        <span>医疗保险：</span>
+                        <div class="txb" id="numBillMedicalIns">
+                        </div>
+                    </li>
+                    <li>
+                        <span>失业保险：</span>
+                        <div class="txb" id="numBillUnempIns">
+                        </div>
+                    </li>
+                    <li>
+                        <span>工伤保险：</span>
+                        <div class="txb" id="numBillInjuryIns">
+                        </div>
+                    </li>
+                    <li>
+                        <span>生育保险：</span>
+                        <div class="txb" id="numBillBirthIns">
+                        </div>
+                    </li>
+                    <li>
+                        <span>残疾人保险：</span>
+                        <div class="txb" id="numBillDisabledIns">
+                        </div>
+                    </li>
+                    <li>
+                        <span>大病保险：</span>
+                        <div class="txb" id="numBillIllnessIns">
+                        </div>
+                    </li>
+                    <li>
+                        <span>取暖费：</span>
+                        <div class="txb" id="numBillHeatAmount">
+                        </div>
+                    </li>
+                    <li>
+                        <span>公积金：</span>
+                        <div class="txb" id="numBillHouseFund">
+                        </div>
+                    </li>
+                    <li>
+                        <span>补充工伤：</span>
+                        <div class="txb" id="numBillRepInjuryIns">
+                        </div>
+                    </li>
+                    <li>
+                        <span>企业其他费用：</span>
+                        <div class="txb" id="numCorpOtherPay">
+                        </div>
+                    </li>
+                    <li>
+                        <span>个人其他费用：</span>
+                        <div class="txb" id="numEmpOtherPay">
+                        </div>
+                    </li>
+                    <li>
+                        <span>服务费：</span>
+                        <div class="txb" id="numServiceAmount">
+                        </div>
+                    </li>
+                    <li>
+                        <span>总金额：</span>
+                        <div class="txb" id="numTotalAmount">
+                        </div>
+                    </li>
+                    <li>
+                        <span>备注：</span>
+                        <div class="txb">
+                            <input type="text" id="txbMemo" class="i2" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-12">
+        <div id="jqxListGrid"></div>
+    </div>
+</div>
+
+<div class="am-margin">
+    <button type="button" class="am-btn am-btn-primary am-btn-sm" id="btnCreate">保存</button>
+</div>
 

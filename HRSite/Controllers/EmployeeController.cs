@@ -56,6 +56,30 @@ namespace HRSite.Controllers
 
             return Json(result);
         }
+
+        [HttpPost]
+        public ActionResult LoadEmployeeSalaryList(int pageIndex, int pageSize, string orderField, string sortOrder,int empId)
+        {
+            switch (orderField)
+            {
+                case "EmpId":
+                    orderField = "EmpId";
+                    break;
+            }
+            string orderStr = string.Format("{0} {1}", orderField, sortOrder);
+
+            EmployeeBLL employeeBLL = new EmployeeBLL();
+            ResultModel result = employeeBLL.LoadEmployeeSalaryList(pageIndex, pageSize, orderStr,empId);
+
+            System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("count", result.AffectCount);
+            dic.Add("data", dt);
+            string jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(dic, new Newtonsoft.Json.Converters.DataTableConverter());
+            result.ReturnValue = jsonStr;
+
+            return Json(result);
+        }
         [HttpPost]
         public ActionResult Get(int id)
         {
@@ -118,7 +142,7 @@ namespace HRSite.Controllers
             rtnEmployee.ConStartDate = employee.ConStartDate;
             rtnEmployee.ConEndDate = employee.ConEndDate;
             rtnEmployee.LeaveDate = employee.LeaveDate;
-            rtnEmployee.Degree = employee.CorpId;
+            rtnEmployee.Degree = employee.Degree;
             rtnEmployee.Jobs = employee.Jobs;
             rtnEmployee.TotalAmount = employee.TotalAmount;
             rtnEmployee.SocialFundNum = employee.SocialFundNum;
@@ -139,7 +163,7 @@ namespace HRSite.Controllers
             rtnEmployee.EmpEmail = employee.EmpEmail;
             rtnEmployee.Memo = employee.Memo;
 
-            ResultModel result = empBLL.Update(employee);
+            ResultModel result = empBLL.Update(rtnEmployee);
             if (result.ResultStatus != 0)
                 return Json(result);
 

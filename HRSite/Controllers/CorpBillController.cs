@@ -52,6 +52,54 @@ namespace HRSite.Controllers
         }
 
         [HttpPost]
+        public ActionResult LoadEmployeeSalaryByIdList(int pageIndex, int pageSize, string orderField, string sortOrder,int corpBillId)
+        {
+            switch (orderField)
+            {
+                case "EmpSalaryId":
+                    orderField = "EmpSalaryId";
+                    break;
+            }
+            string orderStr = string.Format("{0} {1}", orderField, sortOrder);
+
+            CorpBillBLL corpbillBLL = new CorpBillBLL();
+            ResultModel result = corpbillBLL.LoadEmployeeSalaryByIdList(0, 200, orderStr, corpBillId);
+
+            System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("count", result.AffectCount);
+            dic.Add("data", dt);
+            string jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(dic, new Newtonsoft.Json.Converters.DataTableConverter());
+            result.ReturnValue = jsonStr;
+
+            return Json(result);
+        }
+
+        [HttpPost]
+        public ActionResult LoadCorpBillList(int pageIndex, int pageSize, string orderField, string sortOrder)
+        {
+            switch (orderField)
+            {
+                case "CorpId":
+                    orderField = "CorpId";
+                    break;
+            }
+            string orderStr = string.Format("{0} {1}", orderField, sortOrder);
+
+            CorpBillBLL corpbillBLL = new CorpBillBLL();
+            ResultModel result = corpbillBLL.LoadCorpBillList(pageIndex, pageSize, orderStr);
+
+            System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("count", result.AffectCount);
+            dic.Add("data", dt);
+            string jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(dic, new Newtonsoft.Json.Converters.DataTableConverter());
+            result.ReturnValue = jsonStr;
+
+            return Json(result);
+        }
+
+        [HttpPost]
         public ActionResult LoadCorpBillReadyList(int pageIndex, int pageSize, string orderField, string sortOrder)
         {
             switch (orderField)
@@ -100,6 +148,27 @@ namespace HRSite.Controllers
         }
 
         [HttpPost]
+        public ActionResult Get(int id)
+        {
+            if (id <= 0)
+                return Json(new ResultModel(string.Format("{0}不存在", this.ModelName)));
+
+            CorpBillBLL dal = new CorpBillBLL();
+            ResultModel result = dal.Get(id);
+            if (result.ResultStatus != 0)
+                return Json(result);
+
+            object rtnObj = result.ReturnValue;
+            if (rtnObj == null)
+                return Json(new ResultModel(string.Format("{0}不存在", this.ModelName)));
+
+            result.ResultStatus = 0;
+            result.Message = string.Format("{0}获取成功", this.ModelName);
+            result.ReturnValue = Newtonsoft.Json.JsonConvert.SerializeObject(rtnObj);
+            return Json(result);
+        }
+
+        [HttpPost]
         public ActionResult Insert(CorpBill corpBill,EmployeeSalary[] details)
         {
             corpBill.CorpBillStatus = (int)StatusEnum.已完成;
@@ -119,7 +188,11 @@ namespace HRSite.Controllers
             //新增制单明细
             foreach (EmployeeSalary detail in details)
             {
+                detail.CorpId = corpBill.CorpId;
+                detail.CorpBillId = corpBillId;
                 detail.PayDate = corpBill.PayDate;
+                detail.EmpSalaryStatus = (int)StatusEnum.已完成;
+
                 result = empSalaryBLL.Insert(detail);
                 if (result.ResultStatus != 0)
                     return Json(result);
@@ -129,6 +202,10 @@ namespace HRSite.Controllers
             result.ReturnValue = "";
             result.ResultStatus = 0;
             return Json(result);
+        }
+        protected string ModelName
+        {
+            get { return "账单"; }
         }
     }
 }

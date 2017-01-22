@@ -439,9 +439,16 @@ namespace HR.BLL
             ResultModel result = Load(select);
 
             return result;
-
-            //return sql_insrance.EmployeeListSelect(pageIndex, pageSize, orderStr);
         }
+
+        public ResultModel LoadEmployeeSalaryList(int pageIndex, int pageSize, string orderStr, int empId)
+        {
+            SelectModel select = sql_insrance.EmployeeSalaryListSelect(pageIndex, pageSize, orderStr, empId);
+            ResultModel result = Load(select);
+
+            return result;
+        }
+
         public override string TableName
         {
             get

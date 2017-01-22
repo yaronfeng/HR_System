@@ -168,7 +168,7 @@ $(document).ready(function () {
           { text: "序号", cellsrenderer: numberrenderer, width: 40, sortable: false, enabletooltips: false, menu: false, resizable: false, editable: false, pinned: true },
           { text: "姓名", datafield: "EmpName", pinned: true, width: 90, editable: false },
           { text: "身份证", datafield: "CardNo", width: 150, editable: false },
-          { text: "缴费区域", datafield: "PayCity", width: 70, editable: false },
+          { text: "缴费区域", datafield: "PayCityName", width: 70, editable: false },
           { text: "社保基数", datafield: "SocialFundNum", width: 70, editable: false },
           { text: "公积金基数", datafield: "HouseFundNum", width: 70, editable: false },
           {
@@ -269,7 +269,7 @@ $(document).ready(function () {
                 var obj = result.d;
                 alert(obj.Message);
                 if (obj.ResultStatus == 0) {
-                    window.document.location.href = obj.ReturnValue;
+                    window.document.location.href = "/CorpBill/CorpBillList";
                 }
             }
         });

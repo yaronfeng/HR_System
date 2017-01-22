@@ -547,6 +547,8 @@
     <Content Include="jqwidgets\styles\jqx.windowsphone.css" />
     <Content Include="JS\CommonData.js" />
     <Content Include="JS\CorpBill\CorpBillAdd.js" />
+    <Content Include="JS\CorpBill\CorpBillDetail.js" />
+    <Content Include="JS\CorpBill\CorpBillList.js" />
     <Content Include="JS\CorpBill\CorpBillReadyList.js" />
     <Content Include="JS\Corporation\CorporationAdd.js" />
     <Content Include="JS\Corporation\CorporationDetail.js" />
@@ -558,7 +560,9 @@
     <Content Include="JS\Employee\EmployeeUpdate.js" />
     <Content Include="JS\jquery-1.11.1.min.js" />
     <Content Include="JS\SocialBase\SocialBaseAdd.js" />
+    <Content Include="JS\SocialBase\SocialBaseDetail.js" />
     <Content Include="JS\SocialBase\SocialBaseList.js" />
+    <Content Include="JS\SocialBase\SocialBaseUpdate.js" />
     <Content Include="JS\Supplier\SupplierAdd.js" />
     <Content Include="JS\Supplier\SupplierDetail.js" />
     <Content Include="JS\Supplier\SupplierList.js" />

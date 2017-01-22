@@ -22,6 +22,14 @@ namespace HR.BLL
 
         private SocialBaseSQL sql_insrance = new SocialBaseSQL();
 
+        public ResultModel LoadSocialBaseList(int pageIndex, int pageSize, string orderStr)
+        {
+            SelectModel select = sql_insrance.SocialBaseListSelect(pageIndex, pageSize, orderStr);
+            ResultModel result = Load(select);
+
+            return result;
+        }
+
         protected override List<SqlParameter> CreateInsertParameters(IModel obj, ref SqlParameter returnValue)
         {
             SocialBase bd_socialbase = (SocialBase)obj;

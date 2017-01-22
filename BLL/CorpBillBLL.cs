@@ -24,6 +24,21 @@ namespace HR.BLL
 
         private CorpBillSQL sql_insrance = new CorpBillSQL();
 
+        public ResultModel LoadCorpEmployeeList(int pageIndex, int pageSize, string orderStr, int corpId)
+        {
+            SelectModel select = sql_insrance.EmployeeByCorpIdSelect(pageIndex, pageSize, orderStr, corpId);
+            ResultModel result = Load(select);
+
+            return result;
+        }
+        public ResultModel LoadEmployeeSalaryByIdList(int pageIndex, int pageSize, string orderStr, int corpBillId)
+        {
+            SelectModel select = sql_insrance.EmployeeSalaryByCorpBillIdSelect(pageIndex, pageSize, orderStr, corpBillId);
+            ResultModel result = Load(select);
+
+            return result;
+        }
+
         public ResultModel LoadCorpBillReadyList(int pageIndex, int pageSize, string orderStr)
         {
             SelectModel select = sql_insrance.CorpBillReadyList(pageIndex, pageSize, orderStr);
@@ -32,9 +47,9 @@ namespace HR.BLL
             return result;
         }
 
-        public ResultModel LoadCorpEmployeeList(int pageIndex, int pageSize, string orderStr,int corpId)
+        public ResultModel LoadCorpBillList(int pageIndex, int pageSize, string orderStr)
         {
-            SelectModel select = sql_insrance.EmployeeByCorpIdSelect(pageIndex, pageSize, orderStr, corpId);
+            SelectModel select = sql_insrance.CorpBillListSelect(pageIndex, pageSize, orderStr);
             ResultModel result = Load(select);
 
             return result;

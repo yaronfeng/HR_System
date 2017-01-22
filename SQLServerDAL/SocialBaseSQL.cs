@@ -28,12 +28,12 @@ namespace HR.SQLServerDAL
             else
                 select.OrderStr = orderStr;
 
-            select.ColumnName = "SocId,CityId,SocName,SocialFundNum,HouseFundNum,CorpPensionInsPoint,CorpMedicalInsPoint,CorpUnempInsPoint,CorpInjuryInsPoint,CorpBirthInsPoint,CorpDisabledInsPoint,CorpIllnessInsPoint ,CorpHeatAmountPoint ,CorpHouseFundPoint ,CorpRepInjuryInsPoint,EmpPensionInsPoint,EmpMedicalInsPoint,EmpUnempInsPoint,EmpInjuryInsPoint,EmpBirthInsPoint,EmpDisabledInsPoint,EmpIllnessInsPoint,EmpHeatAmountPoint,EmpHouseFundPoint,EmpRepInjuryInsPoint";
+            select.ColumnName = "SocId,CityId,sdcity.DetailName as PayCityName,SocName,SocialFundNum,HouseFundNum,CorpPensionInsPoint,CorpMedicalInsPoint,CorpUnempInsPoint,CorpInjuryInsPoint,CorpBirthInsPoint,CorpDisabledInsPoint,CorpIllnessInsPoint ,CorpHeatAmountPoint ,CorpHouseFundPoint ,CorpRepInjuryInsPoint,EmpPensionInsPoint,EmpMedicalInsPoint,EmpUnempInsPoint,EmpInjuryInsPoint,EmpBirthInsPoint,EmpDisabledInsPoint,EmpIllnessInsPoint,EmpHeatAmountPoint,EmpHouseFundPoint,EmpRepInjuryInsPoint";
 
             System.Text.StringBuilder sb = new StringBuilder();
             sb.Append(" bd_SocialBase soc");
             //sb.AppendFormat(" inner join bd_StyleDetail sd on sd.DetailId = corp.CorpStatus and sd.StyleId = {0}", (int)StyleTypeEnum.通用状态);
-            //sb.AppendFormat(" inner join bd_StyleDetail sdcity on sdcity.DetailId = corp.PayCity and sdcity.StyleId = {0}", (int)StyleTypeEnum.缴费城市类型);
+            sb.AppendFormat(" inner join bd_StyleDetail sdcity on sdcity.DetailId = soc.CityId and sdcity.StyleId = {0}", (int)StyleTypeEnum.缴费城市类型);
 
             select.TableName = sb.ToString();
 

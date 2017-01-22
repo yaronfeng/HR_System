@@ -72,7 +72,7 @@
         var isCanSubmit = $("#jqxValidator").jqxValidator("validate");
         if (!isCanSubmit) { return; }
 
-        var employee = {
+        var socialBase = {
             EmpName: $("#txbEmpName").val(),
             Sex: $("#selSex").val(),
             CorpId: $("#selCorpId").val(),
@@ -109,7 +109,7 @@
             type: "POST",
             contentType: "application/json",
             url: "../Employee/Insert",
-            data: JSON.stringify(employee),
+            data: JSON.stringify(socialBase),
             dataType: "json",
             success: function (result) {
                 var obj = result;
