@@ -634,6 +634,7 @@
     <Content Include="Views\SocialBase\SocialBaseDetail.cshtml" />
     <Content Include="Views\SocialBase\SocialBaseUpdate.cshtml" />
     <Content Include="App_Data\bak\HR_System_20170117.bak" />
+    <Content Include="App_Data\bak\HR_System_20170122.bak" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
