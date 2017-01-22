@@ -55,6 +55,13 @@ namespace HR.BLL
             return result;
         }
 
+        public ResultModel<CorpBill> LoadCorpBills(int corpId)
+        {
+            string cmdText = string.Format(" select * from dbo.Usr_CorpBill where CorpId = {0} and datediff(month,[PayDate],getdate())= 0  ", corpId);
+            ResultModel<CorpBill> result = this.Load<CorpBill>(System.Data.CommandType.Text, cmdText);
+            return result;
+        }
+
         #endregion
         protected override List<SqlParameter> CreateInsertParameters(IModel obj, ref SqlParameter returnValue)
         {

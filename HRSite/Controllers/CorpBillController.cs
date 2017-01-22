@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using HR.BLL;
 using HR.Common;
 using HR.Model;
+using HR.HRSite;
 
 namespace HRSite.Controllers
 {
@@ -18,8 +19,20 @@ namespace HRSite.Controllers
             if (string.IsNullOrEmpty(Request.QueryString["id"]) || !int.TryParse(Request.QueryString["id"], out id) || id <= 0)
                 return Content("客户不存在");
 
-            CorpBillBLL corpbillBLL = new CorpBillBLL();
-            ResultModel result = corpbillBLL.LoadCorpEmployeeList(0, 100, null, id);
+            CorpBillBLL corpBillBLL = new CorpBillBLL();
+            ResultModel<CorpBill> corpBillResult = corpBillBLL.LoadCorpBills(id);
+            if (corpBillResult.ResultStatus != 0)
+                return Json(ResultModel.GenericResult<CorpBill>(corpBillResult));
+
+            List<CorpBill> rtnCorpBill = corpBillResult.ReturnValues;
+            if (rtnCorpBill == null)
+                return Json(new ResultModel("获取账单列表失败"));
+
+            int corpBillCount = rtnCorpBill.Count();
+            if (corpBillCount > 0)
+                return Content("<script>" + JsUtility.WarmAlert("客户本月账单已生成", "/CorpBill/CorpBillReadyList") + "</script>");
+
+            ResultModel result = corpBillBLL.LoadCorpEmployeeList(0, 100, null, id);
 
             if (result.ResultStatus != 0)
                 return Content("获取错误");
