@@ -17,10 +17,10 @@ namespace HR.HRSite
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
 
-            //sb.AppendLine("<script>");
+            sb.AppendLine("<script>");
             sb.AppendFormat("alert(\"{0}\");", message);
             sb.AppendFormat("document.location.href = \"{0}\";", redirectUrl);
-            //sb.AppendLine("</script>");
+            sb.AppendLine("</script>");
 
             return sb.ToString();
         }

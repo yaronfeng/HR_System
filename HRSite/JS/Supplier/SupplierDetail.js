@@ -14,7 +14,10 @@
     $("#txbServiceAmount").jqxInput({ minLength: 1, height: 25, width: 200, disabled: true });
     $("#txbMemo").jqxInput({ minLength: 1, height: 25, width: 200, disabled: true });
 
-    $("#selBank").jqxDropDownList({ source: BankSource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0, disabled: true });
+    var CorpUrl = "/CommBase/Banks";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selBank").jqxDropDownList({ source: CorpDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0, disabled: true });
 
     //校验
     $("#jqxValidator").jqxValidator({

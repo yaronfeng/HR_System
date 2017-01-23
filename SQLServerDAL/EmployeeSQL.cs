@@ -36,11 +36,11 @@ namespace HR.SQLServerDAL
 
             System.Text.StringBuilder sb = new StringBuilder();
             sb.Append(" Usr_Employee emp");
-            sb.Append(" inner join Usr_Corporation corp on corp.CorpId = emp.CorpId");
+            sb.Append(" left join Usr_Corporation corp on corp.CorpId = emp.CorpId");
             sb.AppendFormat(" inner join bd_StyleDetail sd on sd.DetailId = emp.EmpStatus and sd.StyleId = {0}",(int)StyleTypeEnum.通用状态);
-            sb.AppendFormat(" inner join bd_StyleDetail sdsex on sdsex.DetailId = emp.Sex and sdsex.StyleId = {0}", (int)StyleTypeEnum.性别类型);
-            sb.AppendFormat(" inner join bd_StyleDetail sddeg on sddeg.DetailId = emp.Degree and sddeg.StyleId = {0}", (int)StyleTypeEnum.学历类型);
-            sb.AppendFormat(" inner join bd_StyleDetail sdcity on sdcity.DetailId = emp.PayCity and sdcity.StyleId = {0}", (int)StyleTypeEnum.缴费城市类型);
+            sb.AppendFormat(" left join bd_StyleDetail sdsex on sdsex.DetailId = emp.Sex and sdsex.StyleId = {0}", (int)StyleTypeEnum.性别类型);
+            sb.AppendFormat(" left join bd_StyleDetail sddeg on sddeg.DetailId = emp.Degree and sddeg.StyleId = {0}", (int)StyleTypeEnum.学历类型);
+            sb.AppendFormat(" left join bd_StyleDetail sdcity on sdcity.DetailId = emp.PayCity and sdcity.StyleId = {0}", (int)StyleTypeEnum.缴费城市类型);
 
             select.TableName = sb.ToString();
 

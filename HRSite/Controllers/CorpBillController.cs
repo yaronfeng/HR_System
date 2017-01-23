@@ -12,12 +12,13 @@ namespace HRSite.Controllers
 {
     public class CorpBillController : Controller
     {
+        private string redirectUrl = "/CorpBill/CorpBillReadyList";
         // GET: CorpBill
         public ActionResult CorpBillAdd()
         {
             int id = 0;
             if (string.IsNullOrEmpty(Request.QueryString["id"]) || !int.TryParse(Request.QueryString["id"], out id) || id <= 0)
-                return Content("客户不存在");
+                return Content(JsUtility.WarmAlert("客户不存在", redirectUrl));
 
             CorpBillBLL corpBillBLL = new CorpBillBLL();
             ResultModel<CorpBill> corpBillResult = corpBillBLL.LoadCorpBills(id);
@@ -30,15 +31,15 @@ namespace HRSite.Controllers
 
             int corpBillCount = rtnCorpBill.Count();
             if (corpBillCount > 0)
-                return Content("<script>" + JsUtility.WarmAlert("客户本月账单已生成", "/CorpBill/CorpBillReadyList") + "</script>");
+                return Content(JsUtility.WarmAlert("客户本月账单已生成", redirectUrl));
 
             ResultModel result = corpBillBLL.LoadCorpEmployeeList(0, 100, null, id);
 
             if (result.ResultStatus != 0)
-                return Content("获取错误");
+                return Content(JsUtility.WarmAlert("获取错误", redirectUrl));
             System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
             if (dt == null)
-                return Content("获取错误");
+                return Content(JsUtility.WarmAlert("获取错误", redirectUrl));
             string optJsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(dt, new Newtonsoft.Json.Converters.DataTableConverter());
             ViewData["JsonOptData"] = optJsonStr;
             return View();

@@ -90,6 +90,7 @@ namespace HRSite.Controllers
         public ActionResult Insert(Corporation corp)
         {
             CorporationBLL corpBLL = new CorporationBLL();
+            corp.CorpStatus = (int)StatusEnum.已完成;
             corp.CreatorId = 1;
             ResultModel result = corpBLL.Insert(corp);
             if (result.ResultStatus != 0)

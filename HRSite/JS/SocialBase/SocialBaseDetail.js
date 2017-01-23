@@ -1,7 +1,11 @@
 ﻿$(document).ready(function () {
     var id = $("#hidId").val();
     //绑定
-    $("#selCityId").jqxDropDownList({ source: PayCitySource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 ,disabled:true});
+    var CorpUrl = "/CommBase/PayCitys";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selCityId").jqxDropDownList({ source: CorpDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0 ,disabled:true});
+
     $("#txbSocName").jqxInput({ minLength: 1, height: 25, width: 200, disabled: true });
 
     $("#numSocialFundNum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });

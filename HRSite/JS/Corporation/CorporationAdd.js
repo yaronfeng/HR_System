@@ -15,9 +15,15 @@
     $("#txbHouseAccount").jqxInput({ minLength: 1, height: 25, width: 200 });
     $("#txbHousePWD").jqxInput({ minLength: 1, height: 25, width: 200 });
 
-    $("#selPayCity").jqxDropDownList({ source: PayCitySource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 });
+    var CorpUrl = "/CommBase/Banks";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selHouseBank").jqxDropDownList({ source: CorpDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0 });
 
-    $("#selHouseBank").jqxDropDownList({ source: BankSource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 });
+    var CorpUrl = "/CommBase/PayCitys";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selPayCity").jqxDropDownList({ source: CorpDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0 });
 
     //校验
     $("#jqxValidator").jqxValidator({
@@ -35,6 +41,8 @@
     $("#btnCreate").click(function () {
         var isCanSubmit = $("#jqxValidator").jqxValidator("validate");
         if (!isCanSubmit) { return; }
+
+        if (!confirm("确认新增客户？")) { return; }
 
         var corporation = {
             CorpCode: $("#txbCorpCode").val(),
@@ -65,6 +73,9 @@
             success: function (result) {
                 var obj = result;
                 alert(obj.Message);
+                if (obj.ResultStatus == 0) {
+                    window.location = "/Corporation/CorporationList";
+                }
             }
         });
 

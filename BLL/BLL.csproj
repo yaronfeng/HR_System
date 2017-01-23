@@ -52,6 +52,7 @@
     <Compile Include="ManagerAccountBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SocialBaseBLL.cs" />
+    <Compile Include="StyleDetailBLL.cs" />
     <Compile Include="SupplierBLL.cs" />
   </ItemGroup>
   <ItemGroup>

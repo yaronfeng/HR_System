@@ -12,10 +12,13 @@ namespace HR.BLL
     {
         private static List<Model.Corporation> corporations;
         private static List<Model.Supplier> suppliers;
+        private static List<Model.StyleDetail> styleDetails;
+
         BaseProvider()
         {
             corporations = new List<Model.Corporation>();
             suppliers = new List<Supplier>();
+            styleDetails = new List<StyleDetail>();
         }
 
         /// <summary>
@@ -28,7 +31,7 @@ namespace HR.BLL
                 if (corporations != null && corporations.Count > 0)
                     return corporations;
 
-                corporations = RegisterUser<Model.Corporation>(new CorporationBLL());
+                corporations = RegisterBaseData<Model.Corporation>(new CorporationBLL());
 
                 return corporations;
             }
@@ -44,12 +47,27 @@ namespace HR.BLL
                 if (suppliers != null && suppliers.Count > 0)
                     return suppliers;
 
-                suppliers = RegisterUser<Model.Supplier>(new SupplierBLL());
+                suppliers = RegisterBaseData<Model.Supplier>(new SupplierBLL());
 
                 return suppliers;
             }
         }
-        private static List<T> RegisterUser<T>(Operate operate)
+
+        /// <summary>
+        /// 类型方式明细集合
+        /// </summary>
+        public static List<Model.StyleDetail> StyleDetails
+        {
+            get
+            {
+                if (styleDetails == null || styleDetails.Count == 0)
+                    styleDetails = RegisterBaseData<Model.StyleDetail>(new StyleDetailBLL());
+
+                return styleDetails;
+            }
+        }
+
+        private static List<T> RegisterBaseData<T>(Operate operate)
             where T : class, IModel
         {
             ResultModel<T> result = operate.Load<T>();

@@ -575,6 +575,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Cache\CacheProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CommBaseController.cs" />
     <Compile Include="Controllers\CorpBillController.cs" />
     <Compile Include="Controllers\CorporationController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -645,6 +646,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="Views\CommBase\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">
@@ -681,7 +683,7 @@
           </IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>True</UseCustomServer>
-          <CustomServerUrl>http://192.168.1.11:8055</CustomServerUrl>
+          <CustomServerUrl>http://192.168.1.246:8055</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

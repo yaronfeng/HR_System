@@ -32,10 +32,11 @@ namespace HR.SQLServerDAL
             else
                 select.OrderStr = orderStr;
 
-            select.ColumnName = "SupId,SupCode,SupName,SupEName,SupAddress,SupContacts,SupTel,SupFax,SupZip,SupEmail,Bank,BankAccount,ServiceAmount,SupStatus";
+            select.ColumnName = "SupId,SupCode,SupName,SupEName,SupAddress,SupContacts,SupTel,SupFax,SupZip,SupEmail,Bank,BankAccount,ServiceAmount,SupStatus,sd.DetailName as StatusName";
 
             System.Text.StringBuilder sb = new StringBuilder();
-            sb.Append(" Usr_Supplier ");
+            sb.Append(" Usr_Supplier sup");
+            sb.AppendFormat(" inner join bd_StyleDetail sd on sd.DetailId = sup.SupStatus and sd.StyleId = {0}", (int)StyleTypeEnum.通用状态);
 
             select.TableName = sb.ToString();
 

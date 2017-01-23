@@ -27,13 +27,25 @@
     $("#numSocialFundNum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
     $("#numHouseFundNum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
 
-    $("#selSex").jqxDropDownList({ source: SexSource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 });
+    var SexUrl = "/CommBase/Sexs";
+    var SexSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: SexUrl };
+    var SexDataAdapter = new $.jqx.dataAdapter(SexSource);
+    $("#selSex").jqxDropDownList({ source: SexDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0 });
 
-    $("#selDegree").jqxDropDownList({ source: DegreeSource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 });
+    var CorpUrl = "/CommBase/Degrees";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selDegree").jqxDropDownList({ source: CorpDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0 });
 
-    $("#selBank").jqxDropDownList({ source: BankSource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 });
+    var CorpUrl = "/CommBase/Banks";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selBank").jqxDropDownList({ source: CorpDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0 });
 
-    $("#selPayCity").jqxDropDownList({ source: PayCitySource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 });
+    var CorpUrl = "/CommBase/PayCitys";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selPayCity").jqxDropDownList({ source: CorpDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0 });
 
     var CorpUrl = "../Corporation/Corps";
     var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "CorpId" }, { name: "CorpName" }], url: CorpUrl };
@@ -126,6 +138,8 @@
     $("#btnUpdate").click(function () {
         var isCanSubmit = $("#jqxValidator").jqxValidator("validate");
         if (!isCanSubmit) { return; }
+
+        if (!confirm("确认修改员工？")) { return; }
 
         var employee = {
             EmpId: id,

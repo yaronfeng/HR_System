@@ -27,13 +27,30 @@
     $("#numSocialFundNum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
     $("#numHouseFundNum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
 
-    $("#selSex").jqxDropDownList({ source: SexSource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0, disabled: true });
+    var SexUrl = "/CommBase/Sexs";
+    var SexSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: SexUrl };
+    var SexDataAdapter = new $.jqx.dataAdapter(SexSource);
+    $("#selSex").jqxDropDownList({ source: SexDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0, disabled: true });
 
-    $("#selDegree").jqxDropDownList({ source: DegreeSource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0, disabled: true });
+    var CorpUrl = "/CommBase/Degrees";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selDegree").jqxDropDownList({ source: CorpDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0, disabled: true });
 
-    $("#selBank").jqxDropDownList({ source: BankSource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0, disabled: true });
+    var CorpUrl = "/CommBase/Banks";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selBank").jqxDropDownList({ source: CorpDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0, disabled: true });
 
-    $("#selPayCity").jqxDropDownList({ source: PayCitySource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0, disabled: true });
+    var CorpUrl = "/CommBase/PayCitys";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selPayCity").jqxDropDownList({ source: CorpDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0, disabled: true });
+
+    var CorpUrl = "../Corporation/Corps";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "CorpId" }, { name: "CorpName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selCorpId").jqxComboBox({ source: CorpDataAdapter, displayMember: "CorpName", valueMember: "CorpId", autoComplete: true, searchMode: "contains", height: 25, disabled: true });
 
     $("#chkIsHandBook").jqxCheckBox({ disabled: true });
     $("#chkIsResidentPermit").jqxCheckBox({ disabled: true });

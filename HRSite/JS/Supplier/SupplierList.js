@@ -17,7 +17,7 @@
            { name: "Bank", type: "int" },
            { name: "BankAccount", type: "string" },
            { name: "SupStatus", type: "int" },
-
+           { name: "StatusName", type: "string" },
         ],
         sort: function () {
             $("#jqxListGrid").jqxGrid("updatebounddata", "sort");
@@ -105,7 +105,7 @@
           { text: "银行", datafield: "Bank", width: 90 },
           { text: "银行账号", datafield: "BankAccount", width: 90 },
           { text: "服务费", datafield: "ServiceAmount", width: 90 },
-          { text: "状态", datafield: "SupStatus", width: 90 }
+          { text: "状态", datafield: "StatusName", width: 90 }
         ]
     });
 });
