@@ -94,7 +94,7 @@ namespace HR.SQLServerDAL
             else
                 select.OrderStr = orderStr;
 
-            select.ColumnName = @"emp.EmpName,emp.CardNo,sdcity.DetailName as PayCity,emp.SocialFundNum,emp.HouseFundNum,emp.SocialFundNum * (soc.CorpPensionInsPoint/100)  as CorpPensionIns
+            select.ColumnName = @"emp.EmpId,emp.EmpName,emp.CardNo,sdcity.DetailName as PayCityName,emp.PayCity,emp.SocialFundNum,emp.HouseFundNum,emp.SocialFundNum * (soc.CorpPensionInsPoint/100)  as CorpPensionIns
                                 ,emp.SocialFundNum * (soc.CorpMedicalInsPoint/100)  as CorpMedicalIns
                                 ,emp.SocialFundNum * (soc.CorpUnempInsPoint/100)  as CorpUnempIns
                                 ,emp.SocialFundNum * (soc.CorpInjuryInsPoint/100)  as CorpInjuryIns
@@ -114,7 +114,7 @@ namespace HR.SQLServerDAL
                                 ,emp.SocialFundNum * (soc.EmpIllnessInsPoint/100)  as EmpIllnessIns
                                 ,emp.SocialFundNum * (soc.EmpHeatAmountPoint/100)  as EmpHeatAmount
                                 ,emp.HouseFundNum * (soc.EmpHouseFundPoint/100)  as EmpHouseFund
-                                ,emp.SocialFundNum * (soc.EmpRepInjuryInsPoint/100)  as EmpRepInjuryIns,0 as EmpTotal,ISNULL(emps.PersonalTax,0) as PersonalTax,ISNULL(emps.TotalAmount,0) as TotalAmount,ISNULL(emps.RepairAmount,0) as RepairAmount,ISNULL(emps.GrossAmount,0) as GrossAmount,ISNULL(emps.FinalAmount,0) as FinalAmount,ISNULL(emps.ServiceAmount,0) as ServiceAmount,ISNULL(emps.RefundAmount,0) as RefundAmount,0 as AllTotalAmount";
+                                ,emp.SocialFundNum * (soc.EmpRepInjuryInsPoint/100)  as EmpRepInjuryIns,0 as EmpTotal,ISNULL(emps.PersonalTax,0) as PersonalTax,ISNULL(emp.TotalAmount,0) as TotalAmount,ISNULL(emps.RepairAmount,0) as RepairAmount,ISNULL(emps.GrossAmount,0) as GrossAmount,ISNULL(emps.FinalAmount,0) as FinalAmount,ISNULL(emps.ServiceAmount,0) as ServiceAmount,ISNULL(emps.RefundAmount,0) as RefundAmount,0 as AllTotalAmount";
 
             System.Text.StringBuilder sb = new StringBuilder();
             sb.Append(" Usr_Corporation corp");

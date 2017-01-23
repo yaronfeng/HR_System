@@ -449,6 +449,14 @@ namespace HR.BLL
             return result;
         }
 
+        public ResultModel LoadEmployeeExpireList(int pageIndex, int pageSize, string orderStr)
+        {
+            SelectModel select = sql_insrance.EmployeeExpireListSelect(pageIndex, pageSize, orderStr);
+            ResultModel result = Load(select);
+
+            return result;
+        }
+
         public override string TableName
         {
             get

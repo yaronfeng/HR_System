@@ -190,6 +190,19 @@ namespace HRSite.Controllers
 
             CorpBillBLL corpBillBLL = new CorpBillBLL();
             EmployeeSalaryBLL empSalaryBLL = new EmployeeSalaryBLL();
+            //获取企业账单
+            ResultModel<CorpBill> corpBillResult = corpBillBLL.LoadCorpBills(corpBill.CorpId);
+            if (corpBillResult.ResultStatus != 0)
+                return Json(new ResultModel("获取账单列表失败"));
+
+            List<CorpBill> rtnCorpBill = corpBillResult.ReturnValues;
+            if (rtnCorpBill == null)
+                return Json(new ResultModel("获取账单列表失败"));
+
+            int corpBillCount = rtnCorpBill.Count();
+            if (corpBillCount > 0)
+                return Content(JsUtility.WarmAlert("客户本月账单已生成", redirectUrl));
+
             //新增账单
             ResultModel result = corpBillBLL.Insert(corpBill);
             if (result.ResultStatus != 0)

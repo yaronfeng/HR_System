@@ -32,6 +32,10 @@ namespace HRSite.Controllers
         {
             return View();
         }
+        public ActionResult EmployeeExpireList()
+        {
+            return View();
+        }
 
         [HttpPost]
         public ActionResult LoadEmployeeList(int pageIndex, int pageSize, string orderField, string sortOrder)
@@ -46,6 +50,30 @@ namespace HRSite.Controllers
 
             EmployeeBLL employeeBLL = new EmployeeBLL();
             ResultModel result = employeeBLL.LoadEmployeeList(pageIndex, pageSize, orderStr);
+
+            System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("count", result.AffectCount);
+            dic.Add("data", dt);
+            string jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(dic, new Newtonsoft.Json.Converters.DataTableConverter());
+            result.ReturnValue = jsonStr;
+
+            return Json(result);
+        }
+
+        [HttpPost]
+        public ActionResult LoadEmployeeExpireList(int pageIndex, int pageSize, string orderField, string sortOrder)
+        {
+            switch (orderField)
+            {
+                case "EmpId":
+                    orderField = "EmpId";
+                    break;
+            }
+            string orderStr = string.Format("{0} {1}", orderField, sortOrder);
+
+            EmployeeBLL employeeBLL = new EmployeeBLL();
+            ResultModel result = employeeBLL.LoadEmployeeExpireList(pageIndex, pageSize, orderStr);
 
             System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
             Dictionary<string, object> dic = new Dictionary<string, object>();

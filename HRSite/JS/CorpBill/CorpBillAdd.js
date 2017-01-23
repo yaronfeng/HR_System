@@ -3,6 +3,19 @@
 $(document).ready(function () {
     var id = $("#hidId").val();
     optList = JSON.parse($("#hidJsonOpt").val());
+    if (optList.length > 0) {
+        for (i = 0 ; i < optList.length ; i++) {
+            var item = optList[i];
+            var corpTotal = Number((item.CorpPensionIns + item.CorpMedicalIns + item.CorpUnempIns + item.CorpInjuryIns + item.CorpBirthIns + item.CorpDisabledIns + item.CorpIllnessIns + item.CorpHeatAmount + item.CorpHouseFund + item.CorpRepInjuryIns).toFixed(2));
+            var empTotal =  Number((item.EmpPensionIns + item.EmpMedicalIns + item.EmpUnempIns + item.EmpInjuryIns + item.EmpBirthIns + item.EmpDisabledIns + item.EmpIllnessIns + item.EmpHeatAmount + item.EmpHouseFund + item.EmpRepInjuryIns).toFixed(2));
+            var grossAmount = Number((item.TotalAmount -  corpTotal + empTotal).toFixed(2));
+
+            optList[i].CorpTotal = corpTotal;
+            optList[i].EmpTotal = empTotal;
+            optList[i].GrossAmount = grossAmount;
+            optList[i].AllTotalAmount = Number((corpTotal + empTotal).toFixed(2));
+        }
+    }
     //绑定
     $("#tmBillDate").jqxDateTimeInput({ formatString: "yyyy-MM" });
     $("#tmPayDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd" });
@@ -27,7 +40,10 @@ $(document).ready(function () {
     var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
     $("#selSupId").jqxComboBox({ source: CorpDataAdapter, displayMember: "SupName", valueMember: "SupId", autoComplete: true, searchMode: "contains", height: 25 });
 
-    $("#selPayCity").jqxDropDownList({ source: PayCitySource, displayMember: "text", valueMember: "value", autoDropDownHeight: true, selectedIndex: 0 });
+    var CorpUrl = "/CommBase/PayCitys";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selPayCity").jqxDropDownList({ source: CorpDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0 });
 
     var CorpUrl = "../Corporation/Corps";
     var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "CorpId" }, { name: "CorpName" }], url: CorpUrl };
@@ -171,49 +187,50 @@ $(document).ready(function () {
           { text: "缴费区域", datafield: "PayCityName", width: 70, editable: false },
           { text: "社保基数", datafield: "SocialFundNum", width: 70, editable: false },
           { text: "公积金基数", datafield: "HouseFundNum", width: 70, editable: false },
-          {
-              text: "养老保险", columngroup: 'CorpDetails', datafield: "CorpPensionIns", columntype: "numberinput", width: 70
-              , createeditor: function (row, cellvalue, editor) {
-                  editor.jqxNumberInput({ min: 0, decimalDigits: 2, Digits: 8, spinButtons: true, inputMode: "simple" });
-              }
-              , validation: function (cell, value) {
-                  if (value < 0) {
-                      return { result: false, message: "必须大于0" };
-                  }
-                  return true;
-              }
-              , aggregates: [{
-                  "总": function (aggregatedValue, currentValue) {
-                      return Math.round((aggregatedValue + currentValue) * 1000) / 1000;
-                  }
-              }]
-          },
-          { text: "医疗保险", columngroup: 'CorpDetails', datafield: "CorpMedicalIns", width: 70 },
-          { text: "失业保险", columngroup: 'CorpDetails', datafield: "CorpUnempIns", width: 70 },
-          { text: "工伤保险", columngroup: 'CorpDetails', datafield: "CorpInjuryIns", width: 70 },
-          { text: "生育保险", columngroup: 'CorpDetails', datafield: "CorpBirthIns", width: 70 },
-          { text: "残疾人保险", columngroup: 'CorpDetails', datafield: "CorpDisabledIns", width: 70 },
-          { text: "大病保险", columngroup: 'CorpDetails', datafield: "CorpIllnessIns", width: 70 },
-          { text: "取暖费", columngroup: 'CorpDetails', datafield: "CorpHeatAmount", width: 70 },
-          { text: "公积金", columngroup: 'CorpDetails', datafield: "CorpHouseFund", width: 70 },
-          { text: "补充工伤", columngroup: 'CorpDetails', datafield: "CorpRepInjuryIns", width: 70 },
+          { text: "养老保险", columngroup: 'CorpDetails', datafield: "CorpPensionIns", width: 70, editable: false },
+          //{
+          //    text: "养老保险", columngroup: 'CorpDetails', datafield: "CorpPensionIns", columntype: "numberinput", width: 70
+          //    , createeditor: function (row, cellvalue, editor) {
+          //        editor.jqxNumberInput({ min: 0, decimalDigits: 2, Digits: 8, spinButtons: true, inputMode: "simple" });
+          //    }
+          //    , validation: function (cell, value) {
+          //        if (value < 0) {
+          //            return { result: false, message: "必须大于0" };
+          //        }
+          //        return true;
+          //    }
+          //    , aggregates: [{
+          //        "总": function (aggregatedValue, currentValue) {
+          //            return Math.round((aggregatedValue + currentValue) * 1000) / 1000;
+          //        }
+          //    }]
+          //},
+          { text: "医疗保险", columngroup: 'CorpDetails', datafield: "CorpMedicalIns", width: 70, editable: false },
+          { text: "失业保险", columngroup: 'CorpDetails', datafield: "CorpUnempIns", width: 70, editable: false },
+          { text: "工伤保险", columngroup: 'CorpDetails', datafield: "CorpInjuryIns", width: 70, editable: false },
+          { text: "生育保险", columngroup: 'CorpDetails', datafield: "CorpBirthIns", width: 70, editable: false },
+          { text: "残疾人保险", columngroup: 'CorpDetails', datafield: "CorpDisabledIns", width: 70, editable: false },
+          { text: "大病保险", columngroup: 'CorpDetails', datafield: "CorpIllnessIns", width: 70, editable: false },
+          { text: "取暖费", columngroup: 'CorpDetails', datafield: "CorpHeatAmount", width: 70, editable: false },
+          { text: "公积金", columngroup: 'CorpDetails', datafield: "CorpHouseFund", width: 70, editable: false },
+          { text: "补充工伤", columngroup: 'CorpDetails', datafield: "CorpRepInjuryIns", width: 70, editable: false },
           { text: "合计", columngroup: 'CorpDetails', datafield: "CorpTotal", width: 70, editable: false },
-          { text: "养老保险", columngroup: 'EmpDetails', datafield: "EmpPensionIns", width: 70 },
-          { text: "医疗保险", columngroup: 'EmpDetails', datafield: "EmpMedicalIns", width: 70 },
-          { text: "失业保险", columngroup: 'EmpDetails', datafield: "EmpUnempIns", width: 70 },
-          { text: "工伤保险", columngroup: 'EmpDetails', datafield: "EmpInjuryIns", width: 70 },
-          { text: "生育保险", columngroup: 'EmpDetails', datafield: "EmpBirthIns", width: 70 },
-          { text: "残疾人保险", columngroup: 'EmpDetails', datafield: "EmpDisabledIns", width: 70 },
-          { text: "大病保险", columngroup: 'EmpDetails', datafield: "EmpIllnessIns", width: 70 },
-          { text: "取暖费", columngroup: 'EmpDetails', datafield: "EmpHeatAmount", width: 70 },
-          { text: "公积金", columngroup: 'EmpDetails', datafield: "EmpHouseFund", width: 70 },
-          { text: "补充工伤", columngroup: 'EmpDetails', datafield: "EmpRepInjuryIns", width: 70 },
+          { text: "养老保险", columngroup: 'EmpDetails', datafield: "EmpPensionIns", width: 70, editable: false },
+          { text: "医疗保险", columngroup: 'EmpDetails', datafield: "EmpMedicalIns", width: 70, editable: false },
+          { text: "失业保险", columngroup: 'EmpDetails', datafield: "EmpUnempIns", width: 70, editable: false },
+          { text: "工伤保险", columngroup: 'EmpDetails', datafield: "EmpInjuryIns", width: 70, editable: false },
+          { text: "生育保险", columngroup: 'EmpDetails', datafield: "EmpBirthIns", width: 70, editable: false },
+          { text: "残疾人保险", columngroup: 'EmpDetails', datafield: "EmpDisabledIns", width: 70, editable: false },
+          { text: "大病保险", columngroup: 'EmpDetails', datafield: "EmpIllnessIns", width: 70, editable: false },
+          { text: "取暖费", columngroup: 'EmpDetails', datafield: "EmpHeatAmount", width: 70, editable: false },
+          { text: "公积金", columngroup: 'EmpDetails', datafield: "EmpHouseFund", width: 70, editable: false },
+          { text: "补充工伤", columngroup: 'EmpDetails', datafield: "EmpRepInjuryIns", width: 70, editable: false },
           { text: "合计", columngroup: 'EmpDetails', datafield: "EmpTotal", width: 70, editable: false },
           { text: "个调税", datafield: "PersonalTax", width: 70 },
-          { text: "应发工资", datafield: "TotalAmount", width: 70 },
+          { text: "应发工资", datafield: "TotalAmount", width: 70, editable: false },
           { text: "社保补交", datafield: "RepairAmount", width: 70 },
-          { text: "税前工资", datafield: "GrossAmount", width: 70 },
-          { text: "实发工资", datafield: "FinalAmount", width: 70 },
+          { text: "税前工资", datafield: "GrossAmount", width: 70, editable: false },
+          { text: "实发工资", datafield: "FinalAmount", width: 70, editable: false },
           { text: "服务费", datafield: "ServiceAmount", width: 70 },
           { text: "补收/退款", datafield: "RefundAmount", width: 70 },
           { text: "合计", datafield: "AllTotalAmount", width: 70, editable: false },
@@ -266,7 +283,7 @@ $(document).ready(function () {
             data: JSON.stringify(paras),
             dataType: "json",
             success: function (result) {
-                var obj = result.d;
+                var obj = result;
                 alert(obj.Message);
                 if (obj.ResultStatus == 0) {
                     window.document.location.href = "/CorpBill/CorpBillList";

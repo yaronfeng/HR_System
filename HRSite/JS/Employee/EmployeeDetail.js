@@ -224,7 +224,7 @@
         },
         columns: [
           { text: "序号", cellsrenderer: numberrenderer, width: 40, sortable: false, enabletooltips: false, menu: false, resizable: false, editable: false, pinned: true },
-          { text: "支付月", datafield: "PayDate", cellsformat: "yyyy-MM", pinned: true, width: 90, editable: false },
+          { text: "工资月", datafield: "PayDate", cellsformat: "yyyy-MM", pinned: true, width: 90, editable: false },
           { text: "姓名", datafield: "EmpName", pinned: true, width: 70, editable: false },
           { text: "身份证", datafield: "CardNo", width: 150, editable: false },
           { text: "缴费区域", datafield: "PayCityName", width: 70, editable: false },
