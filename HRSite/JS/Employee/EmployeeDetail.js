@@ -24,8 +24,17 @@
     $("#tmSocialSignDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd", value: new Date(1900, 0, 1), disabled: true });
 
     $("#numTotalAmount").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
-    $("#numSocialFundNum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
-    $("#numHouseFundNum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
+
+    $("#numPISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
+    $("#numMISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
+    $("#numUISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
+    $("#numIISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
+    $("#numBISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
+    $("#numDISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
+    $("#numLISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
+    $("#numHASINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
+    $("#numHFSINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
+    $("#numRISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
 
     var SexUrl = "/CommBase/Sexs";
     var SexSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: SexUrl };
@@ -52,6 +61,11 @@
     var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
     $("#selCorpId").jqxComboBox({ source: CorpDataAdapter, displayMember: "CorpName", valueMember: "CorpId", autoComplete: true, searchMode: "contains", height: 25, disabled: true });
 
+    var CorpUrl = "../Supplier/Suppliers";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "SupId" }, { name: "SupName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selSupId").jqxComboBox({ source: CorpDataAdapter, displayMember: "SupName", valueMember: "SupId", autoComplete: true, searchMode: "contains", height: 25, disabled: true });
+
     $("#chkIsHandBook").jqxCheckBox({ disabled: true });
     $("#chkIsResidentPermit").jqxCheckBox({ disabled: true });
     $("#chkIsBirthIns").jqxCheckBox({ disabled: true });
@@ -77,6 +91,7 @@
                 $("#txbEmpName").val(rtnObj.EmpName),
                 $("#selSex").val(rtnObj.Sex),
                 $("#selCorpId").val(rtnObj.CorpId),
+                $("#selSupId").val(rtnObj.SupId),
                 $("#txbCardNo").val(rtnObj.CardNo),
                 $("#txbAddress").val(rtnObj.Address),
                 $("#txbPhone").val(rtnObj.Phone),
@@ -87,8 +102,6 @@
                 $("#selDegree").val(rtnObj.Degree),
                 $("#txbJobs").val(rtnObj.Jobs),
                 $("#numTotalAmount").val(rtnObj.TotalAmount),
-                $("#numSocialFundNum").val(rtnObj.SocialFundNum),
-                $("#numHouseFundNum").val(rtnObj.HouseFundNum),
                 $("#selPayCity").val(rtnObj.PayCity),
                 $("#tmSocialStartDate").val(new Date(rtnObj.SocialStartDate)),
                 $("#tmHouseStartDate").val(new Date(rtnObj.HouseStartDate)),
@@ -103,6 +116,16 @@
                 $("#chkIsBirthIns").val(rtnObj.IsBirthIns),
                 $("#txbInsCardNo").val(rtnObj.InsCardNo),
                 $("#txbEmpEmail").val(rtnObj.EmpEmail),
+                $("#numPISINum").val(rtnObj.PISINum),
+                $("#numMISINum").val(rtnObj.MISINum),
+                $("#numUISINum").val(rtnObj.UISINum),
+                $("#numIISINum").val(rtnObj.IISINum),
+                $("#numBISINum").val(rtnObj.BISINum),
+                $("#numDISINum").val(rtnObj.DISINum),
+                $("#numLISINum").val(rtnObj.LISINum),
+                $("#numHASINum").val(rtnObj.HASINum),
+                $("#numHFSINum").val(rtnObj.HFSINum),
+                $("#numRISINum").val(rtnObj.RISINum),
                 $("#txbMemo").val(rtnObj.Memo)
             }
             else {

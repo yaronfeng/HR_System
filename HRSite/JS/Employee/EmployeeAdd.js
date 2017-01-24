@@ -23,8 +23,17 @@
     $("#tmSocialSignDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd", value: new Date(1900, 0, 1) });
 
     $("#numTotalAmount").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
-    $("#numSocialFundNum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
-    $("#numHouseFundNum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
+
+    $("#numPISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
+    $("#numMISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
+    $("#numUISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
+    $("#numIISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
+    $("#numBISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
+    $("#numDISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
+    $("#numLISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
+    $("#numHASINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
+    $("#numHFSINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
+    $("#numRISINum").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true });
 
     var SexUrl = "/CommBase/Sexs";
     var SexSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: SexUrl };
@@ -51,6 +60,11 @@
     var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
     $("#selCorpId").jqxComboBox({ source: CorpDataAdapter, displayMember: "CorpName", valueMember: "CorpId", autoComplete: true, searchMode: "contains", height: 25 });
 
+    var CorpUrl = "../Supplier/Suppliers";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "SupId" }, { name: "SupName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selSupId").jqxComboBox({ source: CorpDataAdapter, displayMember: "SupName", valueMember: "SupId", autoComplete: true, searchMode: "contains", height: 25 });
+
     $("#chkIsHandBook").jqxCheckBox();
     $("#chkIsResidentPermit").jqxCheckBox();
     $("#chkIsBirthIns").jqxCheckBox();
@@ -72,6 +86,11 @@
                     }
                 },
                 {
+                    input: "#selSupId", message: "供应商必填", action: "keyup, blur,valuechange", rule: function (input, commit) {
+                        return $("#selSupId").val() > 0;
+                    }
+                },
+                {
                     input: "#txbCardNo", message: "身份证必填", action: "keyup, blur,valuechange", rule: function (input, commit) {
                         return $("#txbCardNo").val() != "";
                     }
@@ -90,6 +109,7 @@
             EmpName: $("#txbEmpName").val(),
             Sex: $("#selSex").val(),
             CorpId: $("#selCorpId").val(),
+            SupId: $("#selSupId").val(),
             CardNo: $("#txbCardNo").val(),
             Address: $("#txbAddress").val(),
             Phone: $("#txbPhone").val(),
@@ -100,8 +120,6 @@
             Degree: $("#selDegree").val(),
             Jobs: $("#txbJobs").val(),
             TotalAmount: $("#numTotalAmount").val(),
-            SocialFundNum: $("#numSocialFundNum").val(),
-            HouseFundNum: $("#numHouseFundNum").val(),
             PayCity: $("#selPayCity").val(),
             SocialStartDate: $("#tmSocialStartDate").val(),
             HouseStartDate: $("#tmHouseStartDate").val(),
@@ -116,6 +134,16 @@
             IsBirthIns: $("#chkIsBirthIns").val(),
             InsCardNo: $("#txbInsCardNo").val(),
             EmpEmail: $("#txbEmpEmail").val(),
+            PISINum:$("#numPISINum").val(),
+            MISINum:$("#numMISINum").val(),
+            UISINum:$("#numUISINum").val(),
+            IISINum:$("#numIISINum").val(),
+            BISINum:$("#numBISINum").val(),
+            DISINum:$("#numDISINum").val(),
+            LISINum:$("#numLISINum").val(),
+            HASINum:$("#numHASINum").val(),
+            HFSINum:$("#numHFSINum").val(),
+            RISINum:$("#numRISINum").val(),
             Memo: $("#txbMemo").val()
         };
 
@@ -128,6 +156,9 @@
             success: function (result) {
                 var obj = result;
                 alert(obj.Message);
+                if (obj.ResultStatus == 0) {
+                    window.location = "/Employee/EmployeeList";
+                }
             }
         });
 

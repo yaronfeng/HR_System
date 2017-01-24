@@ -64,7 +64,7 @@ namespace HR.SQLServerDAL
             else
                 select.OrderStr = orderStr;
 
-            select.ColumnName = "EmpSalaryId,EmpId,EmpName,PayCity,sdcity.DetailName as PayCityName,CardNo,SocialFundNum,HouseFundNum,CorpId,CorpPensionIns,CorpMedicalIns,CorpUnempIns,CorpInjuryIns,CorpBirthIns,CorpDisabledIns,CorpIllnessIns,CorpHeatAmount,CorpHouseFund,CorpRepInjuryIns,CorpTotal,EmpPensionIns,EmpMedicalIns,EmpUnempIns,EmpInjuryIns,EmpBirthIns,EmpDisabledIns,EmpIllnessIns,EmpHeatAmount,EmpHouseFund,EmpRepInjuryIns,EmpTotal,PersonalTax,TotalAmount,RepairAmount,GrossAmount,FinalAmount,ServiceAmount,RefundAmount,PayDate,CorpBillId,EmpSalaryStatus,Memo";
+            select.ColumnName = "EmpSalaryId,EmpId,PayCity,sdcity.DetailName as PayCityName,CorpId,CorpPensionIns,CorpMedicalIns,CorpUnempIns,CorpInjuryIns,CorpBirthIns,CorpDisabledIns,CorpIllnessIns,CorpHeatAmount,CorpHouseFund,CorpRepInjuryIns,CorpTotal,EmpPensionIns,EmpMedicalIns,EmpUnempIns,EmpInjuryIns,EmpBirthIns,EmpDisabledIns,EmpIllnessIns,EmpHeatAmount,EmpHouseFund,EmpRepInjuryIns,EmpTotal,PersonalTax,TotalAmount,RepairAmount,GrossAmount,FinalAmount,ServiceAmount,RefundAmount,PayDate,EmpSalaryStatus,Memo";
 
             System.Text.StringBuilder sb = new StringBuilder();
             sb.Append(" Usr_EmployeeSalary emps");

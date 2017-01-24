@@ -133,7 +133,6 @@ namespace HRSite.Controllers
         public ActionResult Insert(Employee employee)
         {
             employee.EmpStatus = (int)StatusEnum.已完成;
-            //string json = Newtonsoft.Json.JsonConvert.SerializeObject(employee);
 
             EmployeeBLL employeeBLL = new EmployeeBLL();
             ResultModel result = employeeBLL.Insert(employee);
@@ -163,6 +162,7 @@ namespace HRSite.Controllers
             rtnEmployee.EmpName = employee.EmpName;
             rtnEmployee.Sex = employee.Sex;
             rtnEmployee.CorpId = employee.CorpId;
+            rtnEmployee.SupId = employee.SupId;
             rtnEmployee.CardNo = employee.CardNo;
             rtnEmployee.Address = employee.Address;
             rtnEmployee.Phone = employee.Phone;
@@ -173,8 +173,6 @@ namespace HRSite.Controllers
             rtnEmployee.Degree = employee.Degree;
             rtnEmployee.Jobs = employee.Jobs;
             rtnEmployee.TotalAmount = employee.TotalAmount;
-            rtnEmployee.SocialFundNum = employee.SocialFundNum;
-            rtnEmployee.HouseFundNum = employee.HouseFundNum;
             rtnEmployee.PayCity = employee.PayCity;
             rtnEmployee.SocialStartDate = employee.SocialStartDate;
             rtnEmployee.HouseStartDate = employee.HouseStartDate;
@@ -189,6 +187,16 @@ namespace HRSite.Controllers
             rtnEmployee.IsBirthIns = employee.IsBirthIns;
             rtnEmployee.InsCardNo = employee.InsCardNo;
             rtnEmployee.EmpEmail = employee.EmpEmail;
+            rtnEmployee.PISINum = employee.PISINum;
+            rtnEmployee.MISINum = employee.MISINum;
+            rtnEmployee.UISINum = employee.UISINum;
+            rtnEmployee.IISINum = employee.IISINum;
+            rtnEmployee.BISINum = employee.BISINum;
+            rtnEmployee.DISINum = employee.DISINum;
+            rtnEmployee.LISINum = employee.LISINum;
+            rtnEmployee.HASINum = employee.HASINum;
+            rtnEmployee.HFSINum = employee.HFSINum;
+            rtnEmployee.RISINum = employee.RISINum;
             rtnEmployee.Memo = employee.Memo;
 
             ResultModel result = empBLL.Update(rtnEmployee);

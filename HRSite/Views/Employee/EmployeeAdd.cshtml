@@ -28,6 +28,11 @@
                         </div>
                     </li>
                     <li>
+                        <span>供应商：</span>
+                        <div class="txb" id="selSupId">
+                        </div>
+                    </li>
+                    <li>
                         <span>性别：</span>
                         <div class="txb" id="selSex">
                         </div>
@@ -50,6 +55,55 @@
                             <input type="text" id="txbPhone" />
                         </div>
                     </li>
+                   
+                    <li>
+                        <span>学历：</span>
+                        <div class="txb" id="selDegree">
+                        </div>
+                    </li>
+                    <li>
+                        <span>岗位：</span>
+                        <div class="txb">
+                            <input type="text" id="txbJobs"/>
+                        </div>
+                    </li>
+                    <li>
+                        <span>缴纳地：</span>
+                        <div class="txb" id="selPayCity">
+                        </div>
+                    </li>
+                    <li>
+                        <span>银行：</span>
+                        <div class="txb" id="selBank">
+                        </div>
+                    </li>
+                    <li>
+                        <span>卡号：</span>
+                        <div class="txb">
+                            <input type="text" id="txbBankAccount" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>应发工资：</span>
+                        <div class="txb" id="numTotalAmount">
+                        </div>
+                    </li>
+                    <li>
+                        <span>邮箱：</span>
+                        <div class="txb">
+                            <input type="text" id="txbEmpEmail"/>
+                        </div>
+                    </li>
+                    <li>
+                        <span>备注：</span>
+                        <div class="txb">
+                            <input type="text" id="txbMemo" class="i2" />
+                        </div>
+                    </li>
+                </ul>
+                <hr />
+                <span>合同信息</span>
+                <ul>
                     <li>
                         <span>入职日期：</span>
                         <div class="txb" id="tmEntryDate">
@@ -70,74 +124,7 @@
                         <div class="txb" id="tmLeaveDate">
                         </div>
                     </li>
-                    <li>
-                        <span>学历：</span>
-                        <div class="txb" id="selDegree">
-                        </div>
-                    </li>
-                    <li>
-                        <span>岗位：</span>
-                        <div class="txb">
-                            <input type="text" id="txbJobs"/>
-                        </div>
-                    </li>
-                    <li>
-                        <span>应发工资：</span>
-                        <div class="txb" id="numTotalAmount">
-                        </div>
-                    </li>
-                    <li>
-                        <span>社保基数：</span>
-                        <div class="txb" id="numSocialFundNum">
-                        </div>
-                    </li>
-                    <li>
-                        <span>公积金基数：</span>
-                        <div class="txb" id="numHouseFundNum">
-                        </div>
-                    </li>
-                    <li>
-                        <span>缴纳地：</span>
-                        <div class="txb" id="selPayCity">
-                        </div>
-                    </li>
-                    <li>
-                        <span>社保起缴月：</span>
-                        <div class="txb" id="tmSocialStartDate">
-                        </div>
-                    </li>
-                    <li>
-                        <span>公积金起缴月：</span>
-                        <div class="txb" id="tmHouseStartDate">
-                        </div>
-                    </li>
-                    <li>
-                        <span>公积金账号：</span>
-                        <div class="txb">
-                            <input type="text" id="txbHouseAccount" />
-                        </div>
-                    </li>
-                    <li>
-                        <span>劳动手册：</span>
-                        <div class="txb" id="chkIsHandBook" style="margin-top:5px;">
-                        </div>
-                    </li>
-                    <li>
-                        <span>居住证：</span>
-                        <div class="txb" id="chkIsResidentPermit" style="margin-top:5px;">
-                        </div>
-                    </li>
-                    <li>
-                        <span>银行：</span>
-                        <div class="txb" id="selBank">
-                        </div>
-                    </li>
-                    <li>
-                        <span>卡号：</span>
-                        <div class="txb">
-                            <input type="text" id="txbBankAccount"  />
-                        </div>
-                    </li>
+                    
                     <li>
                         <span>合同编号：</span>
                         <div class="txb">
@@ -166,15 +153,83 @@
                         </div>
                     </li>
                     <li>
-                        <span>邮箱：</span>
-                        <div class="txb">
-                            <input type="text" id="txbEmpEmail"/>
+                        <span>社保起缴月：</span>
+                        <div class="txb" id="tmSocialStartDate">
                         </div>
                     </li>
                     <li>
-                        <span>备注：</span>
+                        <span>公积金起缴月：</span>
+                        <div class="txb" id="tmHouseStartDate">
+                        </div>
+                    </li>
+                    <li>
+                        <span>公积金账号：</span>
                         <div class="txb">
-                            <input type="text" id="txbMemo" class="i2" />
+                            <input type="text" id="txbHouseAccount" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>劳动手册：</span>
+                        <div class="txb" id="chkIsHandBook" style="margin-top:5px;">
+                        </div>
+                    </li>
+                    <li>
+                        <span>居住证：</span>
+                        <div class="txb" id="chkIsResidentPermit" style="margin-top:5px;">
+                        </div>
+                    </li>
+                </ul>
+                <hr />
+                <span>社保基数信息</span>
+                <ul>
+                    <li>
+                        <span>养老保险：</span>
+                        <div class="txb" id="numPISINum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>医疗保险：</span>
+                        <div class="txb" id="numMISINum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>失业保险：</span>
+                        <div class="txb" id="numUISINum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>工伤保险：</span>
+                        <div class="txb" id="numIISINum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>生育保险：</span>
+                        <div class="txb" id="numBISINum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>残疾人保险：</span>
+                        <div class="txb" id="numDISINum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>大病保险：</span>
+                        <div class="txb" id="numLISINum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>取暖费：</span>
+                        <div class="txb" id="numHASINum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>公积金：</span>
+                        <div class="txb" id="numHFSINum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>补充工伤：</span>
+                        <div class="txb" id="numRISINum">
                         </div>
                     </li>
                 </ul>
