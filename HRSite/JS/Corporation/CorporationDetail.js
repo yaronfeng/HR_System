@@ -15,6 +15,7 @@
     $("#txbSocialRegCode").jqxInput({ minLength: 1, height: 25, width: 200, disabled: true });
     $("#txbHouseAccount").jqxInput({ minLength: 1, height: 25, width: 200, disabled: true });
     $("#txbHousePWD").jqxInput({ minLength: 1, height: 25, width: 200, disabled: true });
+    $("#txbServiceAmount").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true ,disabled:true});
 
     var CorpUrl = "/CommBase/Banks";
     var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
@@ -60,6 +61,7 @@
                 $("#txbSocialRegCode").val(rtnObj.SocialRegCode),
                 $("#selHouseBank").val(rtnObj.HouseBank),
                 $("#txbHousePWD").val(rtnObj.HousePWD),
+                $("#txbServiceAmount").val(rtnObj.ServiceAmount);
                 $("#txbMemo").val(rtnObj.Memo)
             }
             else {

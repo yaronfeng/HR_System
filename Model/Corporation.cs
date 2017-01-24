@@ -6,6 +6,7 @@ using HR.Common;
 
 namespace HR.Model
 {
+    [Serializable]
     public class Corporation : MasterModel
     {
         /// <summary>
@@ -76,6 +77,10 @@ namespace HR.Model
         /// 公积金密码
         /// </summary>
         public string HousePWD { get; set; }
+        /// <summary>
+        /// 服务费
+        /// </summary>
+        public decimal ServiceAmount { get; set; }
         /// <summary>
         /// 状态
         /// </summary>

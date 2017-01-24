@@ -24,6 +24,10 @@ namespace HR.Model
         /// </summary>
         public int CorpId { get; set; }
         /// <summary>
+        /// 所属供应商
+        /// </summary>
+        public int SupId { get; set; }
+        /// <summary>
         /// 身份证
         /// </summary>
         public string CardNo { get; set; }
@@ -66,11 +70,43 @@ namespace HR.Model
         /// <summary>
         /// 社保基数
         /// </summary>
-        public decimal SocialFundNum { get; set; }
+        public decimal PISINum { get; set; }
         /// <summary>
         /// 公积金基数
         /// </summary>
-        public decimal HouseFundNum { get; set; }
+        public decimal MISINum { get; set; }
+        /// <summary>
+        /// 公积金基数
+        /// </summary>
+        public decimal UISINum { get; set; }
+        /// <summary>
+        /// 公积金基数
+        /// </summary>
+        public decimal IISINum { get; set; }
+        /// <summary>
+        /// 公积金基数
+        /// </summary>
+        public decimal BISINum { get; set; }
+        /// <summary>
+        /// 公积金基数
+        /// </summary>
+        public decimal DISINum { get; set; }
+        /// <summary>
+        /// 公积金基数
+        /// </summary>
+        public decimal LISINum { get; set; }
+        /// <summary>
+        /// 公积金基数
+        /// </summary>
+        public decimal HASINum { get; set; }
+        /// <summary>
+        /// 公积金基数
+        /// </summary>
+        public decimal HFSINum { get; set; }
+        /// <summary>
+        /// 公积金基数
+        /// </summary>
+        public decimal RISINum { get; set; }
         /// <summary>
         /// 缴费区域
         /// </summary>

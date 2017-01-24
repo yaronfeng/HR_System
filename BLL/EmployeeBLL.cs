@@ -41,6 +41,10 @@ namespace HR.BLL
             corpidpara.Value = usr_employee.CorpId;
             paras.Add(corpidpara);
 
+            SqlParameter supidpara = new SqlParameter("@SupId", SqlDbType.Int, 4);
+            supidpara.Value = usr_employee.SupId;
+            paras.Add(supidpara);
+
             if (!string.IsNullOrEmpty(usr_employee.CardNo))
             {
                 SqlParameter cardnopara = new SqlParameter("@CardNo", SqlDbType.VarChar, 50);
@@ -93,13 +97,45 @@ namespace HR.BLL
             totalamountpara.Value = usr_employee.TotalAmount;
             paras.Add(totalamountpara);
 
-            SqlParameter socialfundnumpara = new SqlParameter("@SocialFundNum", SqlDbType.Decimal, 9);
-            socialfundnumpara.Value = usr_employee.SocialFundNum;
-            paras.Add(socialfundnumpara);
+            SqlParameter pisinumpara = new SqlParameter("@PISINum", SqlDbType.Decimal, 9);
+            pisinumpara.Value = usr_employee.PISINum;
+            paras.Add(pisinumpara);
 
-            SqlParameter housefundnumpara = new SqlParameter("@HouseFundNum", SqlDbType.Decimal, 9);
-            housefundnumpara.Value = usr_employee.HouseFundNum;
-            paras.Add(housefundnumpara);
+            SqlParameter misinumpara = new SqlParameter("@MISINum", SqlDbType.Decimal, 9);
+            misinumpara.Value = usr_employee.MISINum;
+            paras.Add(misinumpara);
+
+            SqlParameter uisinumpara = new SqlParameter("@UISINum", SqlDbType.Decimal, 9);
+            uisinumpara.Value = usr_employee.UISINum;
+            paras.Add(uisinumpara);
+
+            SqlParameter iisinumpara = new SqlParameter("@IISINum", SqlDbType.Decimal, 9);
+            iisinumpara.Value = usr_employee.IISINum;
+            paras.Add(iisinumpara);
+
+            SqlParameter bisinumpara = new SqlParameter("@BISINum", SqlDbType.Decimal, 9);
+            bisinumpara.Value = usr_employee.BISINum;
+            paras.Add(bisinumpara);
+
+            SqlParameter disinumpara = new SqlParameter("@DISINum", SqlDbType.Decimal, 9);
+            disinumpara.Value = usr_employee.DISINum;
+            paras.Add(disinumpara);
+
+            SqlParameter lisinumpara = new SqlParameter("@LISINum", SqlDbType.Decimal, 9);
+            lisinumpara.Value = usr_employee.LISINum;
+            paras.Add(lisinumpara);
+
+            SqlParameter hasinumpara = new SqlParameter("@HASINum", SqlDbType.Decimal, 9);
+            hasinumpara.Value = usr_employee.HASINum;
+            paras.Add(hasinumpara);
+
+            SqlParameter hfsinumpara = new SqlParameter("@HFSINum", SqlDbType.Decimal, 9);
+            hfsinumpara.Value = usr_employee.HFSINum;
+            paras.Add(hfsinumpara);
+
+            SqlParameter risinumpara = new SqlParameter("@RISINum", SqlDbType.Decimal, 9);
+            risinumpara.Value = usr_employee.RISINum;
+            paras.Add(risinumpara);
 
             SqlParameter paycitypara = new SqlParameter("@PayCity", SqlDbType.Int, 4);
             paycitypara.Value = usr_employee.PayCity;
@@ -191,71 +227,233 @@ namespace HR.BLL
             return paras;
         }
 
-        protected override IModel CreateModel(SqlDataReader rd)
+        protected override IModel CreateModel(SqlDataReader dr)
         {
             Employee employee = new Employee();
-            if (rd["EmpId"] != DBNull.Value)
-                employee.EmpId = int.Parse(rd["EmpId"].ToString());
-            employee.EmpName = rd["EmpName"].ToString();
-            if (rd["Sex"] != DBNull.Value)
-                employee.Sex = int.Parse(rd["Sex"].ToString());
-            if (rd["CorpId"] != DBNull.Value)
-                employee.CorpId = int.Parse(rd["CorpId"].ToString());
-            employee.CardNo = rd["CardNo"].ToString();
-            employee.Address = rd["Address"].ToString();
-            employee.Phone = rd["Phone"].ToString();
-            if (rd["EntryDate"] != DBNull.Value)
-                employee.EntryDate = DateTime.Parse(rd["EntryDate"].ToString());
-            if (rd["ConStartDate"] != DBNull.Value)
-                employee.ConStartDate = DateTime.Parse(rd["ConStartDate"].ToString());
-            if (rd["ConEndDate"] != DBNull.Value)
-                employee.ConEndDate = DateTime.Parse(rd["ConEndDate"].ToString());
-            if (rd["LeaveDate"] != DBNull.Value)
-                employee.LeaveDate = DateTime.Parse(rd["LeaveDate"].ToString());
-            if (rd["Degree"] != DBNull.Value)
-                employee.Degree = int.Parse(rd["Degree"].ToString());
-            employee.Jobs = rd["Jobs"].ToString();
-            if (rd["TotalAmount"] != DBNull.Value)
-                employee.TotalAmount = decimal.Parse(rd["TotalAmount"].ToString());
-            if (rd["SocialFundNum"] != DBNull.Value)
-                employee.SocialFundNum = decimal.Parse(rd["SocialFundNum"].ToString());
-            if (rd["HouseFundNum"] != DBNull.Value)
-                employee.HouseFundNum = decimal.Parse(rd["HouseFundNum"].ToString());
-            if (rd["PayCity"] != DBNull.Value)
-                employee.PayCity = int.Parse(rd["PayCity"].ToString());
-            if (rd["SocialStartDate"] != DBNull.Value)
-                employee.SocialStartDate = Convert.ToDateTime(rd["SocialStartDate"]);
-            if (rd["HouseStartDate"] != DBNull.Value)
-                employee.HouseStartDate = Convert.ToDateTime(rd["HouseStartDate"]);
-            if (rd["HouseAccount"] != DBNull.Value)
-                employee.HouseAccount = rd["HouseAccount"].ToString();
-            if (rd["HandBook"] != DBNull.Value)
-                employee.HandBook = Convert.ToInt32(rd["HandBook"]);
-            if (rd["ResidentPermit"] != DBNull.Value)
-                employee.ResidentPermit = Convert.ToInt32(rd["ResidentPermit"]);
-            if (rd["Bank"] != DBNull.Value)
-                employee.Bank = Convert.ToInt32(rd["Bank"]);
-            employee.BankAccount = rd["BankAccount"].ToString();
-            employee.ContractNo = rd["ContractNo"].ToString();
-            if (rd["EmployDate"] != DBNull.Value)
-                employee.EmployDate = Convert.ToDateTime(rd["EmployDate"]);
-            if (rd["SocialSignDate"] != DBNull.Value)
-                employee.SocialSignDate = Convert.ToDateTime(rd["SocialSignDate"]);
-            if (rd["IsBirthIns"] != DBNull.Value)
-                employee.IsBirthIns = Convert.ToInt32(rd["IsBirthIns"]);
-            employee.InsCardNo = rd["InsCardNo"].ToString();
-            employee.EmpEmail = rd["EmpEmail"].ToString();
-            if (rd["EmpStatus"] != DBNull.Value)
-                employee.EmpStatus = Convert.ToInt32(rd["EmpStatus"]);
-            employee.Memo = rd["Memo"].ToString();
-            if (rd["CreatorId"] != DBNull.Value)
-                employee.CreatorId = Convert.ToInt32(rd["CreatorId"]);
-            if (rd["CreateTime"] != DBNull.Value)
-                employee.CreateTime = Convert.ToDateTime(rd["CreateTime"]);
-            if (rd["LastModifyId"] != DBNull.Value)
-                employee.LastModifyId = Convert.ToInt32(rd["LastModifyId"]);
-            if (rd["LastModifyTime"] != DBNull.Value)
-                employee.LastModifyTime = Convert.ToDateTime(rd["LastModifyTime"]);
+
+            int indexEmpId = dr.GetOrdinal("EmpId");
+            employee.EmpId = Convert.ToInt32(dr[indexEmpId]);
+            int indexEmpName = dr.GetOrdinal("EmpName");
+            if (dr[indexEmpName] != DBNull.Value)
+            {
+                employee.EmpName = Convert.ToString(dr[indexEmpName]);
+            }
+            int indexSex = dr.GetOrdinal("Sex");
+            if (dr[indexSex] != DBNull.Value)
+            {
+                employee.Sex = Convert.ToInt32(dr[indexSex]);
+            }
+            int indexCorpId = dr.GetOrdinal("CorpId");
+            if (dr[indexCorpId] != DBNull.Value)
+            {
+                employee.CorpId = Convert.ToInt32(dr[indexCorpId]);
+            }
+            int indexSupId = dr.GetOrdinal("SupId");
+            if (dr[indexSupId] != DBNull.Value)
+            {
+                employee.SupId = Convert.ToInt32(dr[indexSupId]);
+            }
+            int indexCardNo = dr.GetOrdinal("CardNo");
+            if (dr[indexCardNo] != DBNull.Value)
+            {
+                employee.CardNo = Convert.ToString(dr[indexCardNo]);
+            }
+            int indexAddress = dr.GetOrdinal("Address");
+            if (dr[indexAddress] != DBNull.Value)
+            {
+                employee.Address = Convert.ToString(dr[indexAddress]);
+            }
+            int indexPhone = dr.GetOrdinal("Phone");
+            if (dr[indexPhone] != DBNull.Value)
+            {
+                employee.Phone = Convert.ToString(dr[indexPhone]);
+            }
+            int indexEntryDate = dr.GetOrdinal("EntryDate");
+            if (dr[indexEntryDate] != DBNull.Value)
+            {
+                employee.EntryDate = Convert.ToDateTime(dr[indexEntryDate]);
+            }
+            int indexConStartDate = dr.GetOrdinal("ConStartDate");
+            if (dr[indexConStartDate] != DBNull.Value)
+            {
+                employee.ConStartDate = Convert.ToDateTime(dr[indexConStartDate]);
+            }
+            int indexConEndDate = dr.GetOrdinal("ConEndDate");
+            if (dr[indexConEndDate] != DBNull.Value)
+            {
+                employee.ConEndDate = Convert.ToDateTime(dr[indexConEndDate]);
+            }
+            int indexLeaveDate = dr.GetOrdinal("LeaveDate");
+            if (dr[indexLeaveDate] != DBNull.Value)
+            {
+                employee.LeaveDate = Convert.ToDateTime(dr[indexLeaveDate]);
+            }
+            int indexDegree = dr.GetOrdinal("Degree");
+            if (dr[indexDegree] != DBNull.Value)
+            {
+                employee.Degree = Convert.ToInt32(dr[indexDegree]);
+            }
+            int indexJobs = dr.GetOrdinal("Jobs");
+            if (dr[indexJobs] != DBNull.Value)
+            {
+                employee.Jobs = Convert.ToString(dr[indexJobs]);
+            }
+            int indexTotalAmount = dr.GetOrdinal("TotalAmount");
+            if (dr[indexTotalAmount] != DBNull.Value)
+            {
+                employee.TotalAmount = Convert.ToDecimal(dr[indexTotalAmount]);
+            }
+            int indexPISINum = dr.GetOrdinal("PISINum");
+            if (dr[indexPISINum] != DBNull.Value)
+            {
+                employee.PISINum = Convert.ToDecimal(dr[indexPISINum]);
+            }
+            int indexMISINum = dr.GetOrdinal("MISINum");
+            if (dr[indexMISINum] != DBNull.Value)
+            {
+                employee.MISINum = Convert.ToDecimal(dr[indexMISINum]);
+            }
+            int indexUISINum = dr.GetOrdinal("UISINum");
+            if (dr[indexUISINum] != DBNull.Value)
+            {
+                employee.UISINum = Convert.ToDecimal(dr[indexUISINum]);
+            }
+            int indexIISINum = dr.GetOrdinal("IISINum");
+            if (dr[indexIISINum] != DBNull.Value)
+            {
+                employee.IISINum = Convert.ToDecimal(dr[indexIISINum]);
+            }
+            int indexBISINum = dr.GetOrdinal("BISINum");
+            if (dr[indexBISINum] != DBNull.Value)
+            {
+                employee.BISINum = Convert.ToDecimal(dr[indexBISINum]);
+            }
+            int indexDISINum = dr.GetOrdinal("DISINum");
+            if (dr[indexDISINum] != DBNull.Value)
+            {
+                employee.DISINum = Convert.ToDecimal(dr[indexDISINum]);
+            }
+            int indexLISINum = dr.GetOrdinal("LISINum");
+            if (dr[indexLISINum] != DBNull.Value)
+            {
+                employee.LISINum = Convert.ToDecimal(dr[indexLISINum]);
+            }
+            int indexHASINum = dr.GetOrdinal("HASINum");
+            if (dr[indexHASINum] != DBNull.Value)
+            {
+                employee.HASINum = Convert.ToDecimal(dr[indexHASINum]);
+            }
+            int indexHFSINum = dr.GetOrdinal("HFSINum");
+            if (dr[indexHFSINum] != DBNull.Value)
+            {
+                employee.HFSINum = Convert.ToDecimal(dr[indexHFSINum]);
+            }
+            int indexRISINum = dr.GetOrdinal("RISINum");
+            if (dr[indexRISINum] != DBNull.Value)
+            {
+                employee.RISINum = Convert.ToDecimal(dr[indexRISINum]);
+            }
+            int indexPayCity = dr.GetOrdinal("PayCity");
+            if (dr[indexPayCity] != DBNull.Value)
+            {
+                employee.PayCity = Convert.ToInt32(dr[indexPayCity]);
+            }
+            int indexSocialStartDate = dr.GetOrdinal("SocialStartDate");
+            if (dr[indexSocialStartDate] != DBNull.Value)
+            {
+                employee.SocialStartDate = Convert.ToDateTime(dr[indexSocialStartDate]);
+            }
+            int indexHouseStartDate = dr.GetOrdinal("HouseStartDate");
+            if (dr[indexHouseStartDate] != DBNull.Value)
+            {
+                employee.HouseStartDate = Convert.ToDateTime(dr[indexHouseStartDate]);
+            }
+            int indexHouseAccount = dr.GetOrdinal("HouseAccount");
+            if (dr[indexHouseAccount] != DBNull.Value)
+            {
+                employee.HouseAccount = Convert.ToString(dr[indexHouseAccount]);
+            }
+            int indexHandBook = dr.GetOrdinal("HandBook");
+            if (dr[indexHandBook] != DBNull.Value)
+            {
+                employee.HandBook = Convert.ToInt32(dr[indexHandBook]);
+            }
+            int indexResidentPermit = dr.GetOrdinal("ResidentPermit");
+            if (dr[indexResidentPermit] != DBNull.Value)
+            {
+                employee.ResidentPermit = Convert.ToInt32(dr[indexResidentPermit]);
+            }
+            int indexBank = dr.GetOrdinal("Bank");
+            if (dr[indexBank] != DBNull.Value)
+            {
+                employee.Bank = Convert.ToInt32(dr[indexBank]);
+            }
+            int indexBankAccount = dr.GetOrdinal("BankAccount");
+            if (dr[indexBankAccount] != DBNull.Value)
+            {
+                employee.BankAccount = Convert.ToString(dr[indexBankAccount]);
+            }
+            int indexContractNo = dr.GetOrdinal("ContractNo");
+            if (dr[indexContractNo] != DBNull.Value)
+            {
+                employee.ContractNo = Convert.ToString(dr[indexContractNo]);
+            }
+            int indexEmployDate = dr.GetOrdinal("EmployDate");
+            if (dr[indexEmployDate] != DBNull.Value)
+            {
+                employee.EmployDate = Convert.ToDateTime(dr[indexEmployDate]);
+            }
+            int indexSocialSignDate = dr.GetOrdinal("SocialSignDate");
+            if (dr[indexSocialSignDate] != DBNull.Value)
+            {
+                employee.SocialSignDate = Convert.ToDateTime(dr[indexSocialSignDate]);
+            }
+            int indexIsBirthIns = dr.GetOrdinal("IsBirthIns");
+            if (dr[indexIsBirthIns] != DBNull.Value)
+            {
+                employee.IsBirthIns = Convert.ToInt32(dr[indexIsBirthIns]);
+            }
+            int indexInsCardNo = dr.GetOrdinal("InsCardNo");
+            if (dr[indexInsCardNo] != DBNull.Value)
+            {
+                employee.InsCardNo = Convert.ToString(dr[indexInsCardNo]);
+            }
+            int indexEmpEmail = dr.GetOrdinal("EmpEmail");
+            if (dr[indexEmpEmail] != DBNull.Value)
+            {
+                employee.EmpEmail = Convert.ToString(dr[indexEmpEmail]);
+            }
+            int indexEmpStatus = dr.GetOrdinal("EmpStatus");
+            if (dr[indexEmpStatus] != DBNull.Value)
+            {
+                employee.EmpStatus = Convert.ToInt32(dr[indexEmpStatus]);
+            }
+            int indexMemo = dr.GetOrdinal("Memo");
+            if (dr[indexMemo] != DBNull.Value)
+            {
+                employee.Memo = Convert.ToString(dr[indexMemo]);
+            }
+            int indexCreatorId = dr.GetOrdinal("CreatorId");
+            if (dr[indexCreatorId] != DBNull.Value)
+            {
+                employee.CreatorId = Convert.ToInt32(dr[indexCreatorId]);
+            }
+            int indexCreateTime = dr.GetOrdinal("CreateTime");
+            if (dr[indexCreateTime] != DBNull.Value)
+            {
+                employee.CreateTime = Convert.ToDateTime(dr[indexCreateTime]);
+            }
+            int indexLastModifyId = dr.GetOrdinal("LastModifyId");
+            if (dr[indexLastModifyId] != DBNull.Value)
+            {
+                employee.LastModifyId = Convert.ToInt32(dr[indexLastModifyId]);
+            }
+            int indexLastModifyTime = dr.GetOrdinal("LastModifyTime");
+            if (dr[indexLastModifyTime] != DBNull.Value)
+            {
+                employee.LastModifyTime = Convert.ToDateTime(dr[indexLastModifyTime]);
+            }
+
             return employee;
         }
 
@@ -283,6 +481,10 @@ namespace HR.BLL
             SqlParameter corpidpara = new SqlParameter("@CorpId", SqlDbType.Int, 4);
             corpidpara.Value = usr_employee.CorpId;
             paras.Add(corpidpara);
+
+            SqlParameter supidpara = new SqlParameter("@SupId", SqlDbType.Int, 4);
+            supidpara.Value = usr_employee.SupId;
+            paras.Add(supidpara);
 
             if (!string.IsNullOrEmpty(usr_employee.CardNo))
             {
@@ -336,13 +538,45 @@ namespace HR.BLL
             totalamountpara.Value = usr_employee.TotalAmount;
             paras.Add(totalamountpara);
 
-            SqlParameter socialfundnumpara = new SqlParameter("@SocialFundNum", SqlDbType.Decimal, 9);
-            socialfundnumpara.Value = usr_employee.SocialFundNum;
-            paras.Add(socialfundnumpara);
+            SqlParameter pisinumpara = new SqlParameter("@PISINum", SqlDbType.Decimal, 9);
+            pisinumpara.Value = usr_employee.PISINum;
+            paras.Add(pisinumpara);
 
-            SqlParameter housefundnumpara = new SqlParameter("@HouseFundNum", SqlDbType.Decimal, 9);
-            housefundnumpara.Value = usr_employee.HouseFundNum;
-            paras.Add(housefundnumpara);
+            SqlParameter misinumpara = new SqlParameter("@MISINum", SqlDbType.Decimal, 9);
+            misinumpara.Value = usr_employee.MISINum;
+            paras.Add(misinumpara);
+
+            SqlParameter uisinumpara = new SqlParameter("@UISINum", SqlDbType.Decimal, 9);
+            uisinumpara.Value = usr_employee.UISINum;
+            paras.Add(uisinumpara);
+
+            SqlParameter iisinumpara = new SqlParameter("@IISINum", SqlDbType.Decimal, 9);
+            iisinumpara.Value = usr_employee.IISINum;
+            paras.Add(iisinumpara);
+
+            SqlParameter bisinumpara = new SqlParameter("@BISINum", SqlDbType.Decimal, 9);
+            bisinumpara.Value = usr_employee.BISINum;
+            paras.Add(bisinumpara);
+
+            SqlParameter disinumpara = new SqlParameter("@DISINum", SqlDbType.Decimal, 9);
+            disinumpara.Value = usr_employee.DISINum;
+            paras.Add(disinumpara);
+
+            SqlParameter lisinumpara = new SqlParameter("@LISINum", SqlDbType.Decimal, 9);
+            lisinumpara.Value = usr_employee.LISINum;
+            paras.Add(lisinumpara);
+
+            SqlParameter hasinumpara = new SqlParameter("@HASINum", SqlDbType.Decimal, 9);
+            hasinumpara.Value = usr_employee.HASINum;
+            paras.Add(hasinumpara);
+
+            SqlParameter hfsinumpara = new SqlParameter("@HFSINum", SqlDbType.Decimal, 9);
+            hfsinumpara.Value = usr_employee.HFSINum;
+            paras.Add(hfsinumpara);
+
+            SqlParameter risinumpara = new SqlParameter("@RISINum", SqlDbType.Decimal, 9);
+            risinumpara.Value = usr_employee.RISINum;
+            paras.Add(risinumpara);
 
             SqlParameter paycitypara = new SqlParameter("@PayCity", SqlDbType.Int, 4);
             paycitypara.Value = usr_employee.PayCity;
