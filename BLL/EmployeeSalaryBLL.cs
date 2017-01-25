@@ -67,6 +67,10 @@ namespace HR.BLL
             corpidpara.Value = usr_employeesalary.CorpId;
             paras.Add(corpidpara);
 
+            SqlParameter supidpara = new SqlParameter("@SupId", SqlDbType.Int, 4);
+            supidpara.Value = usr_employeesalary.SupId;
+            paras.Add(supidpara);
+
             SqlParameter corppensioninspara = new SqlParameter("@CorpPensionIns", SqlDbType.Decimal, 9);
             corppensioninspara.Value = usr_employeesalary.CorpPensionIns;
             paras.Add(corppensioninspara);
@@ -249,6 +253,11 @@ namespace HR.BLL
             if (dr[indexCorpId] != DBNull.Value)
             {
                 employeesalary.CorpId = Convert.ToInt32(dr[indexCorpId]);
+            }
+            int indexSupId = dr.GetOrdinal("SupId");
+            if (dr[indexSupId] != DBNull.Value)
+            {
+                employeesalary.SupId = Convert.ToInt32(dr[indexSupId]);
             }
             int indexCorpPensionIns = dr.GetOrdinal("CorpPensionIns");
             if (dr[indexCorpPensionIns] != DBNull.Value)
@@ -482,6 +491,10 @@ namespace HR.BLL
             SqlParameter corpidpara = new SqlParameter("@CorpId", SqlDbType.Int, 4);
             corpidpara.Value = usr_employeesalary.CorpId;
             paras.Add(corpidpara);
+
+            SqlParameter supidpara = new SqlParameter("@SupId", SqlDbType.Int, 4);
+            supidpara.Value = usr_employeesalary.SupId;
+            paras.Add(supidpara);
 
             SqlParameter corppensioninspara = new SqlParameter("@CorpPensionIns", SqlDbType.Decimal, 9);
             corppensioninspara.Value = usr_employeesalary.CorpPensionIns;

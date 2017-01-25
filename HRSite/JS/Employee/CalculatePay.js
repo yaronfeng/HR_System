@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿var optList = new Array();
+$(document).ready(function () {
     //绑定
     var CorpUrl = "../Corporation/Corps";
     var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "CorpId" }, { name: "CorpName" }], url: CorpUrl };
@@ -19,6 +20,7 @@
                 }
             ]
     });
+
 
     var url = "../Employee/LoadEmployeePayList";
     var source =
@@ -59,7 +61,9 @@
                 returnData.records = returnValue.data;
             }
 
-            return returnData;
+            optList = returnValue.data;
+
+            return returnValue;
         },
         type: "POST",
         sortcolumn: "emp.EmpId",
@@ -126,5 +130,32 @@
     $("#btnSearch").click(function () {
         $("#jqxListGrid").jqxGrid("gotopage", 0);
         $("#jqxListGrid").jqxGrid("updatebounddata", "rows");
+    });
+
+    //加载列表完毕
+
+    $("#btnCreate").click(function () {
+
+        var isCanSubmit = $("#jqxValidator").jqxValidator("validate");
+        if (!isCanSubmit) { return; }
+        if (!confirm("确认发放薪资？")) { return; }
+
+        var paras = new Object();
+        paras.details = optList;
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/Employee/InsertEmployeeSalary",
+            data: JSON.stringify(paras),
+            dataType: "json",
+            success: function (result) {
+                var obj = result;
+                alert(obj.Message);
+                //if (obj.ResultStatus == 0) {
+                //    window.document.location.href = "/CorpBill/CorpBillList";
+                //}
+            }
+        });
     });
 });

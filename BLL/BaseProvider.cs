@@ -13,12 +13,14 @@ namespace HR.BLL
         private static List<Model.Corporation> corporations;
         private static List<Model.Supplier> suppliers;
         private static List<Model.StyleDetail> styleDetails;
+        private static List<Model.SocialBase> socialBases;
 
         BaseProvider()
         {
             corporations = new List<Model.Corporation>();
             suppliers = new List<Supplier>();
             styleDetails = new List<StyleDetail>();
+            socialBases = new List<SocialBase>();
         }
 
         /// <summary>
@@ -64,6 +66,20 @@ namespace HR.BLL
                     styleDetails = RegisterBaseData<Model.StyleDetail>(new StyleDetailBLL());
 
                 return styleDetails;
+            }
+        }
+
+        /// <summary>
+        /// 社保明细集合
+        /// </summary>
+        public static List<Model.SocialBase> SocialBases
+        {
+            get
+            {
+                if (socialBases == null || socialBases.Count == 0)
+                    socialBases = RegisterBaseData<Model.SocialBase>(new SocialBaseBLL());
+
+                return socialBases;
             }
         }
 

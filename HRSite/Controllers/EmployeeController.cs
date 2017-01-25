@@ -149,6 +149,52 @@ namespace HRSite.Controllers
         }
 
         [HttpPost]
+        public ActionResult InsertEmployeeSalary(Employee[] details)
+        {
+            string empId = string.Empty;
+            EmployeeBLL empBLL = new EmployeeBLL();
+            EmployeeSalaryBLL empSalaryBLL = new EmployeeSalaryBLL();
+
+            List<SocialBase> socialBaseList = BaseProvider.SocialBases;
+            ResultModel result = new ResultModel();
+            foreach (var emp in details)
+            {
+                ResultModel<Employee> resultEmployee = empBLL.Get<Employee>(emp.EmpId);
+                if (resultEmployee.ResultStatus != 0)
+                    return Json(resultEmployee);
+
+                Employee rtnEmployee = resultEmployee.ReturnValue;
+                if (rtnEmployee == null)
+                    return Json(new ResultModel(string.Format("{0}不存在", this.ModelName)));
+
+                SocialBase socialBase = socialBaseList.FirstOrDefault(temp => temp.CityId == rtnEmployee.PayCity);
+                if (socialBase == null)
+                    return Json(new ResultModel("社保信息不存在"));
+
+                EmployeeSalary empSalary = new EmployeeSalary();
+                empSalary.EmpId = rtnEmployee.EmpId;
+                empSalary.PayCity = rtnEmployee.PayCity;
+                empSalary.CorpId = rtnEmployee.CorpId;
+                empSalary.SupId = rtnEmployee.SupId;
+                empSalary.CorpPensionIns = rtnEmployee.RISINum * socialBase.CorpPensionInsPoint / 100 + socialBase.PensionInsFix;
+                empSalary.CorpMedicalIns = rtnEmployee.MISINum * socialBase.CorpMedicalInsPoint / 100 + socialBase.MedicalInsFix;
+
+
+                empSalary.PayDate = DateTime.Now;
+                result = empSalaryBLL.Insert(empSalary);
+
+                if (result.ResultStatus != 0)
+                    return Json(result);
+            }
+
+
+            result.Message = "员工新增成功";
+            result.ReturnValue = "";
+            result.ResultStatus = 0;
+            return Json(result);
+        }
+
+        [HttpPost]
         public ActionResult Get(int id)
         {
             if (id <= 0)

@@ -42,6 +42,10 @@ namespace HR.Model
         /// <summary>
         /// Id
         /// </summary>
+        public int SupId { get; set; }
+        /// <summary>
+        /// Id
+        /// </summary>
         public decimal CorpPensionIns { get; set; }
         /// <summary>
         /// Id
