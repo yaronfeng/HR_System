@@ -6,15 +6,15 @@ using HR.Common;
 namespace HR.Model
 {
     [Serializable]
-    public class CorpBill : MasterModel
+    public class SupBill : MasterModel
     {
         #region 字段
 
-        private int corpBillId;
+        private int supBillId;
         private DateTime billDate;
         private DateTime payDate;
         private int payCity;
-        private int corpId;
+        private int supId;
         private decimal billPensionIns;
         private decimal billMedicalIns;
         private decimal billUnempIns;
@@ -35,7 +35,7 @@ namespace HR.Model
 
         #region 构造函数
 
-        public CorpBill()
+        public SupBill()
         {
         }
 
@@ -46,10 +46,10 @@ namespace HR.Model
         /// <summary>
         /// 
         /// </summary>
-        public int CorpBillId
+        public int SupBillId
         {
-            get { return corpBillId; }
-            set { corpBillId = value; }
+            get { return supBillId; }
+            set { supBillId = value; }
         }
 
         /// <summary>
@@ -82,10 +82,10 @@ namespace HR.Model
         /// <summary>
         /// 
         /// </summary>
-		public int CorpId
+		public int SupId
         {
-            get { return corpId; }
-            set { corpId = value; }
+            get { return supId; }
+            set { supId = value; }
         }
 
         /// <summary>

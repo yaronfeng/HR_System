@@ -110,8 +110,8 @@ namespace HRSite.Controllers
 
             rtnSocialBase.CityId = socialBase.CityId;
             rtnSocialBase.SocName = socialBase.SocName;
-            rtnSocialBase.SocialFundNum = socialBase.SocialFundNum;
-            rtnSocialBase.HouseFundNum = socialBase.HouseFundNum;
+            //rtnSocialBase.SocialFundNum = socialBase.SocialFundNum;
+            //rtnSocialBase.HouseFundNum = socialBase.HouseFundNum;
             rtnSocialBase.CorpPensionInsPoint = socialBase.CorpPensionInsPoint;
             rtnSocialBase.CorpMedicalInsPoint = socialBase.CorpMedicalInsPoint;
             rtnSocialBase.CorpUnempInsPoint = socialBase.CorpUnempInsPoint;

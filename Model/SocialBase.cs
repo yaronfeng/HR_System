@@ -7,107 +7,451 @@ using HR.Common;
 
 namespace HR.Model
 {
-    public class SocialBase:MasterModel
+    public class SocialBase : MasterModel
     {
+        #region 字段
+
+        private int socId;
+        private int cityId;
+        private string socName = String.Empty;
+        private decimal pensionInsNum;
+        private decimal medicalInsNum;
+        private decimal unempInsNum;
+        private decimal injuryInsNum;
+        private decimal birthInsNum;
+        private decimal disabledInsNum;
+        private decimal illnessInsNum;
+        private decimal heatAmountNum;
+        private decimal houseFundINum;
+        private decimal repInjuryInsNum;
+        private decimal corpPensionInsPoint;
+        private decimal corpMedicalInsPoint;
+        private decimal corpUnempInsPoint;
+        private decimal corpInjuryInsPoint;
+        private decimal corpBirthInsPoint;
+        private decimal corpDisabledInsPoint;
+        private decimal corpIllnessInsPoint;
+        private decimal corpHeatAmountPoint;
+        private decimal corpHouseFundPoint;
+        private decimal corpRepInjuryInsPoint;
+        private decimal empPensionInsPoint;
+        private decimal empMedicalInsPoint;
+        private decimal empUnempInsPoint;
+        private decimal empInjuryInsPoint;
+        private decimal empBirthInsPoint;
+        private decimal empDisabledInsPoint;
+        private decimal empIllnessInsPoint;
+        private decimal empHeatAmountPoint;
+        private decimal empHouseFundPoint;
+        private decimal empRepInjuryInsPoint;
+        private decimal pensionInsFix;
+        private decimal medicalInsFix;
+        private decimal unempInsFix;
+        private decimal injuryInsFix;
+        private decimal birthInsFix;
+        private decimal disabledInsFix;
+        private decimal illnessInsFix;
+        private decimal heatAmountFix;
+        private decimal houseFundFix;
+        private decimal repInjuryInsFix;
+        #endregion
+
+        #region 构造函数
+
+        public SocialBase()
+        {
+        }
+
+        #endregion
+
+        #region 属性
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public int SocId { get; set; }
+        public int SocId
+        {
+            get { return socId; }
+            set { socId = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public int CityId { get; set; }
+		public int CityId
+        {
+            get { return cityId; }
+            set { cityId = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public string SocName { get; set; }
+		public string SocName
+        {
+            get { return socName; }
+            set { socName = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal SocialFundNum { get; set; }
+		public decimal PensionInsNum
+        {
+            get { return pensionInsNum; }
+            set { pensionInsNum = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal HouseFundNum { get; set; }
+		public decimal MedicalInsNum
+        {
+            get { return medicalInsNum; }
+            set { medicalInsNum = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal CorpPensionInsPoint { get; set; }
+		public decimal UnempInsNum
+        {
+            get { return unempInsNum; }
+            set { unempInsNum = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal CorpMedicalInsPoint { get; set; }
+		public decimal InjuryInsNum
+        {
+            get { return injuryInsNum; }
+            set { injuryInsNum = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal CorpUnempInsPoint { get; set; }
+		public decimal BirthInsNum
+        {
+            get { return birthInsNum; }
+            set { birthInsNum = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal CorpInjuryInsPoint { get; set; }
+		public decimal DisabledInsNum
+        {
+            get { return disabledInsNum; }
+            set { disabledInsNum = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal CorpBirthInsPoint { get; set; }
+		public decimal IllnessInsNum
+        {
+            get { return illnessInsNum; }
+            set { illnessInsNum = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal CorpDisabledInsPoint { get; set; }
+		public decimal HeatAmountNum
+        {
+            get { return heatAmountNum; }
+            set { heatAmountNum = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal CorpIllnessInsPoint { get; set; }
+		public decimal HouseFundINum
+        {
+            get { return houseFundINum; }
+            set { houseFundINum = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal CorpHeatAmountPoint { get; set; }
+		public decimal RepInjuryInsNum
+        {
+            get { return repInjuryInsNum; }
+            set { repInjuryInsNum = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal CorpHouseFundPoint { get; set; }
+		public decimal CorpPensionInsPoint
+        {
+            get { return corpPensionInsPoint; }
+            set { corpPensionInsPoint = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal CorpRepInjuryInsPoint { get; set; }
+		public decimal CorpMedicalInsPoint
+        {
+            get { return corpMedicalInsPoint; }
+            set { corpMedicalInsPoint = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal EmpPensionInsPoint { get; set; }
+		public decimal CorpUnempInsPoint
+        {
+            get { return corpUnempInsPoint; }
+            set { corpUnempInsPoint = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal EmpMedicalInsPoint { get; set; }
+		public decimal CorpInjuryInsPoint
+        {
+            get { return corpInjuryInsPoint; }
+            set { corpInjuryInsPoint = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal EmpUnempInsPoint { get; set; }
+		public decimal CorpBirthInsPoint
+        {
+            get { return corpBirthInsPoint; }
+            set { corpBirthInsPoint = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal EmpInjuryInsPoint { get; set; }
+		public decimal CorpDisabledInsPoint
+        {
+            get { return corpDisabledInsPoint; }
+            set { corpDisabledInsPoint = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal EmpBirthInsPoint { get; set; }
+		public decimal CorpIllnessInsPoint
+        {
+            get { return corpIllnessInsPoint; }
+            set { corpIllnessInsPoint = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal EmpDisabledInsPoint { get; set; }
+		public decimal CorpHeatAmountPoint
+        {
+            get { return corpHeatAmountPoint; }
+            set { corpHeatAmountPoint = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal EmpIllnessInsPoint { get; set; }
+		public decimal CorpHouseFundPoint
+        {
+            get { return corpHouseFundPoint; }
+            set { corpHouseFundPoint = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal EmpHeatAmountPoint { get; set; }
+		public decimal CorpRepInjuryInsPoint
+        {
+            get { return corpRepInjuryInsPoint; }
+            set { corpRepInjuryInsPoint = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal EmpHouseFundPoint { get; set; }
+		public decimal EmpPensionInsPoint
+        {
+            get { return empPensionInsPoint; }
+            set { empPensionInsPoint = value; }
+        }
+
         /// <summary>
-        /// Id
+        /// 
         /// </summary>
-        public decimal EmpRepInjuryInsPoint { get; set; }
+		public decimal EmpMedicalInsPoint
+        {
+            get { return empMedicalInsPoint; }
+            set { empMedicalInsPoint = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal EmpUnempInsPoint
+        {
+            get { return empUnempInsPoint; }
+            set { empUnempInsPoint = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal EmpInjuryInsPoint
+        {
+            get { return empInjuryInsPoint; }
+            set { empInjuryInsPoint = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal EmpBirthInsPoint
+        {
+            get { return empBirthInsPoint; }
+            set { empBirthInsPoint = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal EmpDisabledInsPoint
+        {
+            get { return empDisabledInsPoint; }
+            set { empDisabledInsPoint = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal EmpIllnessInsPoint
+        {
+            get { return empIllnessInsPoint; }
+            set { empIllnessInsPoint = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal EmpHeatAmountPoint
+        {
+            get { return empHeatAmountPoint; }
+            set { empHeatAmountPoint = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal EmpHouseFundPoint
+        {
+            get { return empHouseFundPoint; }
+            set { empHouseFundPoint = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal EmpRepInjuryInsPoint
+        {
+            get { return empRepInjuryInsPoint; }
+            set { empRepInjuryInsPoint = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal PensionInsFix
+        {
+            get { return pensionInsFix; }
+            set { pensionInsFix = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal MedicalInsFix
+        {
+            get { return medicalInsFix; }
+            set { medicalInsFix = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal UnempInsFix
+        {
+            get { return unempInsFix; }
+            set { unempInsFix = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal InjuryInsFix
+        {
+            get { return injuryInsFix; }
+            set { injuryInsFix = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal BirthInsFix
+        {
+            get { return birthInsFix; }
+            set { birthInsFix = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal DisabledInsFix
+        {
+            get { return disabledInsFix; }
+            set { disabledInsFix = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal IllnessInsFix
+        {
+            get { return illnessInsFix; }
+            set { illnessInsFix = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal HeatAmountFix
+        {
+            get { return heatAmountFix; }
+            set { heatAmountFix = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal HouseFundFix
+        {
+            get { return houseFundFix; }
+            set { houseFundFix = value; }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+		public decimal RepInjuryInsFix
+        {
+            get { return repInjuryInsFix; }
+            set { repInjuryInsFix = value; }
+        }
+        #endregion
     }
 }

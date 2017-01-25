@@ -52,13 +52,45 @@ namespace HR.BLL
                 paras.Add(socnamepara);
             }
 
-            SqlParameter socialfundnumpara = new SqlParameter("@SocialFundNum", SqlDbType.Decimal, 9);
-            socialfundnumpara.Value = bd_socialbase.SocialFundNum;
-            paras.Add(socialfundnumpara);
+            SqlParameter pensioninsnumpara = new SqlParameter("@PensionInsNum", SqlDbType.Decimal, 9);
+            pensioninsnumpara.Value = bd_socialbase.PensionInsNum;
+            paras.Add(pensioninsnumpara);
 
-            SqlParameter housefundnumpara = new SqlParameter("@HouseFundNum", SqlDbType.Decimal, 9);
-            housefundnumpara.Value = bd_socialbase.HouseFundNum;
-            paras.Add(housefundnumpara);
+            SqlParameter medicalinsnumpara = new SqlParameter("@MedicalInsNum", SqlDbType.Decimal, 9);
+            medicalinsnumpara.Value = bd_socialbase.MedicalInsNum;
+            paras.Add(medicalinsnumpara);
+
+            SqlParameter unempinsnumpara = new SqlParameter("@UnempInsNum", SqlDbType.Decimal, 9);
+            unempinsnumpara.Value = bd_socialbase.UnempInsNum;
+            paras.Add(unempinsnumpara);
+
+            SqlParameter injuryinsnumpara = new SqlParameter("@InjuryInsNum", SqlDbType.Decimal, 9);
+            injuryinsnumpara.Value = bd_socialbase.InjuryInsNum;
+            paras.Add(injuryinsnumpara);
+
+            SqlParameter birthinsnumpara = new SqlParameter("@BirthInsNum", SqlDbType.Decimal, 9);
+            birthinsnumpara.Value = bd_socialbase.BirthInsNum;
+            paras.Add(birthinsnumpara);
+
+            SqlParameter disabledinsnumpara = new SqlParameter("@DisabledInsNum", SqlDbType.Decimal, 9);
+            disabledinsnumpara.Value = bd_socialbase.DisabledInsNum;
+            paras.Add(disabledinsnumpara);
+
+            SqlParameter illnessinsnumpara = new SqlParameter("@IllnessInsNum", SqlDbType.Decimal, 9);
+            illnessinsnumpara.Value = bd_socialbase.IllnessInsNum;
+            paras.Add(illnessinsnumpara);
+
+            SqlParameter heatamountnumpara = new SqlParameter("@HeatAmountNum", SqlDbType.Decimal, 9);
+            heatamountnumpara.Value = bd_socialbase.HeatAmountNum;
+            paras.Add(heatamountnumpara);
+
+            SqlParameter housefundinumpara = new SqlParameter("@HouseFundINum", SqlDbType.Decimal, 9);
+            housefundinumpara.Value = bd_socialbase.HouseFundINum;
+            paras.Add(housefundinumpara);
+
+            SqlParameter repinjuryinsnumpara = new SqlParameter("@RepInjuryInsNum", SqlDbType.Decimal, 9);
+            repinjuryinsnumpara.Value = bd_socialbase.RepInjuryInsNum;
+            paras.Add(repinjuryinsnumpara);
 
             SqlParameter corppensioninspointpara = new SqlParameter("@CorpPensionInsPoint", SqlDbType.Decimal, 9);
             corppensioninspointpara.Value = bd_socialbase.CorpPensionInsPoint;
@@ -140,10 +172,50 @@ namespace HR.BLL
             emprepinjuryinspointpara.Value = bd_socialbase.EmpRepInjuryInsPoint;
             paras.Add(emprepinjuryinspointpara);
 
+            SqlParameter pensioninsfixpara = new SqlParameter("@PensionInsFix", SqlDbType.Decimal, 9);
+            pensioninsfixpara.Value = bd_socialbase.PensionInsFix;
+            paras.Add(pensioninsfixpara);
+
+            SqlParameter medicalinsfixpara = new SqlParameter("@MedicalInsFix", SqlDbType.Decimal, 9);
+            medicalinsfixpara.Value = bd_socialbase.MedicalInsFix;
+            paras.Add(medicalinsfixpara);
+
+            SqlParameter unempinsfixpara = new SqlParameter("@UnempInsFix", SqlDbType.Decimal, 9);
+            unempinsfixpara.Value = bd_socialbase.UnempInsFix;
+            paras.Add(unempinsfixpara);
+
+            SqlParameter injuryinsfixpara = new SqlParameter("@InjuryInsFix", SqlDbType.Decimal, 9);
+            injuryinsfixpara.Value = bd_socialbase.InjuryInsFix;
+            paras.Add(injuryinsfixpara);
+
+            SqlParameter birthinsfixpara = new SqlParameter("@BirthInsFix", SqlDbType.Decimal, 9);
+            birthinsfixpara.Value = bd_socialbase.BirthInsFix;
+            paras.Add(birthinsfixpara);
+
+            SqlParameter disabledinsfixpara = new SqlParameter("@DisabledInsFix", SqlDbType.Decimal, 9);
+            disabledinsfixpara.Value = bd_socialbase.DisabledInsFix;
+            paras.Add(disabledinsfixpara);
+
+            SqlParameter illnessinsfixpara = new SqlParameter("@IllnessInsFix", SqlDbType.Decimal, 9);
+            illnessinsfixpara.Value = bd_socialbase.IllnessInsFix;
+            paras.Add(illnessinsfixpara);
+
+            SqlParameter heatamountfixpara = new SqlParameter("@HeatAmountFix", SqlDbType.Decimal, 9);
+            heatamountfixpara.Value = bd_socialbase.HeatAmountFix;
+            paras.Add(heatamountfixpara);
+
+            SqlParameter housefundfixpara = new SqlParameter("@HouseFundFix", SqlDbType.Decimal, 9);
+            housefundfixpara.Value = bd_socialbase.HouseFundFix;
+            paras.Add(housefundfixpara);
+
+            SqlParameter repinjuryinsfixpara = new SqlParameter("@RepInjuryInsFix", SqlDbType.Decimal, 9);
+            repinjuryinsfixpara.Value = bd_socialbase.RepInjuryInsFix;
+            paras.Add(repinjuryinsfixpara);
+
 
             return paras;
         }
-
+        
         protected override IModel CreateModel(SqlDataReader dr)
         {
             SocialBase socialbase = new SocialBase();
@@ -157,15 +229,55 @@ namespace HR.BLL
             {
                 socialbase.SocName = Convert.ToString(dr[indexSocName]);
             }
-            int indexSocialFundNum = dr.GetOrdinal("SocialFundNum");
-            if (dr[indexSocialFundNum] != DBNull.Value)
+            int indexPensionInsNum = dr.GetOrdinal("PensionInsNum");
+            if (dr[indexPensionInsNum] != DBNull.Value)
             {
-                socialbase.SocialFundNum = Convert.ToDecimal(dr[indexSocialFundNum]);
+                socialbase.PensionInsNum = Convert.ToDecimal(dr[indexPensionInsNum]);
             }
-            int indexHouseFundNum = dr.GetOrdinal("HouseFundNum");
-            if (dr[indexHouseFundNum] != DBNull.Value)
+            int indexMedicalInsNum = dr.GetOrdinal("MedicalInsNum");
+            if (dr[indexMedicalInsNum] != DBNull.Value)
             {
-                socialbase.HouseFundNum = Convert.ToDecimal(dr[indexHouseFundNum]);
+                socialbase.MedicalInsNum = Convert.ToDecimal(dr[indexMedicalInsNum]);
+            }
+            int indexUnempInsNum = dr.GetOrdinal("UnempInsNum");
+            if (dr[indexUnempInsNum] != DBNull.Value)
+            {
+                socialbase.UnempInsNum = Convert.ToDecimal(dr[indexUnempInsNum]);
+            }
+            int indexInjuryInsNum = dr.GetOrdinal("InjuryInsNum");
+            if (dr[indexInjuryInsNum] != DBNull.Value)
+            {
+                socialbase.InjuryInsNum = Convert.ToDecimal(dr[indexInjuryInsNum]);
+            }
+            int indexBirthInsNum = dr.GetOrdinal("BirthInsNum");
+            if (dr[indexBirthInsNum] != DBNull.Value)
+            {
+                socialbase.BirthInsNum = Convert.ToDecimal(dr[indexBirthInsNum]);
+            }
+            int indexDisabledInsNum = dr.GetOrdinal("DisabledInsNum");
+            if (dr[indexDisabledInsNum] != DBNull.Value)
+            {
+                socialbase.DisabledInsNum = Convert.ToDecimal(dr[indexDisabledInsNum]);
+            }
+            int indexIllnessInsNum = dr.GetOrdinal("IllnessInsNum");
+            if (dr[indexIllnessInsNum] != DBNull.Value)
+            {
+                socialbase.IllnessInsNum = Convert.ToDecimal(dr[indexIllnessInsNum]);
+            }
+            int indexHeatAmountNum = dr.GetOrdinal("HeatAmountNum");
+            if (dr[indexHeatAmountNum] != DBNull.Value)
+            {
+                socialbase.HeatAmountNum = Convert.ToDecimal(dr[indexHeatAmountNum]);
+            }
+            int indexHouseFundINum = dr.GetOrdinal("HouseFundINum");
+            if (dr[indexHouseFundINum] != DBNull.Value)
+            {
+                socialbase.HouseFundINum = Convert.ToDecimal(dr[indexHouseFundINum]);
+            }
+            int indexRepInjuryInsNum = dr.GetOrdinal("RepInjuryInsNum");
+            if (dr[indexRepInjuryInsNum] != DBNull.Value)
+            {
+                socialbase.RepInjuryInsNum = Convert.ToDecimal(dr[indexRepInjuryInsNum]);
             }
             int indexCorpPensionInsPoint = dr.GetOrdinal("CorpPensionInsPoint");
             if (dr[indexCorpPensionInsPoint] != DBNull.Value)
@@ -267,6 +379,56 @@ namespace HR.BLL
             {
                 socialbase.EmpRepInjuryInsPoint = Convert.ToDecimal(dr[indexEmpRepInjuryInsPoint]);
             }
+            int indexPensionInsFix = dr.GetOrdinal("PensionInsFix");
+            if (dr[indexPensionInsFix] != DBNull.Value)
+            {
+                socialbase.PensionInsFix = Convert.ToDecimal(dr[indexPensionInsFix]);
+            }
+            int indexMedicalInsFix = dr.GetOrdinal("MedicalInsFix");
+            if (dr[indexMedicalInsFix] != DBNull.Value)
+            {
+                socialbase.MedicalInsFix = Convert.ToDecimal(dr[indexMedicalInsFix]);
+            }
+            int indexUnempInsFix = dr.GetOrdinal("UnempInsFix");
+            if (dr[indexUnempInsFix] != DBNull.Value)
+            {
+                socialbase.UnempInsFix = Convert.ToDecimal(dr[indexUnempInsFix]);
+            }
+            int indexInjuryInsFix = dr.GetOrdinal("InjuryInsFix");
+            if (dr[indexInjuryInsFix] != DBNull.Value)
+            {
+                socialbase.InjuryInsFix = Convert.ToDecimal(dr[indexInjuryInsFix]);
+            }
+            int indexBirthInsFix = dr.GetOrdinal("BirthInsFix");
+            if (dr[indexBirthInsFix] != DBNull.Value)
+            {
+                socialbase.BirthInsFix = Convert.ToDecimal(dr[indexBirthInsFix]);
+            }
+            int indexDisabledInsFix = dr.GetOrdinal("DisabledInsFix");
+            if (dr[indexDisabledInsFix] != DBNull.Value)
+            {
+                socialbase.DisabledInsFix = Convert.ToDecimal(dr[indexDisabledInsFix]);
+            }
+            int indexIllnessInsFix = dr.GetOrdinal("IllnessInsFix");
+            if (dr[indexIllnessInsFix] != DBNull.Value)
+            {
+                socialbase.IllnessInsFix = Convert.ToDecimal(dr[indexIllnessInsFix]);
+            }
+            int indexHeatAmountFix = dr.GetOrdinal("HeatAmountFix");
+            if (dr[indexHeatAmountFix] != DBNull.Value)
+            {
+                socialbase.HeatAmountFix = Convert.ToDecimal(dr[indexHeatAmountFix]);
+            }
+            int indexHouseFundFix = dr.GetOrdinal("HouseFundFix");
+            if (dr[indexHouseFundFix] != DBNull.Value)
+            {
+                socialbase.HouseFundFix = Convert.ToDecimal(dr[indexHouseFundFix]);
+            }
+            int indexRepInjuryInsFix = dr.GetOrdinal("RepInjuryInsFix");
+            if (dr[indexRepInjuryInsFix] != DBNull.Value)
+            {
+                socialbase.RepInjuryInsFix = Convert.ToDecimal(dr[indexRepInjuryInsFix]);
+            }
 
             return socialbase;
         }
@@ -300,13 +462,45 @@ namespace HR.BLL
                 paras.Add(socnamepara);
             }
 
-            SqlParameter socialfundnumpara = new SqlParameter("@SocialFundNum", SqlDbType.Decimal, 9);
-            socialfundnumpara.Value = bd_socialbase.SocialFundNum;
-            paras.Add(socialfundnumpara);
+            SqlParameter pensioninsnumpara = new SqlParameter("@PensionInsNum", SqlDbType.Decimal, 9);
+            pensioninsnumpara.Value = bd_socialbase.PensionInsNum;
+            paras.Add(pensioninsnumpara);
 
-            SqlParameter housefundnumpara = new SqlParameter("@HouseFundNum", SqlDbType.Decimal, 9);
-            housefundnumpara.Value = bd_socialbase.HouseFundNum;
-            paras.Add(housefundnumpara);
+            SqlParameter medicalinsnumpara = new SqlParameter("@MedicalInsNum", SqlDbType.Decimal, 9);
+            medicalinsnumpara.Value = bd_socialbase.MedicalInsNum;
+            paras.Add(medicalinsnumpara);
+
+            SqlParameter unempinsnumpara = new SqlParameter("@UnempInsNum", SqlDbType.Decimal, 9);
+            unempinsnumpara.Value = bd_socialbase.UnempInsNum;
+            paras.Add(unempinsnumpara);
+
+            SqlParameter injuryinsnumpara = new SqlParameter("@InjuryInsNum", SqlDbType.Decimal, 9);
+            injuryinsnumpara.Value = bd_socialbase.InjuryInsNum;
+            paras.Add(injuryinsnumpara);
+
+            SqlParameter birthinsnumpara = new SqlParameter("@BirthInsNum", SqlDbType.Decimal, 9);
+            birthinsnumpara.Value = bd_socialbase.BirthInsNum;
+            paras.Add(birthinsnumpara);
+
+            SqlParameter disabledinsnumpara = new SqlParameter("@DisabledInsNum", SqlDbType.Decimal, 9);
+            disabledinsnumpara.Value = bd_socialbase.DisabledInsNum;
+            paras.Add(disabledinsnumpara);
+
+            SqlParameter illnessinsnumpara = new SqlParameter("@IllnessInsNum", SqlDbType.Decimal, 9);
+            illnessinsnumpara.Value = bd_socialbase.IllnessInsNum;
+            paras.Add(illnessinsnumpara);
+
+            SqlParameter heatamountnumpara = new SqlParameter("@HeatAmountNum", SqlDbType.Decimal, 9);
+            heatamountnumpara.Value = bd_socialbase.HeatAmountNum;
+            paras.Add(heatamountnumpara);
+
+            SqlParameter housefundinumpara = new SqlParameter("@HouseFundINum", SqlDbType.Decimal, 9);
+            housefundinumpara.Value = bd_socialbase.HouseFundINum;
+            paras.Add(housefundinumpara);
+
+            SqlParameter repinjuryinsnumpara = new SqlParameter("@RepInjuryInsNum", SqlDbType.Decimal, 9);
+            repinjuryinsnumpara.Value = bd_socialbase.RepInjuryInsNum;
+            paras.Add(repinjuryinsnumpara);
 
             SqlParameter corppensioninspointpara = new SqlParameter("@CorpPensionInsPoint", SqlDbType.Decimal, 9);
             corppensioninspointpara.Value = bd_socialbase.CorpPensionInsPoint;
@@ -387,6 +581,46 @@ namespace HR.BLL
             SqlParameter emprepinjuryinspointpara = new SqlParameter("@EmpRepInjuryInsPoint", SqlDbType.Decimal, 9);
             emprepinjuryinspointpara.Value = bd_socialbase.EmpRepInjuryInsPoint;
             paras.Add(emprepinjuryinspointpara);
+
+            SqlParameter pensioninsfixpara = new SqlParameter("@PensionInsFix", SqlDbType.Decimal, 9);
+            pensioninsfixpara.Value = bd_socialbase.PensionInsFix;
+            paras.Add(pensioninsfixpara);
+
+            SqlParameter medicalinsfixpara = new SqlParameter("@MedicalInsFix", SqlDbType.Decimal, 9);
+            medicalinsfixpara.Value = bd_socialbase.MedicalInsFix;
+            paras.Add(medicalinsfixpara);
+
+            SqlParameter unempinsfixpara = new SqlParameter("@UnempInsFix", SqlDbType.Decimal, 9);
+            unempinsfixpara.Value = bd_socialbase.UnempInsFix;
+            paras.Add(unempinsfixpara);
+
+            SqlParameter injuryinsfixpara = new SqlParameter("@InjuryInsFix", SqlDbType.Decimal, 9);
+            injuryinsfixpara.Value = bd_socialbase.InjuryInsFix;
+            paras.Add(injuryinsfixpara);
+
+            SqlParameter birthinsfixpara = new SqlParameter("@BirthInsFix", SqlDbType.Decimal, 9);
+            birthinsfixpara.Value = bd_socialbase.BirthInsFix;
+            paras.Add(birthinsfixpara);
+
+            SqlParameter disabledinsfixpara = new SqlParameter("@DisabledInsFix", SqlDbType.Decimal, 9);
+            disabledinsfixpara.Value = bd_socialbase.DisabledInsFix;
+            paras.Add(disabledinsfixpara);
+
+            SqlParameter illnessinsfixpara = new SqlParameter("@IllnessInsFix", SqlDbType.Decimal, 9);
+            illnessinsfixpara.Value = bd_socialbase.IllnessInsFix;
+            paras.Add(illnessinsfixpara);
+
+            SqlParameter heatamountfixpara = new SqlParameter("@HeatAmountFix", SqlDbType.Decimal, 9);
+            heatamountfixpara.Value = bd_socialbase.HeatAmountFix;
+            paras.Add(heatamountfixpara);
+
+            SqlParameter housefundfixpara = new SqlParameter("@HouseFundFix", SqlDbType.Decimal, 9);
+            housefundfixpara.Value = bd_socialbase.HouseFundFix;
+            paras.Add(housefundfixpara);
+
+            SqlParameter repinjuryinsfixpara = new SqlParameter("@RepInjuryInsFix", SqlDbType.Decimal, 9);
+            repinjuryinsfixpara.Value = bd_socialbase.RepInjuryInsFix;
+            paras.Add(repinjuryinsfixpara);
 
 
             return paras;

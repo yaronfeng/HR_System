@@ -554,6 +554,7 @@
     <Content Include="JS\Corporation\CorporationDetail.js" />
     <Content Include="JS\Corporation\CorporationList.js" />
     <Content Include="JS\Corporation\CorporationUpdate.js" />
+    <Content Include="JS\Employee\CalculatePay.js" />
     <Content Include="JS\Employee\EmployeeAdd.js" />
     <Content Include="JS\Employee\EmployeeDetail.js" />
     <Content Include="JS\Employee\EmployeeExpireList.js" />
@@ -639,6 +640,7 @@
     <Content Include="App_Data\bak\HR_System_20170117.bak" />
     <Content Include="App_Data\bak\HR_System_20170122.bak" />
     <Content Include="Views\Employee\EmployeeExpireList.cshtml" />
+    <Content Include="Views\Employee\CalculatePay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

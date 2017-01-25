@@ -28,7 +28,7 @@ namespace HR.SQLServerDAL
             else
                 select.OrderStr = orderStr;
 
-            select.ColumnName = "SocId,CityId,sdcity.DetailName as PayCityName,SocName,SocialFundNum,HouseFundNum,CorpPensionInsPoint,CorpMedicalInsPoint,CorpUnempInsPoint,CorpInjuryInsPoint,CorpBirthInsPoint,CorpDisabledInsPoint,CorpIllnessInsPoint ,CorpHeatAmountPoint ,CorpHouseFundPoint ,CorpRepInjuryInsPoint,EmpPensionInsPoint,EmpMedicalInsPoint,EmpUnempInsPoint,EmpInjuryInsPoint,EmpBirthInsPoint,EmpDisabledInsPoint,EmpIllnessInsPoint,EmpHeatAmountPoint,EmpHouseFundPoint,EmpRepInjuryInsPoint";
+            select.ColumnName = "SocId,CityId,sdcity.DetailName as PayCityName,SocName,PensionInsNum,MedicalInsNum,UnempInsNum,InjuryInsNum,BirthInsNum,DisabledInsNum,IllnessInsNum,HeatAmountNum,HouseFundINum,RepInjuryInsNum,CorpPensionInsPoint,CorpMedicalInsPoint,CorpUnempInsPoint,CorpInjuryInsPoint,CorpBirthInsPoint,CorpDisabledInsPoint,CorpIllnessInsPoint ,CorpHeatAmountPoint ,CorpHouseFundPoint ,CorpRepInjuryInsPoint,EmpPensionInsPoint,EmpMedicalInsPoint,EmpUnempInsPoint,EmpInjuryInsPoint,EmpBirthInsPoint,EmpDisabledInsPoint,EmpIllnessInsPoint,EmpHeatAmountPoint,EmpHouseFundPoint,EmpRepInjuryInsPoint,PensionInsFix,MedicalInsFix,UnempInsFix,InjuryInsFix,BirthInsFix,DisabledInsFix,IllnessInsFix,HeatAmountFix,HouseFundFix,RepInjuryInsFix";
 
             System.Text.StringBuilder sb = new StringBuilder();
             sb.Append(" bd_SocialBase soc");

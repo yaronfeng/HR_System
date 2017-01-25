@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HR.SQLServerDAL;
 using HR.Model;
 using HR.Common;
 using System.Data.SqlClient;
@@ -11,22 +10,15 @@ using System.Data;
 
 namespace HR.BLL
 {
-    public class BillDetailBLL : Operate
+    public class SupBillDetailBLL:Operate
     {
-        #region 构造函数
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public BillDetailBLL()
+        public SupBillDetailBLL()
         {
+
         }
-
-        #endregion
-
         protected override List<SqlParameter> CreateInsertParameters(IModel obj, ref SqlParameter returnValue)
         {
-            BillDetail usr_billdetail = (BillDetail)obj;
+            SupBillDetail usr_supbilldetail = (SupBillDetail)obj;
 
             List<SqlParameter> paras = new List<SqlParameter>();
             returnValue.Direction = ParameterDirection.Output;
@@ -35,99 +27,112 @@ namespace HR.BLL
             returnValue.Size = 4;
             paras.Add(returnValue);
 
-            SqlParameter corpbillidpara = new SqlParameter("@CorpBillId", SqlDbType.Int, 4);
-            corpbillidpara.Value = usr_billdetail.CorpBillId;
-            paras.Add(corpbillidpara);
+            SqlParameter supbillidpara = new SqlParameter("@SupBillId", SqlDbType.Int, 4);
+            supbillidpara.Value = usr_supbilldetail.SupBillId;
+            paras.Add(supbillidpara);
 
             SqlParameter empsalaryidpara = new SqlParameter("@EmpSalaryId", SqlDbType.Int, 4);
-            empsalaryidpara.Value = usr_billdetail.EmpSalaryId;
+            empsalaryidpara.Value = usr_supbilldetail.EmpSalaryId;
             paras.Add(empsalaryidpara);
 
+            SqlParameter serviceamountpara = new SqlParameter("@ServiceAmount", SqlDbType.Decimal, 9);
+            serviceamountpara.Value = usr_supbilldetail.ServiceAmount;
+            paras.Add(serviceamountpara);
+
             SqlParameter detailstatuspara = new SqlParameter("@DetailStatus", SqlDbType.Int, 4);
-            detailstatuspara.Value = usr_billdetail.DetailStatus;
+            detailstatuspara.Value = usr_supbilldetail.DetailStatus;
             paras.Add(detailstatuspara);
 
-            SqlParameter creatoridpara = new SqlParameter("@CreatorId", SqlDbType.Int, 4);
+            SqlParameter creatoridpara = new SqlParameter("@CreatorId", SqlDbType.VarChar, 10);
             creatoridpara.Value = obj.CreatorId;
             paras.Add(creatoridpara);
 
 
             return paras;
         }
-
+        
         protected override IModel CreateModel(SqlDataReader dr)
         {
-            BillDetail billdetail = new BillDetail();
+            SupBillDetail supbilldetail = new SupBillDetail();
 
             int indexDetailId = dr.GetOrdinal("DetailId");
-            billdetail.DetailId = Convert.ToInt32(dr[indexDetailId]);
-            int indexCorpBillId = dr.GetOrdinal("CorpBillId");
-            if (dr[indexCorpBillId] != DBNull.Value)
+            supbilldetail.DetailId = Convert.ToInt32(dr[indexDetailId]);
+            int indexSupBillId = dr.GetOrdinal("SupBillId");
+            if (dr[indexSupBillId] != DBNull.Value)
             {
-                billdetail.CorpBillId = Convert.ToInt32(dr[indexCorpBillId]);
+                supbilldetail.SupBillId = Convert.ToInt32(dr[indexSupBillId]);
             }
             int indexEmpSalaryId = dr.GetOrdinal("EmpSalaryId");
             if (dr[indexEmpSalaryId] != DBNull.Value)
             {
-                billdetail.EmpSalaryId = Convert.ToInt32(dr[indexEmpSalaryId]);
+                supbilldetail.EmpSalaryId = Convert.ToInt32(dr[indexEmpSalaryId]);
+            }
+            int indexServiceAmount = dr.GetOrdinal("ServiceAmount");
+            if (dr[indexServiceAmount] != DBNull.Value)
+            {
+                supbilldetail.ServiceAmount = Convert.ToDecimal(dr[indexServiceAmount]);
             }
             int indexDetailStatus = dr.GetOrdinal("DetailStatus");
             if (dr[indexDetailStatus] != DBNull.Value)
             {
-                billdetail.DetailStatus = Convert.ToInt32(dr[indexDetailStatus]);
+                supbilldetail.DetailStatus = Convert.ToInt32(dr[indexDetailStatus]);
             }
             int indexCreatorId = dr.GetOrdinal("CreatorId");
             if (dr[indexCreatorId] != DBNull.Value)
             {
-                billdetail.CreatorId = Convert.ToInt32(dr[indexCreatorId]);
+                supbilldetail.CreatorId = Convert.ToInt32((dr[indexCreatorId]));
             }
             int indexCreateTime = dr.GetOrdinal("CreateTime");
             if (dr[indexCreateTime] != DBNull.Value)
             {
-                billdetail.CreateTime = Convert.ToDateTime(dr[indexCreateTime]);
+                supbilldetail.CreateTime = Convert.ToDateTime(dr[indexCreateTime]);
             }
             int indexLastModifyId = dr.GetOrdinal("LastModifyId");
             if (dr[indexLastModifyId] != DBNull.Value)
             {
-                billdetail.LastModifyId = Convert.ToInt32(dr[indexLastModifyId]);
+                supbilldetail.LastModifyId = Convert.ToInt32(dr[indexLastModifyId]);
             }
             int indexLastModifyTime = dr.GetOrdinal("LastModifyTime");
             if (dr[indexLastModifyTime] != DBNull.Value)
             {
-                billdetail.LastModifyTime = Convert.ToDateTime(dr[indexLastModifyTime]);
+                supbilldetail.LastModifyTime = Convert.ToDateTime(dr[indexLastModifyTime]);
             }
 
-            return billdetail;
+            return supbilldetail;
         }
 
         public override string TableName
         {
             get
             {
-                return "Usr_BillDetail";
+                return "Usr_SupBillDetail";
             }
         }
 
         public override List<SqlParameter> CreateUpdateParameters(IModel obj)
         {
-            BillDetail usr_billdetail = (BillDetail)obj;
+            SupBillDetail usr_supbilldetail = (SupBillDetail)obj;
 
             List<SqlParameter> paras = new List<SqlParameter>();
 
             SqlParameter detailidpara = new SqlParameter("@DetailId", SqlDbType.Int, 4);
-            detailidpara.Value = usr_billdetail.DetailId;
+            detailidpara.Value = usr_supbilldetail.DetailId;
             paras.Add(detailidpara);
 
-            SqlParameter corpbillidpara = new SqlParameter("@CorpBillId", SqlDbType.Int, 4);
-            corpbillidpara.Value = usr_billdetail.CorpBillId;
-            paras.Add(corpbillidpara);
+            SqlParameter supbillidpara = new SqlParameter("@SupBillId", SqlDbType.Int, 4);
+            supbillidpara.Value = usr_supbilldetail.SupBillId;
+            paras.Add(supbillidpara);
 
             SqlParameter empsalaryidpara = new SqlParameter("@EmpSalaryId", SqlDbType.Int, 4);
-            empsalaryidpara.Value = usr_billdetail.EmpSalaryId;
+            empsalaryidpara.Value = usr_supbilldetail.EmpSalaryId;
             paras.Add(empsalaryidpara);
 
+            SqlParameter serviceamountpara = new SqlParameter("@ServiceAmount", SqlDbType.Decimal, 9);
+            serviceamountpara.Value = usr_supbilldetail.ServiceAmount;
+            paras.Add(serviceamountpara);
+
             SqlParameter detailstatuspara = new SqlParameter("@DetailStatus", SqlDbType.Int, 4);
-            detailstatuspara.Value = usr_billdetail.DetailStatus;
+            detailstatuspara.Value = usr_supbilldetail.DetailStatus;
             paras.Add(detailstatuspara);
 
             SqlParameter lastmodifyidpara = new SqlParameter("@LastModifyId", SqlDbType.Int, 4);

@@ -17,6 +17,7 @@
         <div class="am-panel am-panel-default" id="jqxValidator">
             <!---001 start-->
             <div class="p1">
+
                 <ul>
                     <li>
                         <span>社保城市：</span>
@@ -29,122 +30,229 @@
                             <input type="text" id="txbSocName" />
                         </div>
                     </li>
-                    <li>
-                        <span>社保基数：</span>
-                        <div class="txb" id="numSocialFundNum">
-                        </div>
-                    </li>
-                    <li>
-                        <span>公积金基数：</span>
-                        <div class="txb" id="numHouseFundNum">
-                        </div>
-                    </li>
                 </ul>
-                <hr />
-                <span>企业比例</span>
+                <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+                    <h2 class="am-titlebar-title ">
+                        社保比例
+                    </h2>
+                </div>
                 <ul>
                     <li>
-                        <span>养老保险：</span>
+                        <span>养老保险基数：</span>
+                        <div class="txb" id="numPensionInsNum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>企业比例：</span>
                         <div class="txb" id="numCorpPensionInsPoint">
                         </div>
                     </li>
                     <li>
-                        <span>医疗保险：</span>
-                        <div class="txb" id="numCorpMedicalInsPoint">
-                        </div>
-                    </li>
-                    <li>
-                        <span>失业保险：</span>
-                        <div class="txb" id="numCorpUnempInsPoint">
-                        </div>
-                    </li>
-                    <li>
-                        <span>工伤保险：</span>
-                        <div class="txb" id="numCorpInjuryInsPoint">
-                        </div>
-                    </li>
-                    <li>
-                        <span>生育保险：</span>
-                        <div class="txb" id="numCorpBirthInsPoint">
-                        </div>
-                    </li>
-                    <li>
-                        <span>残疾人保险：</span>
-                        <div class="txb" id="numCorpDisabledInsPoint">
-                        </div>
-                    </li>
-                    <li>
-                        <span>大病保险：</span>
-                        <div class="txb" id="numCorpIllnessInsPoint">
-                        </div>
-                    </li>
-                    <li>
-                        <span>取暖费：</span>
-                        <div class="txb" id="numCorpHeatAmountPoint">
-                        </div>
-                    </li>
-                    <li>
-                        <span>公积金：</span>
-                        <div class="txb" id="numCorpHouseFundPoint">
-                        </div>
-                    </li>
-                    <li>
-                        <span>补充工伤：</span>
-                        <div class="txb" id="numCorpRepInjuryInsPoint">
-                        </div>
-                    </li>
-                </ul>
-                <hr />
-                <span>个人比例</span>
-                <ul>
-                    <li>
-                        <span>养老保险：</span>
+                        <span>个人比例：</span>
                         <div class="txb" id="numEmpPensionInsPoint">
                         </div>
                     </li>
                     <li>
-                        <span>医疗保险：</span>
+                        <span>固定额：</span>
+                        <div class="txb" id="numPensionInsFix">
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <span>医疗保险基数：</span>
+                        <div class="txb" id="numMedicalInsNum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>企业比例：</span>
+                        <div class="txb" id="numCorpMedicalInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>个人比例：</span>
                         <div class="txb" id="numEmpMedicalInsPoint">
                         </div>
                     </li>
                     <li>
-                        <span>失业保险：</span>
+                        <span>固定额：</span>
+                        <div class="txb" id="numMedicalInsFix">
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <span>失业保险基数：</span>
+                        <div class="txb" id="numUnempInsNum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>企业比例：</span>
+                        <div class="txb" id="numCorpUnempInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>个人比例：</span>
                         <div class="txb" id="numEmpUnempInsPoint">
                         </div>
                     </li>
                     <li>
-                        <span>工伤保险：</span>
+                        <span>固定额：</span>
+                        <div class="txb" id="numUnempInsFix">
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <span>工伤保险基数：</span>
+                        <div class="txb" id="numInjuryInsNum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>企业比例：</span>
+                        <div class="txb" id="numCorpInjuryInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>个人比例：</span>
                         <div class="txb" id="numEmpInjuryInsPoint">
                         </div>
                     </li>
                     <li>
-                        <span>生育保险：</span>
+                        <span>固定额：</span>
+                        <div class="txb" id="numInjuryInsFix">
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <span>生育保险基数：</span>
+                        <div class="txb" id="numBirthInsNum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>企业比例：</span>
+                        <div class="txb" id="numCorpBirthInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>个人比例：</span>
                         <div class="txb" id="numEmpBirthInsPoint">
                         </div>
                     </li>
                     <li>
-                        <span>残疾人保险：</span>
+                        <span>固定额：</span>
+                        <div class="txb" id="numBirthInsFix">
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <span>残疾保险基数：</span>
+                        <div class="txb" id="numDisabledInsNum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>企业比例：</span>
+                        <div class="txb" id="numCorpDisabledInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>个人比例：</span>
                         <div class="txb" id="numEmpDisabledInsPoint">
                         </div>
                     </li>
                     <li>
-                        <span>大病保险：</span>
+                        <span>固定额：</span>
+                        <div class="txb" id="numDisabledInsFix">
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <span>大病保险基数：</span>
+                        <div class="txb" id="numIllnessInsNum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>企业比例：</span>
+                        <div class="txb" id="numCorpIllnessInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>个人比例：</span>
                         <div class="txb" id="numEmpIllnessInsPoint">
                         </div>
                     </li>
                     <li>
-                        <span>取暖费：</span>
+                        <span>固定额：</span>
+                        <div class="txb" id="numIllnessInsFix">
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <span>取暖费基数：</span>
+                        <div class="txb" id="numHeatAmountNum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>企业比例：</span>
+                        <div class="txb" id="numCorpHeatAmountPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>个人比例：</span>
                         <div class="txb" id="numEmpHeatAmountPoint">
                         </div>
                     </li>
                     <li>
-                        <span>公积金：</span>
+                        <span>固定额：</span>
+                        <div class="txb" id="numHeatAmountFix">
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <span>公积金基数：</span>
+                        <div class="txb" id="numHouseFundINum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>企业比例：</span>
+                        <div class="txb" id="numCorpHouseFundPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>个人比例：</span>
                         <div class="txb" id="numEmpHouseFundPoint">
                         </div>
                     </li>
                     <li>
-                        <span>补充工伤：</span>
+                        <span>固定额：</span>
+                        <div class="txb" id="numHouseFundFix">
+                        </div>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <span>补充工伤基数：</span>
+                        <div class="txb" id="numRepInjuryInsNum">
+                        </div>
+                    </li>
+                    <li>
+                        <span>企业比例：</span>
+                        <div class="txb" id="numCorpRepInjuryInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>个人比例：</span>
                         <div class="txb" id="numEmpRepInjuryInsPoint">
+                        </div>
+                    </li>
+                    <li>
+                        <span>固定额：</span>
+                        <div class="txb" id="numRepInjuryInsFix">
                         </div>
                     </li>
                 </ul>

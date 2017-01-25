@@ -691,6 +691,14 @@ namespace HR.BLL
             return result;
         }
 
+        public ResultModel LoadEmployeePayList(int pageIndex, int pageSize, string orderStr, int corpId, DateTime payDate)
+        {
+            SelectModel select = sql_insrance.EmployeePayListSelect(pageIndex, pageSize, orderStr, corpId, payDate);
+            ResultModel result = Load(select);
+
+            return result;
+        }
+
         public override string TableName
         {
             get

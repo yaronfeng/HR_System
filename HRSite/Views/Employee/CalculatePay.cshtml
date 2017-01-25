@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "薪资发放";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="/JS/Employee/CalculatePay.js"></script>
+
+
+<div class="am-cf am-padding am-padding-bottom-0">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">薪资发放</strong> / <small>Table</small></div>
+</div>
+<hr />
+<div class="am-g">
+    <div class="am-panel am-panel-default" id="jqxValidator">
+        <!---001 start-->
+        <div class="p1">
+            <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default">
+                <h2 class="am-titlebar-title ">
+                    计算工资
+                </h2>
+            </div>
+            <ul>
+                <li>
+                    <span>企业名称：</span>
+                    <div class="txb" id="selCorpId">
+                    </div>
+                </li>
+                <li>
+                    <span>薪资月：</span>
+                    <div class="txb" id="tmPayDate">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="am-margin">
+    <button type="button" class="am-btn am-btn-success am-btn-sm" id="btnSearch">查询</button>
+
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-12">
+        <div id="jqxListGrid"></div>
+    </div>
+</div>
+
+<div class="am-margin">
+    <button type="button" class="am-btn am-btn-primary am-btn-sm" id="btnCreate">发放</button>
+</div>
