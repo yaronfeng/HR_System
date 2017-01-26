@@ -171,14 +171,67 @@ namespace HRSite.Controllers
                 if (socialBase == null)
                     return Json(new ResultModel("社保信息不存在"));
 
+                decimal corpPensionIns = rtnEmployee.RISINum * socialBase.CorpPensionInsPoint / 100 + socialBase.PensionInsFix;
+                decimal corpMedicalIns = rtnEmployee.MISINum * socialBase.CorpMedicalInsPoint / 100 + socialBase.MedicalInsFix;
+                decimal corpUnempIns = rtnEmployee.UISINum * socialBase.CorpUnempInsPoint / 100 + socialBase.UnempInsFix;
+                decimal corpInjuryIns = rtnEmployee.IISINum * socialBase.CorpInjuryInsPoint / 100 + socialBase.InjuryInsFix;
+                decimal corpBirthIns = rtnEmployee.BISINum * socialBase.CorpBirthInsPoint / 100 + socialBase.BirthInsFix;
+                decimal corpDisabledIns = rtnEmployee.DISINum * socialBase.CorpDisabledInsPoint / 100 + socialBase.DisabledInsFix;
+                decimal corpIllnessIns = rtnEmployee.LISINum * socialBase.CorpIllnessInsPoint / 100 + socialBase.IllnessInsFix;
+                decimal corpHeatAmount = rtnEmployee.HASINum * socialBase.CorpHeatAmountPoint / 100 + socialBase.HeatAmountFix;
+                decimal corpHouseFund = rtnEmployee.HFSINum * socialBase.CorpHouseFundPoint / 100 + socialBase.HouseFundFix;
+                decimal corpRepInjuryIns = rtnEmployee.RISINum * socialBase.CorpRepInjuryInsPoint / 100 + socialBase.RepInjuryInsFix;
+                decimal corpTotal = corpPensionIns + corpMedicalIns + corpUnempIns + corpInjuryIns + corpBirthIns + corpDisabledIns + corpIllnessIns + corpHeatAmount + corpHouseFund + corpRepInjuryIns;
+
+                decimal empPensionIns = rtnEmployee.RISINum * socialBase.EmpPensionInsPoint / 100 + socialBase.PensionInsFix;
+                decimal empMedicalIns = rtnEmployee.MISINum * socialBase.EmpMedicalInsPoint / 100 + socialBase.MedicalInsFix;
+                decimal empUnempIns = rtnEmployee.UISINum * socialBase.EmpUnempInsPoint / 100 + socialBase.UnempInsFix;
+                decimal empInjuryIns = rtnEmployee.IISINum * socialBase.EmpInjuryInsPoint / 100 + socialBase.InjuryInsFix;
+                decimal empBirthIns = rtnEmployee.BISINum * socialBase.EmpBirthInsPoint / 100 + socialBase.BirthInsFix;
+                decimal empDisabledIns = rtnEmployee.DISINum * socialBase.EmpDisabledInsPoint / 100 + socialBase.DisabledInsFix;
+                decimal empIllnessIns = rtnEmployee.LISINum * socialBase.EmpIllnessInsPoint / 100 + socialBase.IllnessInsFix;
+                decimal empHeatAmount = rtnEmployee.HASINum * socialBase.EmpHeatAmountPoint / 100 + socialBase.HeatAmountFix;
+                decimal empHouseFund = rtnEmployee.HFSINum * socialBase.EmpHouseFundPoint / 100 + socialBase.HouseFundFix;
+                decimal empRepInjuryIns = rtnEmployee.RISINum * socialBase.EmpRepInjuryInsPoint / 100 + socialBase.RepInjuryInsFix;
+                decimal empTotal = empPensionIns + empMedicalIns + empUnempIns + empInjuryIns + empBirthIns + empDisabledIns + empIllnessIns + empHeatAmount + empHouseFund + empRepInjuryIns;
+
+
                 EmployeeSalary empSalary = new EmployeeSalary();
                 empSalary.EmpId = rtnEmployee.EmpId;
                 empSalary.PayCity = rtnEmployee.PayCity;
                 empSalary.CorpId = rtnEmployee.CorpId;
                 empSalary.SupId = rtnEmployee.SupId;
-                empSalary.CorpPensionIns = rtnEmployee.RISINum * socialBase.CorpPensionInsPoint / 100 + socialBase.PensionInsFix;
-                empSalary.CorpMedicalIns = rtnEmployee.MISINum * socialBase.CorpMedicalInsPoint / 100 + socialBase.MedicalInsFix;
+                empSalary.CorpPensionIns = corpPensionIns;
+                empSalary.CorpMedicalIns = corpMedicalIns;
+                empSalary.CorpUnempIns = corpUnempIns;
+                empSalary.CorpInjuryIns = corpInjuryIns;
+                empSalary.CorpBirthIns = corpBirthIns;
+                empSalary.CorpDisabledIns = corpDisabledIns;
+                empSalary.CorpIllnessIns = corpIllnessIns;
+                empSalary.CorpHeatAmount = corpHeatAmount;
+                empSalary.CorpHouseFund = corpHouseFund;
+                empSalary.CorpRepInjuryIns = corpRepInjuryIns;
+                empSalary.CorpTotal = corpTotal;
 
+                empSalary.EmpPensionIns = empPensionIns;
+                empSalary.EmpMedicalIns = empMedicalIns;
+                empSalary.EmpUnempIns = empUnempIns;
+                empSalary.EmpInjuryIns = empInjuryIns;
+                empSalary.EmpBirthIns = empBirthIns;
+                empSalary.EmpDisabledIns = empDisabledIns;
+                empSalary.EmpIllnessIns = empIllnessIns;
+                empSalary.EmpHeatAmount = empHeatAmount;
+                empSalary.EmpHouseFund = empHouseFund;
+                empSalary.EmpRepInjuryIns = empRepInjuryIns;
+                empSalary.EmpTotal = empTotal;
+
+                empSalary.PersonalTax = 0;
+                empSalary.TotalAmount = emp.TotalAmount;
+                empSalary.RepairAmount = 0;//补充社保
+                empSalary.GrossAmount = 0;//税前
+                empSalary.FinalAmount = 0;//实发
+                empSalary.ServiceAmount = 0;//服务费
+                empSalary.RefundAmount = 0;//补收/退款
 
                 empSalary.PayDate = DateTime.Now;
                 result = empSalaryBLL.Insert(empSalary);

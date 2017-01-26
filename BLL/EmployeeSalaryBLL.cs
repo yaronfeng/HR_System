@@ -37,31 +37,9 @@ namespace HR.BLL
             empidpara.Value = usr_employeesalary.EmpId;
             paras.Add(empidpara);
 
-            if (!string.IsNullOrEmpty(usr_employeesalary.EmpName))
-            {
-                SqlParameter empnamepara = new SqlParameter("@EmpName", SqlDbType.VarChar, 50);
-                empnamepara.Value = usr_employeesalary.EmpName;
-                paras.Add(empnamepara);
-            }
-
             SqlParameter paycitypara = new SqlParameter("@PayCity", SqlDbType.Int, 4);
             paycitypara.Value = usr_employeesalary.PayCity;
             paras.Add(paycitypara);
-
-            if (!string.IsNullOrEmpty(usr_employeesalary.CardNo))
-            {
-                SqlParameter cardnopara = new SqlParameter("@CardNo", SqlDbType.VarChar, 50);
-                cardnopara.Value = usr_employeesalary.CardNo;
-                paras.Add(cardnopara);
-            }
-
-            SqlParameter socialfundnumpara = new SqlParameter("@SocialFundNum", SqlDbType.Decimal, 9);
-            socialfundnumpara.Value = usr_employeesalary.SocialFundNum;
-            paras.Add(socialfundnumpara);
-
-            SqlParameter housefundnumpara = new SqlParameter("@HouseFundNum", SqlDbType.Decimal, 9);
-            housefundnumpara.Value = usr_employeesalary.HouseFundNum;
-            paras.Add(housefundnumpara);
 
             SqlParameter corpidpara = new SqlParameter("@CorpId", SqlDbType.Int, 4);
             corpidpara.Value = usr_employeesalary.CorpId;
@@ -151,9 +129,9 @@ namespace HR.BLL
             emphousefundpara.Value = usr_employeesalary.EmpHouseFund;
             paras.Add(emphousefundpara);
 
-            SqlParameter enprepinjuryinspara = new SqlParameter("@EmpRepInjuryIns", SqlDbType.Decimal, 9);
-            enprepinjuryinspara.Value = usr_employeesalary.EmpRepInjuryIns;
-            paras.Add(enprepinjuryinspara);
+            SqlParameter emprepinjuryinspara = new SqlParameter("@EmpRepInjuryIns", SqlDbType.Decimal, 9);
+            emprepinjuryinspara.Value = usr_employeesalary.EmpRepInjuryIns;
+            paras.Add(emprepinjuryinspara);
 
             SqlParameter emptotalpara = new SqlParameter("@EmpTotal", SqlDbType.Decimal, 9);
             emptotalpara.Value = usr_employeesalary.EmpTotal;
@@ -191,10 +169,6 @@ namespace HR.BLL
             paydatepara.Value = usr_employeesalary.PayDate;
             paras.Add(paydatepara);
 
-            SqlParameter corpbillIdpara = new SqlParameter("@CorpBillId", SqlDbType.Int, 4);
-            corpbillIdpara.Value = usr_employeesalary.CorpBillId;
-            paras.Add(corpbillIdpara);
-
             SqlParameter empsalarystatuspara = new SqlParameter("@EmpSalaryStatus", SqlDbType.Int, 4);
             empsalarystatuspara.Value = usr_employeesalary.EmpSalaryStatus;
             paras.Add(empsalarystatuspara);
@@ -213,6 +187,7 @@ namespace HR.BLL
 
             return paras;
         }
+        
         protected override IModel CreateModel(SqlDataReader dr)
         {
             EmployeeSalary employeesalary = new EmployeeSalary();
@@ -224,30 +199,10 @@ namespace HR.BLL
             {
                 employeesalary.EmpId = Convert.ToInt32(dr[indexEmpId]);
             }
-            int indexEmpName = dr.GetOrdinal("EmpName");
-            if (dr[indexEmpName] != DBNull.Value)
-            {
-                employeesalary.EmpName = Convert.ToString(dr[indexEmpName]);
-            }
             int indexPayCity = dr.GetOrdinal("PayCity");
             if (dr[indexPayCity] != DBNull.Value)
             {
                 employeesalary.PayCity = Convert.ToInt32(dr[indexPayCity]);
-            }
-            int indexCardNo = dr.GetOrdinal("CardNo");
-            if (dr[indexCardNo] != DBNull.Value)
-            {
-                employeesalary.CardNo = Convert.ToString(dr[indexCardNo]);
-            }
-            int indexSocialFundNum = dr.GetOrdinal("SocialFundNum");
-            if (dr[indexSocialFundNum] != DBNull.Value)
-            {
-                employeesalary.SocialFundNum = Convert.ToDecimal(dr[indexSocialFundNum]);
-            }
-            int indexHouseFundNum = dr.GetOrdinal("HouseFundNum");
-            if (dr[indexHouseFundNum] != DBNull.Value)
-            {
-                employeesalary.HouseFundNum = Convert.ToDecimal(dr[indexHouseFundNum]);
             }
             int indexCorpId = dr.GetOrdinal("CorpId");
             if (dr[indexCorpId] != DBNull.Value)
@@ -409,11 +364,6 @@ namespace HR.BLL
             {
                 employeesalary.PayDate = Convert.ToDateTime(dr[indexPayDate]);
             }
-            int indexCorpBillId = dr.GetOrdinal("CorpBillId");
-            if (dr[indexCorpBillId] != DBNull.Value)
-            {
-                employeesalary.CorpBillId = Convert.ToInt32(dr[indexCorpBillId]);
-            }
             int indexEmpSalaryStatus = dr.GetOrdinal("EmpSalaryStatus");
             if (dr[indexEmpSalaryStatus] != DBNull.Value)
             {
@@ -462,31 +412,9 @@ namespace HR.BLL
             empidpara.Value = usr_employeesalary.EmpId;
             paras.Add(empidpara);
 
-            if (!string.IsNullOrEmpty(usr_employeesalary.EmpName))
-            {
-                SqlParameter empnamepara = new SqlParameter("@EmpName", SqlDbType.VarChar, 50);
-                empnamepara.Value = usr_employeesalary.EmpName;
-                paras.Add(empnamepara);
-            }
-
             SqlParameter paycitypara = new SqlParameter("@PayCity", SqlDbType.Int, 4);
             paycitypara.Value = usr_employeesalary.PayCity;
             paras.Add(paycitypara);
-
-            if (!string.IsNullOrEmpty(usr_employeesalary.CardNo))
-            {
-                SqlParameter cardnopara = new SqlParameter("@CardNo", SqlDbType.VarChar, 50);
-                cardnopara.Value = usr_employeesalary.CardNo;
-                paras.Add(cardnopara);
-            }
-
-            SqlParameter socialfundnumpara = new SqlParameter("@SocialFundNum", SqlDbType.Decimal, 9);
-            socialfundnumpara.Value = usr_employeesalary.SocialFundNum;
-            paras.Add(socialfundnumpara);
-
-            SqlParameter housefundnumpara = new SqlParameter("@HouseFundNum", SqlDbType.Decimal, 9);
-            housefundnumpara.Value = usr_employeesalary.HouseFundNum;
-            paras.Add(housefundnumpara);
 
             SqlParameter corpidpara = new SqlParameter("@CorpId", SqlDbType.Int, 4);
             corpidpara.Value = usr_employeesalary.CorpId;
@@ -615,10 +543,6 @@ namespace HR.BLL
             SqlParameter paydatepara = new SqlParameter("@PayDate", SqlDbType.DateTime, 8);
             paydatepara.Value = usr_employeesalary.PayDate;
             paras.Add(paydatepara);
-
-            SqlParameter corpbillIdpara = new SqlParameter("@CorpBillId", SqlDbType.Int, 4);
-            corpbillIdpara.Value = usr_employeesalary.CorpBillId;
-            paras.Add(corpbillIdpara);
 
             SqlParameter empsalarystatuspara = new SqlParameter("@EmpSalaryStatus", SqlDbType.Int, 4);
             empsalarystatuspara.Value = usr_employeesalary.EmpSalaryStatus;

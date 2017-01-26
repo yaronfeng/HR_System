@@ -140,6 +140,49 @@ $(document).ready(function () {
     optSource =
     {
         datatype: "json",
+        datafields:
+        [
+           { name: "EmpSalaryId", type: "int" },
+           { name: "EmpId", type: "int" },
+           { name: "EmpName", type: "string" },
+           { name: "PayCity", type: "int" },
+           { name: "PayCityName", type: "string" },
+           { name: "CardNo", type: "string" },
+           { name: "SocialFundNum", type: "decimal" },
+           { name: "HouseFundNum", type: "decimal" },
+           { name: "CorpId", type: "int" },
+           { name: "CorpPensionIns", type: "decimal" },
+           { name: "CorpMedicalIns", type: "decimal" },
+           { name: "CorpUnempIns", type: "decimal" },
+           { name: "CorpInjuryIns", type: "decimal" },
+           { name: "CorpBirthIns", type: "decimal" },
+           { name: "CorpDisabledIns", type: "decimal" },
+           { name: "CorpIllnessIns", type: "decimal" },
+           { name: "CorpHeatAmount", type: "decimal" },
+           { name: "CorpHouseFund", type: "decimal" },
+           { name: "CorpRepInjuryIns", type: "decimal" },
+           { name: "CorpTotal", type: "decimal" },
+           { name: "EmpPensionIns", type: "decimal" },
+           { name: "EmpMedicalIns", type: "decimal" },
+           { name: "EmpUnempIns", type: "decimal" },
+           { name: "EmpInjuryIns", type: "decimal" },
+           { name: "EmpBirthIns", type: "decimal" },
+           { name: "EmpDisabledIns", type: "decimal" },
+           { name: "EmpIllnessIns", type: "decimal" },
+           { name: "EmpHeatAmount", type: "decimal" },
+           { name: "EmpHouseFund", type: "decimal" },
+           { name: "EmpRepInjuryIns", type: "decimal" },
+           { name: "EmpTotal", type: "decimal" },
+           { name: "PersonalTax", type: "decimal" },
+           { name: "TotalAmount", type: "decimal" },
+           { name: "RepairAmount", type: "decimal" },
+           { name: "GrossAmount", type: "decimal" },
+           { name: "FinalAmount", type: "decimal" },
+           { name: "ServiceAmount", type: "decimal" },
+           { name: "RefundAmount", type: "decimal" },
+           { name: "PayDate", type: "date" },
+           { name: "EmpSalaryStatus", type: "int" },
+        ],
         localdata: optList
     };
     var optDataAdapter = new $.jqx.dataAdapter(optSource, {
@@ -152,15 +195,6 @@ $(document).ready(function () {
     var numberrenderer = function (row, column, value) {
 
         return "<div style=\"text-align: center; margin-top: 5px;\">" + (1 + row) + "</div>";
-    }
-
-    var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties) {
-
-        var item = $("#jqxListGrid").jqxGrid("getrowdata", row);
-        var cellHtml = "<div style=\"overflow: hidden; text-overflow: ellipsis; padding:0px 0px 2px 10px; margin:4px 0px 0px 5px;\">";
-        cellHtml += "<a target=\"_self\" href=\"EmployeeDetail?id=" + value + "\">取消</a>";
-        cellHtml += "</div>";
-        return cellHtml;
     }
 
     $("#jqxListGrid").jqxGrid(
@@ -183,28 +217,9 @@ $(document).ready(function () {
         columns: [
           { text: "序号", cellsrenderer: numberrenderer, width: 40, sortable: false, enabletooltips: false, menu: false, resizable: false, editable: false, pinned: true },
           { text: "姓名", datafield: "EmpName", pinned: true, width: 90, editable: false },
-          { text: "身份证", datafield: "CardNo", width: 150, editable: false },
-          { text: "缴费区域", datafield: "PayCityName", width: 70, editable: false },
-          { text: "社保基数", datafield: "SocialFundNum", width: 70, editable: false },
-          { text: "公积金基数", datafield: "HouseFundNum", width: 70, editable: false },
+          { text: "工资月", datafield: "PayDate", cellsformat: "yyyy-MM",type:"date", pinned: true, width: 70, editable: false },
+          { text: "缴费区域", datafield: "PayCityName", width: 70, pinned: true, editable: false },
           { text: "养老保险", columngroup: 'CorpDetails', datafield: "CorpPensionIns", width: 70, editable: false },
-          //{
-          //    text: "养老保险", columngroup: 'CorpDetails', datafield: "CorpPensionIns", columntype: "numberinput", width: 70
-          //    , createeditor: function (row, cellvalue, editor) {
-          //        editor.jqxNumberInput({ min: 0, decimalDigits: 2, Digits: 8, spinButtons: true, inputMode: "simple" });
-          //    }
-          //    , validation: function (cell, value) {
-          //        if (value < 0) {
-          //            return { result: false, message: "必须大于0" };
-          //        }
-          //        return true;
-          //    }
-          //    , aggregates: [{
-          //        "总": function (aggregatedValue, currentValue) {
-          //            return Math.round((aggregatedValue + currentValue) * 1000) / 1000;
-          //        }
-          //    }]
-          //},
           { text: "医疗保险", columngroup: 'CorpDetails', datafield: "CorpMedicalIns", width: 70, editable: false },
           { text: "失业保险", columngroup: 'CorpDetails', datafield: "CorpUnempIns", width: 70, editable: false },
           { text: "工伤保险", columngroup: 'CorpDetails', datafield: "CorpInjuryIns", width: 70, editable: false },

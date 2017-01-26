@@ -135,7 +135,7 @@ namespace HRSite.Controllers
             rtnCorporation.HousePWD = corp.HousePWD;
             rtnCorporation.Memo = corp.Memo;
 
-            ResultModel result = corpBLL.Update(corp);
+            ResultModel result = corpBLL.Update(rtnCorporation);
             if (result.ResultStatus != 0)
                 return Json(result);
 

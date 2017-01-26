@@ -45,6 +45,7 @@
     <Compile Include="IModel.cs" />
     <Compile Include="MasterModel.cs" />
     <Compile Include="Operate.cs" />
+    <Compile Include="Calculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultModel.cs" />
     <Compile Include="SelectModel.cs" />
