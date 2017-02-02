@@ -61,7 +61,7 @@ namespace HR.Model
         /// <summary>
         /// 服务费
         /// </summary>
-        public string ServiceAmount { get; set; }
+        public decimal ServiceAmount { get; set; }
         /// <summary>
         /// 状态
         /// </summary>

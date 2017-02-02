@@ -121,21 +121,23 @@ namespace HR.SQLServerDAL
             select.PageIndex = pageIndex;
             select.PageSize = pageSize;
             if (string.IsNullOrEmpty(orderStr))
-                select.OrderStr = " EmpSalaryId desc";
+                select.OrderStr = " emps.EmpSalaryId desc";
             else
                 select.OrderStr = orderStr;
 
-            select.ColumnName = "EmpSalaryId,EmpId,EmpName,PayCity,sdcity.DetailName as PayCityName,CardNo,SocialFundNum,HouseFundNum,CorpId,CorpPensionIns,CorpMedicalIns,CorpUnempIns,CorpInjuryIns,CorpBirthIns,CorpDisabledIns,CorpIllnessIns,CorpHeatAmount,CorpHouseFund,CorpRepInjuryIns,CorpTotal,EmpPensionIns,EmpMedicalIns,EmpUnempIns,EmpInjuryIns,EmpBirthIns,EmpDisabledIns,EmpIllnessIns,EmpHeatAmount,EmpHouseFund,EmpRepInjuryIns,EmpTotal,PersonalTax,TotalAmount,RepairAmount,GrossAmount,FinalAmount,ServiceAmount,RefundAmount,PayDate,CorpBillId,EmpSalaryStatus,Memo";
+            select.ColumnName = "emps.EmpSalaryId,emps.EmpId,emp.EmpName,sdcity.DetailName as PayCityName,emps.PayCity,emps.CorpId,emps.SupId,emps.CorpPensionIns,emps.CorpMedicalIns,emps.CorpUnempIns,emps.CorpInjuryIns,emps.CorpBirthIns,emps.CorpDisabledIns,emps.CorpIllnessIns,emps.CorpHeatAmount,emps.CorpHouseFund,emps.CorpRepInjuryIns,emps.CorpTotal,emps.EmpPensionIns,emps.EmpMedicalIns,emps.EmpUnempIns,emps.EmpInjuryIns,emps.EmpBirthIns,emps.EmpDisabledIns,emps.EmpIllnessIns,emps.EmpHeatAmount,emps.EmpHouseFund,emps.EmpRepInjuryIns,emps.EmpTotal,emps.PersonalTax,emps.TotalAmount,emps.RepairAmount,emps.GrossAmount,emps.FinalAmount,cbd.ServiceAmount,emps.RefundAmount,emps.PayDate,emps.EmpSalaryStatus";
 
             System.Text.StringBuilder sb = new StringBuilder();
-            sb.Append(" Usr_EmployeeSalary emps");
+            sb.Append(" Usr_CorpBillDetail cbd");
+            sb.Append(" left join Usr_EmployeeSalary emps on emps.EmpSalaryId = cbd.EmpSalaryId");
+            sb.Append(" left join Usr_Employee emp on emp.EmpId = emps.EmpId");
             sb.AppendFormat(" left join bd_StyleDetail sdcity on sdcity.DetailId = emps.PayCity and sdcity.StyleId = {0}", (int)StyleTypeEnum.缴费城市类型);
 
             select.TableName = sb.ToString();
 
             sb.Length = 0;
 
-            sb.AppendFormat(" emps.CorpBillId ={0} ", corpBillId);
+            sb.AppendFormat(" cbd.CorpBillId ={0} ", corpBillId);
 
             select.WhereStr = sb.ToString();
 

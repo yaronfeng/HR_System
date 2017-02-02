@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HR.SQLServerDAL;
 using HR.Model;
 using HR.Common;
 using System.Data.SqlClient;
@@ -16,6 +17,31 @@ namespace HR.BLL
         public SupBillBLL()
         {
 
+        }
+
+        private SupBillSQL sql_insrance = new SupBillSQL();
+
+        public ResultModel LoadSupEmployeeList(int pageIndex, int pageSize, string orderStr, int supId)
+        {
+            SelectModel select = sql_insrance.EmployeeBySupIdSelect(pageIndex, pageSize, orderStr, supId);
+            ResultModel result = Load(select);
+
+            return result;
+        }
+
+        public ResultModel LoadSupBillReadyList(int pageIndex, int pageSize, string orderStr)
+        {
+            SelectModel select = sql_insrance.SupBillReadyList(pageIndex, pageSize, orderStr);
+            ResultModel result = Load(select);
+
+            return result;
+        }
+
+        public ResultModel<SupBill> LoadSupBills(int supId)
+        {
+            string cmdText = string.Format(" select * from dbo.Usr_SupBill where SupId = {0} and datediff(month,[PayDate],getdate())= 0  ", supId);
+            ResultModel<SupBill> result = this.Load<SupBill>(System.Data.CommandType.Text, cmdText);
+            return result;
         }
 
         protected override List<SqlParameter> CreateInsertParameters(IModel obj, ref SqlParameter returnValue)
@@ -108,9 +134,9 @@ namespace HR.BLL
                 paras.Add(memopara);
             }
 
-            SqlParameter corpbillstatuspara = new SqlParameter("@CorpBillStatus", SqlDbType.Int, 4);
-            corpbillstatuspara.Value = usr_supbill.CorpBillStatus;
-            paras.Add(corpbillstatuspara);
+            SqlParameter supbillstatuspara = new SqlParameter("@SupBillStatus", SqlDbType.Int, 4);
+            supbillstatuspara.Value = usr_supbill.SupBillStatus;
+            paras.Add(supbillstatuspara);
 
             SqlParameter creatoridpara = new SqlParameter("@CreatorId", SqlDbType.Int, 4);
             creatoridpara.Value = obj.CreatorId;
@@ -221,10 +247,10 @@ namespace HR.BLL
             {
                 supbill.Memo = Convert.ToString(dr[indexMemo]);
             }
-            int indexCorpBillStatus = dr.GetOrdinal("CorpBillStatus");
-            if (dr[indexCorpBillStatus] != DBNull.Value)
+            int indexSupBillStatus = dr.GetOrdinal("SupBillStatus");
+            if (dr[indexSupBillStatus] != DBNull.Value)
             {
-                supbill.CorpBillStatus = Convert.ToInt32(dr[indexCorpBillStatus]);
+                supbill.SupBillStatus = Convert.ToInt32(dr[indexSupBillStatus]);
             }
             int indexCreatorId = dr.GetOrdinal("CreatorId");
             if (dr[indexCreatorId] != DBNull.Value)
@@ -347,9 +373,9 @@ namespace HR.BLL
                 paras.Add(memopara);
             }
 
-            SqlParameter corpbillstatuspara = new SqlParameter("@CorpBillStatus", SqlDbType.Int, 4);
-            corpbillstatuspara.Value = usr_supbill.CorpBillStatus;
-            paras.Add(corpbillstatuspara);
+            SqlParameter supbillstatuspara = new SqlParameter("@SupBillStatus", SqlDbType.Int, 4);
+            supbillstatuspara.Value = usr_supbill.SupBillStatus;
+            paras.Add(supbillstatuspara);
 
             SqlParameter lastmodifyidpara = new SqlParameter("@LastModifyId", SqlDbType.Int, 4);
             lastmodifyidpara.Value = obj.LastModifyId;

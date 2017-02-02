@@ -108,12 +108,9 @@ namespace HR.BLL
                 paras.Add(bankaccountpara);
             }
 
-            if (!string.IsNullOrEmpty(usr_supplier.ServiceAmount))
-            {
-                SqlParameter serviceamountpara = new SqlParameter("@ServiceAmount", SqlDbType.VarChar, 50);
-                serviceamountpara.Value = usr_supplier.ServiceAmount;
-                paras.Add(serviceamountpara);
-            }
+            SqlParameter serviceamountpara = new SqlParameter("@ServiceAmount", SqlDbType.Decimal, 50);
+            serviceamountpara.Value = usr_supplier.ServiceAmount;
+            paras.Add(serviceamountpara);
 
             SqlParameter supstatuspara = new SqlParameter("@SupStatus", SqlDbType.Int, 4);
             supstatuspara.Value = usr_supplier.SupStatus;
@@ -217,12 +214,9 @@ namespace HR.BLL
                 paras.Add(bankaccountpara);
             }
 
-            if (!string.IsNullOrEmpty(usr_supplier.ServiceAmount))
-            {
-                SqlParameter serviceamountpara = new SqlParameter("@ServiceAmount", SqlDbType.VarChar, 50);
-                serviceamountpara.Value = usr_supplier.ServiceAmount;
-                paras.Add(serviceamountpara);
-            }
+            SqlParameter serviceamountpara = new SqlParameter("@ServiceAmount", SqlDbType.Decimal, 50);
+            serviceamountpara.Value = usr_supplier.ServiceAmount;
+            paras.Add(serviceamountpara);
 
             SqlParameter supstatuspara = new SqlParameter("@SupStatus", SqlDbType.Int, 4);
             supstatuspara.Value = usr_supplier.SupStatus;
@@ -304,10 +298,7 @@ namespace HR.BLL
                 supplier.BankAccount = Convert.ToString(dr[indexBankAccount]);
             }
             int indexServiceAmount = dr.GetOrdinal("ServiceAmount");
-            if (dr[indexServiceAmount] != DBNull.Value)
-            {
-                supplier.ServiceAmount = Convert.ToString(dr[indexServiceAmount]);
-            }
+            supplier.ServiceAmount = Convert.ToDecimal(dr[indexServiceAmount]);
             int indexSupStatus = dr.GetOrdinal("SupStatus");
             if (dr[indexSupStatus] != DBNull.Value)
             {

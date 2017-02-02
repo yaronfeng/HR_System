@@ -13,35 +13,37 @@ namespace Common
         public int PersonalTax(decimal taxAmount)
         {
             int personalTax = 0;
-            if (taxAmount < 1500)
-            {
-                personalTax = 3;//3%
-            }
-            else if (taxAmount > 1500 && taxAmount < 4500)
-            {
-                personalTax = 10;
-            }
-            else if (taxAmount > 4500 && taxAmount < 9000)
-            {
-                personalTax = 20;
-            }
-            else if (taxAmount > 9000 && taxAmount < 35000)
-            {
-                personalTax = 25;
-            }
-            else if (taxAmount > 3500 && taxAmount < 55000)
-            {
-                personalTax = 30;
-            }
-            else if (taxAmount > 5500 && taxAmount < 80000)
-            {
-                personalTax = 35;
-            }
-            else
-            {
-                personalTax = 45;
-            }
+            //if (taxAmount < 1500)
+            //{
+            //    personalTax = 3;//3%
+            //}
+            //else if (taxAmount > 1500 && taxAmount < 4500)
+            //{
+            //    personalTax = 10;
+            //}
+            //else if (taxAmount > 4500 && taxAmount < 9000)
+            //{
+            //    personalTax = 20;
+            //}
+            //else if (taxAmount > 9000 && taxAmount < 35000)
+            //{
+            //    personalTax = 25;
+            //}
+            //else if (taxAmount > 3500 && taxAmount < 55000)
+            //{
+            //    personalTax = 30;
+            //}
+            //else if (taxAmount > 5500 && taxAmount < 80000)
+            //{
+            //    personalTax = 35;
+            //}
+            //else
+            //{
+            //    personalTax = 45;
+            //}
 
+            double[] sa = { 0.6, 2, 4, 5, 6, 7, 9 };
+            double[] sad = { 0, 21, 111, 201, 551, 1101, 2701 };
 
             return personalTax;
         }

@@ -136,7 +136,7 @@ namespace HRSite.Controllers
             string orderStr = string.Format("{0} {1}", orderField, sortOrder);
 
             EmployeeBLL employeeBLL = new EmployeeBLL();
-            ResultModel result = employeeBLL.LoadEmployeePayList(pageIndex, pageSize, orderStr, corpId, payDate);
+            ResultModel result = employeeBLL.LoadEmployeePayList(0, 500, orderStr, corpId, payDate);
 
             System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
             Dictionary<string, object> dic = new Dictionary<string, object>();
@@ -149,7 +149,7 @@ namespace HRSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult InsertEmployeeSalary(Employee[] details)
+        public ActionResult InsertEmployeeSalary(EmployeeSalary[] details)
         {
             string empId = string.Empty;
             EmployeeBLL empBLL = new EmployeeBLL();
@@ -225,15 +225,19 @@ namespace HRSite.Controllers
                 empSalary.EmpRepInjuryIns = empRepInjuryIns;
                 empSalary.EmpTotal = empTotal;
 
-                empSalary.PersonalTax = 0;
+                decimal personalTax = 0;
+                empSalary.PersonalTax = personalTax;//个调税
                 empSalary.TotalAmount = emp.TotalAmount;
-                empSalary.RepairAmount = 0;//补充社保
-                empSalary.GrossAmount = 0;//税前
-                empSalary.FinalAmount = 0;//实发
-                empSalary.ServiceAmount = 0;//服务费
-                empSalary.RefundAmount = 0;//补收/退款
+                empSalary.RepairAmount = emp.RepairAmount;//补充社保
+                decimal grossAmount = emp.TotalAmount - empTotal;
+                empSalary.GrossAmount = grossAmount;//税前
+                decimal finalAmount = grossAmount - personalTax;
+                empSalary.FinalAmount = finalAmount;//实发
+                empSalary.ServiceAmount = emp.ServiceAmount;//服务费
+                empSalary.RefundAmount = emp.RefundAmount;//补收/退款
 
                 empSalary.PayDate = DateTime.Now;
+                empSalary.EmpSalaryStatus = (int)StatusEnum.已完成;
                 result = empSalaryBLL.Insert(empSalary);
 
                 if (result.ResultStatus != 0)
@@ -241,7 +245,7 @@ namespace HRSite.Controllers
             }
 
 
-            result.Message = "员工新增成功";
+            result.Message = "员工薪资发放成功";
             result.ReturnValue = "";
             result.ResultStatus = 0;
             return Json(result);

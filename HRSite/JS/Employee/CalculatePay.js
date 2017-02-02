@@ -100,7 +100,7 @@ $(document).ready(function () {
     {
         width: "98%",
         source: dataAdapter,
-        pageable: true,
+        //pageable: true,
         autoheight: true,
         virtualmode: true,
         sorttogglestates: 1,

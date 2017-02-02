@@ -124,7 +124,7 @@ namespace HR.SQLServerDAL
             else
                 select.OrderStr = orderStr;
 
-            select.ColumnName = "emp.EmpId,emp.CorpId,emp.SupId,emp.EmpName,corp.CorpName,sdsex.DetailName Sex,emp.CardNo,emp.Phone,emp.ConStartDate,emp.ConEndDate,emp.TotalAmount,sddeg.DetailName as Degree,sdcity.DetailName as PayCity,emp.EmpEmail,emp.EmpStatus,sd.DetailName as StatusName";
+            select.ColumnName = "emp.EmpId,emp.CorpId,emp.SupId,emp.EmpName,corp.CorpName,sdsex.DetailName Sex,emp.CardNo,emp.Phone,emp.ConStartDate,emp.ConEndDate,emp.TotalAmount,sddeg.DetailName as Degree,sdcity.DetailName as PayCity,emp.EmpEmail,emp.EmpStatus,corp.ServiceAmount,sd.DetailName as StatusName";
 
             System.Text.StringBuilder sb = new StringBuilder();
             sb.Append(" Usr_Employee emp");

@@ -7,8 +7,8 @@ $(document).ready(function () {
         for (i = 0 ; i < optList.length ; i++) {
             var item = optList[i];
             var corpTotal = Number((item.CorpPensionIns + item.CorpMedicalIns + item.CorpUnempIns + item.CorpInjuryIns + item.CorpBirthIns + item.CorpDisabledIns + item.CorpIllnessIns + item.CorpHeatAmount + item.CorpHouseFund + item.CorpRepInjuryIns).toFixed(2));
-            var empTotal =  Number((item.EmpPensionIns + item.EmpMedicalIns + item.EmpUnempIns + item.EmpInjuryIns + item.EmpBirthIns + item.EmpDisabledIns + item.EmpIllnessIns + item.EmpHeatAmount + item.EmpHouseFund + item.EmpRepInjuryIns).toFixed(2));
-            var grossAmount = Number((item.TotalAmount -  corpTotal + empTotal).toFixed(2));
+            var empTotal = Number((item.EmpPensionIns + item.EmpMedicalIns + item.EmpUnempIns + item.EmpInjuryIns + item.EmpBirthIns + item.EmpDisabledIns + item.EmpIllnessIns + item.EmpHeatAmount + item.EmpHouseFund + item.EmpRepInjuryIns).toFixed(2));
+            var grossAmount = Number((item.TotalAmount - corpTotal + empTotal).toFixed(2));
 
             optList[i].CorpTotal = corpTotal;
             optList[i].EmpTotal = empTotal;
@@ -20,7 +20,7 @@ $(document).ready(function () {
     $("#tmBillDate").jqxDateTimeInput({ formatString: "yyyy-MM" });
     $("#tmPayDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd" });
 
-    $("#numBillPensionIns").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true ,disabled:true });
+    $("#numBillPensionIns").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
     $("#numBillMedicalIns").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
     $("#numBillUnempIns").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
     $("#numBillInjuryIns").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
@@ -35,15 +35,10 @@ $(document).ready(function () {
     $("#numServiceAmount").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
     $("#numTotalAmount").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
 
-    var CorpUrl = "/CommBase/PayCitys";
-    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
+    var CorpUrl = "../Supplier/Suppliers";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "SupId" }, { name: "SupName" }], url: CorpUrl };
     var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
-    $("#selPayCity").jqxDropDownList({ source: CorpDataAdapter, displayMember: "DetailName", valueMember: "DetailId", height: 25, selectedIndex: 0 });
-
-    var CorpUrl = "../Corporation/Corps";
-    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "CorpId" }, { name: "CorpName" }], url: CorpUrl };
-    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
-    $("#selCorpId").jqxComboBox({ source: CorpDataAdapter, displayMember: "CorpName", valueMember: "CorpId", autoComplete: true, searchMode: "contains", height: 25, disabled: true });
+    $("#selSupId").jqxComboBox({ source: CorpDataAdapter, displayMember: "SupName", valueMember: "SupId", autoComplete: true, searchMode: "contains", height: 25, disabled: true });
 
     //校验
     $("#jqxValidator").jqxValidator({
@@ -51,8 +46,8 @@ $(document).ready(function () {
         rules:
             [
                 {
-                    input: "#selCorpId", message: "客户必选", action: "keyup, blur,change", rule: function (input, commit) {
-                        return $("#selCorpId").val() > 0;
+                    input: "#selSupId", message: "供应商必选", action: "keyup, blur,change", rule: function (input, commit) {
+                        return $("#selSupId").val() > 0;
                     }
                 }
             ]
@@ -65,7 +60,7 @@ $(document).ready(function () {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/Corporation/Get",
+        url: "/Supplier/Get",
         data: JSON.stringify(temp),
         dataType: "json",
         success: function (result) {
@@ -76,7 +71,7 @@ $(document).ready(function () {
                 var rtnObj = JSON.parse(obj.ReturnValue);
 
                 //设置原值
-                $("#selCorpId").val(rtnObj.CorpId)
+                $("#selSupId").val(rtnObj.SupId)
 
                 var pensionIns = 0;
                 var medicalIns = 0;
@@ -212,7 +207,7 @@ $(document).ready(function () {
         columns: [
           { text: "序号", cellsrenderer: numberrenderer, width: 40, sortable: false, enabletooltips: false, menu: false, resizable: false, editable: false, pinned: true },
           { text: "姓名", datafield: "EmpName", pinned: true, width: 90, editable: false },
-          { text: "工资月", datafield: "PayDate", cellsformat: "yyyy-MM",type:"date", pinned: true, width: 70, editable: false },
+          { text: "工资月", datafield: "PayDate", cellsformat: "yyyy-MM", type: "date", pinned: true, width: 70, editable: false },
           { text: "缴费区域", datafield: "PayCityName", width: 70, pinned: true, editable: false },
           { text: "养老保险", columngroup: 'CorpDetails', datafield: "CorpPensionIns", width: 70, editable: false },
           { text: "医疗保险", columngroup: 'CorpDetails', datafield: "CorpMedicalIns", width: 70, editable: false },
@@ -259,8 +254,8 @@ $(document).ready(function () {
         if (!isCanSubmit) { return; }
         if (!confirm("确认新增账单？")) { return; }
 
-        var corpBill = {
-            CorpId: id,
+        var supBill = {
+            SupId: id,
             BillDate: $("#tmBillDate").val(),
             PayDate: $("#tmPayDate").val(),
             BillPensionIns: $("#numBillPensionIns").val(),
@@ -282,20 +277,20 @@ $(document).ready(function () {
         };
 
         var paras = new Object();
-        paras.corpBill = corpBill;
+        paras.supBill = supBill;
         paras.details = optList;
 
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "/CorpBill/Insert",
+            url: "/SupBill/Insert",
             data: JSON.stringify(paras),
             dataType: "json",
             success: function (result) {
                 var obj = result;
                 alert(obj.Message);
                 if (obj.ResultStatus == 0) {
-                    window.document.location.href = "/CorpBill/CorpBillList";
+                    window.document.location.href = "/SupBill/SupBillList";
                 }
             }
         });

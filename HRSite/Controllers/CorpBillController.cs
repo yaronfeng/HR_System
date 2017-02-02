@@ -33,7 +33,7 @@ namespace HRSite.Controllers
             if (corpBillCount > 0)
                 return Content(JsUtility.WarmAlert("客户本月账单已生成", redirectUrl));
 
-            ResultModel result = corpBillBLL.LoadCorpEmployeeList(0, 100, null, id);
+            ResultModel result = corpBillBLL.LoadCorpEmployeeList(0, 500, null, id);
 
             if (result.ResultStatus != 0)
                 return Content(JsUtility.WarmAlert("获取错误", redirectUrl));
@@ -71,13 +71,13 @@ namespace HRSite.Controllers
             switch (orderField)
             {
                 case "EmpSalaryId":
-                    orderField = "EmpSalaryId";
+                    orderField = "emps.EmpSalaryId";
                     break;
             }
             string orderStr = string.Format("{0} {1}", orderField, sortOrder);
 
             CorpBillBLL corpbillBLL = new CorpBillBLL();
-            ResultModel result = corpbillBLL.LoadEmployeeSalaryByIdList(0, 200, orderStr, corpBillId);
+            ResultModel result = corpbillBLL.LoadEmployeeSalaryByIdList(0, 500, orderStr, corpBillId);
 
             System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
             Dictionary<string, object> dic = new Dictionary<string, object>();
@@ -183,13 +183,14 @@ namespace HRSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult Insert(CorpBill corpBill,EmployeeSalary[] details)
+        public ActionResult Insert(CorpBill corpBill,CorpBillDetail[] details)
         {
             corpBill.CorpBillStatus = (int)StatusEnum.已完成;
             //string json = Newtonsoft.Json.JsonConvert.SerializeObject(employee);
 
             CorpBillBLL corpBillBLL = new CorpBillBLL();
-            EmployeeSalaryBLL empSalaryBLL = new EmployeeSalaryBLL();
+            CorpBillDetailBLL detailBLL = new CorpBillDetailBLL();
+
             //获取企业账单
             ResultModel<CorpBill> corpBillResult = corpBillBLL.LoadCorpBills(corpBill.CorpId);
             if (corpBillResult.ResultStatus != 0)
@@ -213,14 +214,12 @@ namespace HRSite.Controllers
                 return Content("账单新增失败");
 
             //新增制单明细
-            foreach (EmployeeSalary detail in details)
+            foreach (CorpBillDetail detail in details)
             {
-                detail.CorpId = corpBill.CorpId;
                 detail.CorpBillId = corpBillId;
-                detail.PayDate = corpBill.PayDate;
-                detail.EmpSalaryStatus = (int)StatusEnum.已完成;
+                detail.DetailStatus = (int)StatusEnum.已完成;
 
-                result = empSalaryBLL.Insert(detail);
+                result = detailBLL.Insert(detail);
                 if (result.ResultStatus != 0)
                     return Json(result);
             }

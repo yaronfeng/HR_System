@@ -30,7 +30,7 @@ namespace HR.Model
         private decimal serviceAmount;
         private decimal totalAmount;
         private string memo = String.Empty;
-        private int corpBillStatus;
+        private int supBillStatus;
         #endregion
 
         #region 构造函数
@@ -226,10 +226,10 @@ namespace HR.Model
         /// <summary>
         /// 
         /// </summary>
-		public int CorpBillStatus
+		public int SupBillStatus
         {
-            get { return corpBillStatus; }
-            set { corpBillStatus = value; }
+            get { return supBillStatus; }
+            set { supBillStatus = value; }
         }
 
         #endregion

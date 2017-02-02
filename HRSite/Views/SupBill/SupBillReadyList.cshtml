@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "可生成供应商列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript" src="/JS/SupBill/SupBillReadyList.js"></script>
+
+
+<div class="am-cf am-padding am-padding-bottom-0">
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">可生成供应商列表</strong> / <small>Table</small></div>
+</div>
+<hr>
+<div class="am-g">
+
+    <div class="am-u-sm-12 am-u-md-3">
+        <div class="am-form-group">
+            <select data-am-selected="{btnSize: 'sm'}">
+                <option value="option1">已完成</option>
+                <option value="option2">已作废</option>
+            </select>
+        </div>
+    </div>
+    <div class="am-u-sm-12 am-u-md-3">
+        <div class="am-input-group am-input-group-sm">
+            <input type="text" class="am-form-field">
+            <span class="am-input-group-btn">
+                <button class="am-btn am-btn-default" type="button" id="btnSearch">搜索</button>
+            </span>
+        </div>
+
+    </div>
+</div>
+
+<div class="am-g">
+    <div class="am-u-sm-12">
+        <div id="jqxListGrid"></div>
+    </div>
+</div>
+

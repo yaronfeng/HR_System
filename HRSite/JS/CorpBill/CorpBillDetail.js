@@ -20,11 +20,6 @@
     $("#numServiceAmount").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
     $("#numTotalAmount").jqxNumberInput({ decimalDigits: 2, Digits: 6, spinButtons: true, disabled: true });
 
-    var CorpUrl = "../Supplier/Suppliers";
-    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "SupId" }, { name: "SupName" }], url: CorpUrl };
-    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
-    $("#selSupId").jqxComboBox({ source: CorpDataAdapter, displayMember: "SupName", valueMember: "SupId", autoComplete: true, searchMode: "contains", height: 25, disabled: true });
-
     var CorpUrl = "/CommBase/PayCitys";
     var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "DetailId" }, { name: "DetailName" }], url: CorpUrl };
     var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
@@ -69,7 +64,6 @@
 
                 $("#tmBillDate").val(rtnObj.BillDate);
                 $("#tmPayDate").val(rtnObj.PayDate);
-                $("#selSupId").val(rtnObj.SupId);
                 $("#selPayCity").val(rtnObj.PayCity);
 
             }
@@ -92,9 +86,6 @@
            { name: "EmpName", type: "string" },
            { name: "PayCity", type: "int" },
            { name: "PayCityName", type: "string" },
-           { name: "CardNo", type: "string" },
-           { name: "SocialFundNum", type: "decimal" },
-           { name: "HouseFundNum", type: "decimal" },
            { name: "CorpId", type: "int" },
            { name: "CorpPensionIns", type: "decimal" },
            { name: "CorpMedicalIns", type: "decimal" },
@@ -149,7 +140,7 @@
             return returnData;
         },
         type: "POST",
-        sortcolumn: "EmpSalaryId",
+        sortcolumn: "emps.EmpSalaryId",
         sortdirection: "desc",
         formatdata: function (data) {
 
@@ -193,10 +184,7 @@
         columns: [
           { text: "序号", cellsrenderer: numberrenderer, width: 40, sortable: false, enabletooltips: false, menu: false, resizable: false, editable: false, pinned: true },
           { text: "姓名", datafield: "EmpName", pinned: true, width: 90, editable: false },
-          { text: "身份证", datafield: "CardNo", width: 150, editable: false },
-          { text: "缴费区域", datafield: "PayCityName", width: 70, editable: false },
-          { text: "社保基数", datafield: "SocialFundNum", width: 70, editable: false },
-          { text: "公积金基数", datafield: "HouseFundNum", width: 70, editable: false },
+          { text: "缴费区域", datafield: "PayCityName", pinned: true, width: 70, editable: false },
           { text: "养老保险", columngroup: 'CorpDetails', datafield: "CorpPensionIns", width: 70 },
           { text: "医疗保险", columngroup: 'CorpDetails', datafield: "CorpMedicalIns", width: 70 },
           { text: "失业保险", columngroup: 'CorpDetails', datafield: "CorpUnempIns", width: 70 },
@@ -226,7 +214,6 @@
           { text: "实发工资", datafield: "FinalAmount", width: 70 },
           { text: "服务费", datafield: "ServiceAmount", width: 70 },
           { text: "补收/退款", datafield: "RefundAmount", width: 70 },
-          { text: "合计", datafield: "AllTotalAmount", width: 70 },
         ],
         columngroups: [
             { text: '企业', align: 'center', name: 'CorpDetails' },
