@@ -225,12 +225,12 @@ namespace HRSite.Controllers
                 empSalary.EmpRepInjuryIns = empRepInjuryIns;
                 empSalary.EmpTotal = empTotal;
 
-                decimal personalTax = 0;
-                empSalary.PersonalTax = personalTax;//个调税
                 empSalary.TotalAmount = emp.TotalAmount;
                 empSalary.RepairAmount = emp.RepairAmount;//补充社保
                 decimal grossAmount = emp.TotalAmount - empTotal;
                 empSalary.GrossAmount = grossAmount;//税前
+                decimal personalTax = Calculator.PersonalTax(grossAmount);
+                empSalary.PersonalTax = personalTax;//个调税
                 decimal finalAmount = grossAmount - personalTax;
                 empSalary.FinalAmount = finalAmount;//实发
                 empSalary.ServiceAmount = emp.ServiceAmount;//服务费

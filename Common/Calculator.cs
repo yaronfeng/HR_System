@@ -4,47 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common
+namespace HR.Common
 {
     public class Calculator
     {
         public Calculator() {
         }
-        public int PersonalTax(decimal taxAmount)
+        /// <summary>
+        /// 个调税计算
+        /// </summary>
+        /// <param name="taxAmount"></param>
+        /// <returns></returns>
+        public static decimal PersonalTax(decimal taxAmount)
         {
-            int personalTax = 0;
-            //if (taxAmount < 1500)
-            //{
-            //    personalTax = 3;//3%
-            //}
-            //else if (taxAmount > 1500 && taxAmount < 4500)
-            //{
-            //    personalTax = 10;
-            //}
-            //else if (taxAmount > 4500 && taxAmount < 9000)
-            //{
-            //    personalTax = 20;
-            //}
-            //else if (taxAmount > 9000 && taxAmount < 35000)
-            //{
-            //    personalTax = 25;
-            //}
-            //else if (taxAmount > 3500 && taxAmount < 55000)
-            //{
-            //    personalTax = 30;
-            //}
-            //else if (taxAmount > 5500 && taxAmount < 80000)
-            //{
-            //    personalTax = 35;
-            //}
-            //else
-            //{
-            //    personalTax = 45;
-            //}
+            decimal personalTax = 0;
+           
+            decimal tmpTax = (taxAmount - 3500m) * 0.05m;
 
-            double[] sa = { 0.6, 2, 4, 5, 6, 7, 9 };
-            double[] sad = { 0, 21, 111, 201, 551, 1101, 2701 };
-
+            decimal[] personalTaxAll = { (0.6m * tmpTax) - 5 * 0, 2 * tmpTax - 5 * 21, 4 * tmpTax - 5 * 111, 5 * tmpTax - 5 * 201, 6 * tmpTax - 5 * 551, 7 * tmpTax - 5 * 1101, 9 * tmpTax - 5 * 2701 };
+            personalTax = personalTaxAll.Max();
+            personalTax = personalTax < 0 ? 0 : personalTax;
             return personalTax;
         }
     }

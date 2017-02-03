@@ -64,10 +64,11 @@ namespace HR.SQLServerDAL
             else
                 select.OrderStr = orderStr;
 
-            select.ColumnName = "EmpSalaryId,EmpId,PayCity,sdcity.DetailName as PayCityName,CorpId,CorpPensionIns,CorpMedicalIns,CorpUnempIns,CorpInjuryIns,CorpBirthIns,CorpDisabledIns,CorpIllnessIns,CorpHeatAmount,CorpHouseFund,CorpRepInjuryIns,CorpTotal,EmpPensionIns,EmpMedicalIns,EmpUnempIns,EmpInjuryIns,EmpBirthIns,EmpDisabledIns,EmpIllnessIns,EmpHeatAmount,EmpHouseFund,EmpRepInjuryIns,EmpTotal,PersonalTax,TotalAmount,RepairAmount,GrossAmount,FinalAmount,ServiceAmount,RefundAmount,PayDate,EmpSalaryStatus,Memo";
+            select.ColumnName = "EmpSalaryId,emps.EmpId,emp.EmpName,emps.PayCity,sdcity.DetailName as PayCityName,emps.CorpId,CorpPensionIns,CorpMedicalIns,CorpUnempIns,CorpInjuryIns,CorpBirthIns,CorpDisabledIns,CorpIllnessIns,CorpHeatAmount,CorpHouseFund,CorpRepInjuryIns,CorpTotal,EmpPensionIns,EmpMedicalIns,EmpUnempIns,EmpInjuryIns,EmpBirthIns,EmpDisabledIns,EmpIllnessIns,EmpHeatAmount,EmpHouseFund,EmpRepInjuryIns,EmpTotal,PersonalTax,emps.TotalAmount,RepairAmount,GrossAmount,FinalAmount,ServiceAmount,RefundAmount,PayDate,EmpSalaryStatus";
 
             System.Text.StringBuilder sb = new StringBuilder();
             sb.Append(" Usr_EmployeeSalary emps");
+            sb.Append(" left join Usr_Employee emp on emp.EmpId = emps.EmpId");
             sb.AppendFormat(" left join bd_StyleDetail sdcity on sdcity.DetailId = emps.PayCity and sdcity.StyleId = {0}", (int)StyleTypeEnum.缴费城市类型);
 
             select.TableName = sb.ToString();

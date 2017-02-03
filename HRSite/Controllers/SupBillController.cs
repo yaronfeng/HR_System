@@ -12,7 +12,7 @@ namespace HRSite.Controllers
 {
     public class SupBillController : Controller
     {
-        private string redirectUrl = "/CorpBill/CorpBillReadyList";
+        private string redirectUrl = "/SupBill/SupBillReadyList";
         // GET: SupBill
         public ActionResult SupBillList()
         {
@@ -65,6 +65,30 @@ namespace HRSite.Controllers
 
             SupBillBLL supbillBLL = new SupBillBLL();
             ResultModel result = supbillBLL.LoadSupBillReadyList(0, 200, orderStr);
+
+            System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("count", result.AffectCount);
+            dic.Add("data", dt);
+            string jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(dic, new Newtonsoft.Json.Converters.DataTableConverter());
+            result.ReturnValue = jsonStr;
+
+            return Json(result);
+        }
+
+        [HttpPost]
+        public ActionResult LoadSupBillList(int pageIndex, int pageSize, string orderField, string sortOrder)
+        {
+            switch (orderField)
+            {
+                case "SupId":
+                    orderField = "SupId";
+                    break;
+            }
+            string orderStr = string.Format("{0} {1}", orderField, sortOrder);
+
+            SupBillBLL supbillBLL = new SupBillBLL();
+            ResultModel result = supbillBLL.LoadSupBillList(pageIndex, pageSize, orderStr);
 
             System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
             Dictionary<string, object> dic = new Dictionary<string, object>();

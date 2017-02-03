@@ -152,9 +152,9 @@ $(document).ready(function () {
             success: function (result) {
                 var obj = result;
                 alert(obj.Message);
-                //if (obj.ResultStatus == 0) {
-                //    window.document.location.href = "/CorpBill/CorpBillList";
-                //}
+                if (obj.ResultStatus == 0) {
+                    window.document.location.href = "/Employee/CalculatePay";
+                }
             }
         });
     });

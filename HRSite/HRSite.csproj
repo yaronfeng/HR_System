@@ -566,6 +566,7 @@
     <Content Include="JS\SocialBase\SocialBaseList.js" />
     <Content Include="JS\SocialBase\SocialBaseUpdate.js" />
     <Content Include="JS\SupBill\SupBillAdd.js" />
+    <Content Include="JS\SupBill\SupBillList.js" />
     <Content Include="JS\SupBill\SupBillReadyList.js" />
     <Content Include="JS\Supplier\SupplierAdd.js" />
     <Content Include="JS\Supplier\SupplierDetail.js" />

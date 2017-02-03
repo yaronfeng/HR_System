@@ -18,6 +18,35 @@ namespace HR.SQLServerDAL
             }
         }
 
+        public SelectModel SupBillListSelect(int pageIndex, int pageSize, string orderStr)
+        {
+            SelectModel select = new SelectModel();
+
+            select.PageIndex = pageIndex;
+            select.PageSize = pageSize;
+            if (string.IsNullOrEmpty(orderStr))
+                select.OrderStr = " SupBillId desc";
+            else
+                select.OrderStr = orderStr;
+
+            select.ColumnName = "SupBillId,BillDate,PayDate,sbl.PayCity,sbl.SupId,sup.SupName as SupName,BillPensionIns,BillMedicalIns,BillUnempIns,BillInjuryIns,BillBirthIns,BillDisabledIns,BillIllnessIns,BillHeatAmount,BillHouseFund,BillRepInjuryIns,CorpOtherPay,EmpOtherPay,sbl.ServiceAmount,TotalAmount,SupBillStatus,sd.DetailName as StatusName";
+
+            System.Text.StringBuilder sb = new StringBuilder();
+            sb.Append(" Usr_SupBill sbl");
+            sb.Append(" inner join Usr_Supplier sup on sup.SupId = sbl.SupId");
+            sb.AppendFormat(" inner join bd_StyleDetail sd on sd.DetailId = sbl.SupBillStatus and sd.StyleId = 5", (int)StyleTypeEnum.通用状态);
+
+            select.TableName = sb.ToString();
+
+            //sb.Length = 0;
+
+            //sb.AppendFormat(" and di.PositionStatus >{0} ", (int)StatusEnum.已作废);
+
+            //select.WhereStr = sb.ToString();
+
+            return select;
+        }
+
         public SelectModel SupBillReadyList(int pageIndex, int pageSize, string orderStr)
         {
             SelectModel select = new SelectModel();

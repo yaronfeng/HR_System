@@ -44,6 +44,14 @@ namespace HR.BLL
             return result;
         }
 
+        public ResultModel LoadSupBillList(int pageIndex, int pageSize, string orderStr)
+        {
+            SelectModel select = sql_insrance.SupBillListSelect(pageIndex, pageSize, orderStr);
+            ResultModel result = Load(select);
+
+            return result;
+        }
+
         protected override List<SqlParameter> CreateInsertParameters(IModel obj, ref SqlParameter returnValue)
         {
             SupBill usr_supbill = (SupBill)obj;
