@@ -34,8 +34,13 @@ namespace HRSite.Controllers
             if (manAccount == null || string.IsNullOrEmpty(manAccount.ManAccount))
                 return Content("0");
 
-            Session["accountName"] = manAccount.UserName;
+            Session["accountName"] = manAccount;
             return Content("1");
+        }
+
+        public ActionResult LoginOut()
+        {
+            return RedirectToAction("Login");
         }
     }
 }

@@ -21,6 +21,13 @@ namespace HR.BLL
 
         private SupBillSQL sql_insrance = new SupBillSQL();
 
+        public ResultModel LoadEmployeeSalaryByIdList(int pageIndex, int pageSize, string orderStr, int supBillId)
+        {
+            SelectModel select = sql_insrance.EmployeeSalaryBySupBillIdSelect(pageIndex, pageSize, orderStr, supBillId);
+            ResultModel result = Load(select);
+
+            return result;
+        }
         public ResultModel LoadSupEmployeeList(int pageIndex, int pageSize, string orderStr, int supId)
         {
             SelectModel select = sql_insrance.EmployeeBySupIdSelect(pageIndex, pageSize, orderStr, supId);

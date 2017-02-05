@@ -22,6 +22,33 @@ namespace HRSite.Controllers
         {
             return View();
         }
+        public ActionResult SupBillDetail()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult LoadEmployeeSalaryByIdList(int pageIndex, int pageSize, string orderField, string sortOrder, int supBillId)
+        {
+            switch (orderField)
+            {
+                case "EmpSalaryId":
+                    orderField = "emps.EmpSalaryId";
+                    break;
+            }
+            string orderStr = string.Format("{0} {1}", orderField, sortOrder);
+
+            SupBillBLL supbillBLL = new SupBillBLL();
+            ResultModel result = supbillBLL.LoadEmployeeSalaryByIdList(0, 500, orderStr, supBillId);
+
+            System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("count", result.AffectCount);
+            dic.Add("data", dt);
+            string jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(dic, new Newtonsoft.Json.Converters.DataTableConverter());
+            result.ReturnValue = jsonStr;
+
+            return Json(result);
+        }
         public ActionResult SupBillAdd()
         {
             int id = 0;
@@ -101,6 +128,27 @@ namespace HRSite.Controllers
         }
 
         [HttpPost]
+        public ActionResult Get(int id)
+        {
+            if (id <= 0)
+                return Json(new ResultModel(string.Format("{0}不存在", this.ModelName)));
+
+            SupBillBLL dal = new SupBillBLL();
+            ResultModel result = dal.Get(id);
+            if (result.ResultStatus != 0)
+                return Json(result);
+
+            object rtnObj = result.ReturnValue;
+            if (rtnObj == null)
+                return Json(new ResultModel(string.Format("{0}不存在", this.ModelName)));
+
+            result.ResultStatus = 0;
+            result.Message = string.Format("{0}获取成功", this.ModelName);
+            result.ReturnValue = Newtonsoft.Json.JsonConvert.SerializeObject(rtnObj);
+            return Json(result);
+        }
+
+        [HttpPost]
         public ActionResult Insert(SupBill supBill, SupBillDetail[] details)
         {
             supBill.SupBillStatus = (int)StatusEnum.已完成;
@@ -146,6 +194,10 @@ namespace HRSite.Controllers
             result.ReturnValue = "";
             result.ResultStatus = 0;
             return Json(result);
+        }
+        protected string ModelName
+        {
+            get { return "账单"; }
         }
     }
 }

@@ -83,6 +83,7 @@
         cellHtml += "<a target=\"_self\" href=\"CorpBillDetail?id=" + value + "\">明细</a>";
 
         cellHtml += "&nbsp;&nbsp;&nbsp<a target=\"_self\" href=\"CorpBillUpdate?id=" + value + "\">修改</a>";
+        cellHtml += "&nbsp;&nbsp;&nbsp<a target=\"_self\" href=\"javascript:SendCorpBillEmail(" + value + ")\">发送</a>";
 
         cellHtml += "</div>";
         return cellHtml;
@@ -103,7 +104,7 @@
             return args.data;
         },
         columns: [
-          { text: "操作", datafield: "CorpBillId", cellsrenderer: cellsrenderer, width: 100, sortable: false, enabletooltips: false, menu: false, resizable: false, pinned: true },
+          { text: "操作", datafield: "CorpBillId", cellsrenderer: cellsrenderer, width: 120, sortable: false, enabletooltips: false, menu: false, resizable: false, pinned: true },
           { text: "序号", cellsrenderer: numberrenderer, width: 40, sortable: false, enabletooltips: false, menu: false, resizable: false, pinned: true },
           { text: "企业名称", datafield: "CorpName", pinned: true, width: 150 },
           { text: "账单月", datafield: "PayDate", cellsformat: "yyyy-MM", width: 120 },
@@ -122,4 +123,29 @@
           { text: "状态", datafield: "StatusName", width: 90 }
         ]
     });
+
+
 });
+
+//发送邮件 操作
+function SendCorpBillEmail(id) {
+
+    if (!confirm("确定发送邮件操作吗?")) { return; }
+
+    var temp = new Object();
+    temp.id = id;
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/Send/SendEmail",
+        data: JSON.stringify(temp),
+        dataType: "json",
+        success: function (result) {
+            var obj = result;
+            if (obj.ResultStatus == 0) {
+                alert("发送成功");
+            }
+        }
+    });
+}

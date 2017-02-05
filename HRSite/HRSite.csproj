@@ -550,6 +550,7 @@
     <Content Include="JS\CorpBill\CorpBillDetail.js" />
     <Content Include="JS\CorpBill\CorpBillList.js" />
     <Content Include="JS\CorpBill\CorpBillReadyList.js" />
+    <Content Include="JS\CorpBill\CorpBillUpdate.js" />
     <Content Include="JS\Corporation\CorporationAdd.js" />
     <Content Include="JS\Corporation\CorporationDetail.js" />
     <Content Include="JS\Corporation\CorporationList.js" />
@@ -566,6 +567,7 @@
     <Content Include="JS\SocialBase\SocialBaseList.js" />
     <Content Include="JS\SocialBase\SocialBaseUpdate.js" />
     <Content Include="JS\SupBill\SupBillAdd.js" />
+    <Content Include="JS\SupBill\SupBillDetail.js" />
     <Content Include="JS\SupBill\SupBillList.js" />
     <Content Include="JS\SupBill\SupBillReadyList.js" />
     <Content Include="JS\Supplier\SupplierAdd.js" />
@@ -577,6 +579,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Cache\CacheProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -586,12 +589,15 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\EmployeeSalaryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SendController.cs" />
     <Compile Include="Controllers\SocialBaseController.cs" />
     <Compile Include="Controllers\SupBillController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="FilterAttribute\CheckinLoginAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="PassPort\CheckLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\JsUtility.cs" />
   </ItemGroup>
@@ -648,6 +654,7 @@
     <Content Include="Views\SupBill\SupBillList.cshtml" />
     <Content Include="Views\SupBill\SupBillReadyList.cshtml" />
     <Content Include="Views\SupBill\SupBillAdd.cshtml" />
+    <Content Include="Views\SupBill\SupBillDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -658,6 +665,7 @@
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Views\CommBase\" />
+    <Folder Include="Views\Send\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

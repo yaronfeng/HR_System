@@ -1,16 +1,15 @@
 ﻿
 @{
-    ViewBag.Title = "修改账单";
+    ViewBag.Title = "账单明细";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<script type="text/javascript" src="/JS/CorpBill/CorpBillUpdate.js"></script>
+<script type="text/javascript" src="/JS/SupBill/SupBillDetail.js"></script>
 
 
 <div class="am-cf am-padding am-padding-bottom-0">
     <input type="hidden" id="hidId" value="@Request.QueryString["id"]" />
     <input type="hidden" id="hidJsonOpt" value="@ViewData["JsonOptData"]" />
-    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">修改账单</strong> / <small>Personal information</small></div>
+    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">账单明细</strong> / <small>Personal information</small></div>
 </div>
 <hr />
 <div class="am-g">
@@ -30,8 +29,8 @@
                         </div>
                     </li>
                     <li>
-                        <span>客户名称：</span>
-                        <div class="txb" id="selCorpId">
+                        <span>供应商名称：</span>
+                        <div class="txb" id="selSupId">
                         </div>
                     </li>
                     <li>
@@ -120,9 +119,5 @@
     <div class="am-u-sm-12">
         <div id="jqxListGrid"></div>
     </div>
-</div>
-
-<div class="am-margin">
-    <button type="button" class="am-btn am-btn-primary am-btn-sm" id="btnUpdate">保存</button>
 </div>
 
