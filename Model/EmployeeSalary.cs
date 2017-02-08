@@ -18,23 +18,7 @@ namespace HR.Model
         /// <summary>
         /// Id
         /// </summary>
-        public string EmpName { get; set; }
-        /// <summary>
-        /// Id
-        /// </summary>
         public int PayCity { get; set; }
-        /// <summary>
-        /// Id
-        /// </summary>
-        public string CardNo { get; set; }
-        /// <summary>
-        /// Id
-        /// </summary>
-        public decimal SocialFundNum { get; set; }
-        /// <summary>
-        /// Id
-        /// </summary>
-        public decimal HouseFundNum { get; set; }
         /// <summary>
         /// Id
         /// </summary>

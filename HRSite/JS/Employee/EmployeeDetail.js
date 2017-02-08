@@ -229,6 +229,15 @@
         return "<div style=\"text-align: center; margin-top: 5px;\">" + (1 + row) + "</div>";
     }
 
+    var cellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties) {
+
+        var item = $("#jqxListGrid").jqxGrid("getrowdata", row);
+        var cellHtml = "<div style=\"overflow: hidden; text-overflow: ellipsis; padding:0px 0px 2px 10px; margin:4px 0px 0px 5px;\">";
+        cellHtml += "<a target=\"_self\" href=\"javascript:SendEmployeeEmail(" + value + ")\">发送</a>";
+        cellHtml += "</div>";
+        return cellHtml;
+    }
+
     $("#jqxListGrid").jqxGrid(
     {
         width: "98%",
@@ -243,6 +252,7 @@
             return args.data;
         },
         columns: [
+          { text: "操作", datafield: "EmpSalaryId", cellsrenderer: cellsrenderer, width: 100, sortable: false, enabletooltips: false, menu: false, resizable: false, pinned: true },
           { text: "序号", cellsrenderer: numberrenderer, width: 40, sortable: false, enabletooltips: false, menu: false, resizable: false, editable: false, pinned: true },
           { text: "工资月", datafield: "PayDate", cellsformat: "yyyy-MM", pinned: true, width: 90, editable: false },
           { text: "姓名", datafield: "EmpName", pinned: true, width: 70, editable: false },
@@ -284,3 +294,26 @@
         ]
     });
 });
+
+//发送邮件 操作
+function SendEmployeeEmail(id) {
+
+    if (!confirm("确定发送邮件操作吗?")) { return; }
+
+    var temp = new Object();
+    temp.id = id;
+
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/Send/SendEmployeeEmail",
+        data: JSON.stringify(temp),
+        dataType: "json",
+        success: function (result) {
+            var obj = result;
+            if (obj.ResultStatus == 0) {
+                alert("发送成功");
+            }
+        }
+    });
+}
