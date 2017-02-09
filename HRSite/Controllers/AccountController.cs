@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using HR.BLL;
 using HR.Model;
+using HR.Common;
 
 namespace HRSite.Controllers
 {
@@ -28,13 +29,15 @@ namespace HRSite.Controllers
             if (string.IsNullOrEmpty(password) || password == null)
                 return Content("0");
 
-            ManagerAccount manAccount = new ManagerAccount();
+            ResultModel result = new ResultModel();
             ManagerAccountBLL manAccountBLL = new ManagerAccountBLL();
-            manAccount = manAccountBLL.Login(accountName, password);
-            if (manAccount == null || string.IsNullOrEmpty(manAccount.ManAccount))
+            result = manAccountBLL.Login(accountName, password);
+
+            UserModel user = result.ReturnValue as UserModel;
+            if (result.ResultStatus != 0)
                 return Content("0");
 
-            Session["accountName"] = manAccount;
+            Session["accountName"] = user;
             return Content("1");
         }
 

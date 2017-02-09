@@ -11,7 +11,7 @@ namespace HRSite
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToUpper() == "ORDER")
+            if (filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToUpper() == "ACCOUNT")
             {
                 return;
             }
@@ -21,7 +21,7 @@ namespace HRSite
                 UserModel um = CheckLogin.GetSessionInfo();
                 if (um == null)
                 {
-                    filterContext.Result = new RedirectResult("/Account/LoginOut");
+                    filterContext.Result = new RedirectResult("/Account/Login");
                     return;
                 }
             }
@@ -30,7 +30,7 @@ namespace HRSite
                 UserModel um = CheckLogin.GetSessionInfo();
                 if (um == null)
                 {
-                    filterContext.HttpContext.Response.Redirect("/Account/LoginOut", false);
+                    filterContext.HttpContext.Response.Redirect("/Account/Login", false);
                     return;
                 }
             }

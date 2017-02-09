@@ -5,7 +5,7 @@ using HR.Common;
 
 namespace HR.Model
 {
-    public class ManagerAccount
+    public class ManagerAccount : MasterModel
     {
         /// <summary>
         /// Id
