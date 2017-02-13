@@ -45,6 +45,9 @@
   <ItemGroup>
     <None Include="系统设计\AmazeUI_admin_2.7.2.zip" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="需求修改\20170213.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

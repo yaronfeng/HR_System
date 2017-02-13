@@ -68,7 +68,7 @@
     $("#chkIsHandBook").jqxCheckBox();
     $("#chkIsResidentPermit").jqxCheckBox();
     $("#chkIsBirthIns").jqxCheckBox();
-
+    $("#chkIsContract").jqxCheckBox();
 
     //校验
     $("#jqxValidator").jqxValidator({
@@ -114,6 +114,7 @@
             Address: $("#txbAddress").val(),
             Phone: $("#txbPhone").val(),
             EntryDate: $("#tmEntryDate").val(),
+            IsContract: $("#chkIsContract").val(),
             ConStartDate: $("#tmConStartDate").val(),
             ConEndDate: $("#tmConEndDate").val(),
             LeaveDate: $("#tmLeaveDate").val(),

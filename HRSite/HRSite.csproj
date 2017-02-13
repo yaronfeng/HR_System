@@ -655,6 +655,7 @@
     <Content Include="Views\SupBill\SupBillReadyList.cshtml" />
     <Content Include="Views\SupBill\SupBillAdd.cshtml" />
     <Content Include="Views\SupBill\SupBillDetail.cshtml" />
+    <None Include="Properties\PublishProfiles\HRWeb.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

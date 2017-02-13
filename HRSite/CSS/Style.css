@@ -1,5 +1,8 @@
 ﻿body {
 }
+ol, ul, dl {
+	list-style-type: none;
+}
 /* Content */
 .am-panel .p1 {
 	background: #fff;
@@ -44,4 +47,26 @@
 	-webkit-border-radius: 5px;   /* Webkit browsers */
 	border-radius: 5px;            /* W3C syntax */
 	background-color: #fff;
+}
+
+.Inquire {
+	padding: 20px 30px 0px 30px;
+	font-size: 14px;
+	color: #666;
+	clear: both;
+	overflow: hidden;
+}
+.Inquire ul li {
+	float: left;
+	height: 40px;
+	padding-right: 2%;
+}
+.Inquire span {
+	line-height: 25px;
+	float: left;
+	display: block;
+}
+.Inquire .txb {
+	float: left;
+	margin-left: 5px;
 }

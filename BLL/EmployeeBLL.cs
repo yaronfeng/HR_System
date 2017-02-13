@@ -70,6 +70,10 @@ namespace HR.BLL
             entrydatepara.Value = usr_employee.EntryDate;
             paras.Add(entrydatepara);
 
+            SqlParameter iscontractpara = new SqlParameter("@IsContract", SqlDbType.Int, 4);
+            iscontractpara.Value = usr_employee.IsContract;
+            paras.Add(iscontractpara);
+
             SqlParameter constartdatepara = new SqlParameter("@ConStartDate", SqlDbType.DateTime, 8);
             constartdatepara.Value = usr_employee.ConStartDate;
             paras.Add(constartdatepara);
@@ -272,6 +276,11 @@ namespace HR.BLL
             if (dr[indexEntryDate] != DBNull.Value)
             {
                 employee.EntryDate = Convert.ToDateTime(dr[indexEntryDate]);
+            }
+            int indexIsContract = dr.GetOrdinal("IsContract");
+            if (dr[indexIsContract] != DBNull.Value)
+            {
+                employee.IsContract = Convert.ToInt32(dr[indexIsContract]);
             }
             int indexConStartDate = dr.GetOrdinal("ConStartDate");
             if (dr[indexConStartDate] != DBNull.Value)
@@ -511,6 +520,10 @@ namespace HR.BLL
             entrydatepara.Value = usr_employee.EntryDate;
             paras.Add(entrydatepara);
 
+            SqlParameter iscontractpara = new SqlParameter("@IsContract", SqlDbType.Int, 4);
+            iscontractpara.Value = usr_employee.IsContract;
+            paras.Add(iscontractpara);
+
             SqlParameter constartdatepara = new SqlParameter("@ConStartDate", SqlDbType.DateTime, 8);
             constartdatepara.Value = usr_employee.ConStartDate;
             paras.Add(constartdatepara);
@@ -667,9 +680,9 @@ namespace HR.BLL
 
             return paras;
         }
-        public ResultModel LoadEmployeeList(int pageIndex, int pageSize, string orderStr)
+        public ResultModel LoadEmployeeList(int pageIndex, int pageSize, string orderStr, string empName, int corpId, DateTime conStartDate, DateTime conEndDate)
         {
-            SelectModel select = sql_insrance.EmployeeListSelect(pageIndex, pageSize, orderStr);
+            SelectModel select = sql_insrance.EmployeeListSelect(pageIndex, pageSize, orderStr, empName, corpId, conStartDate, conEndDate);
             ResultModel result = Load(select);
 
             return result;

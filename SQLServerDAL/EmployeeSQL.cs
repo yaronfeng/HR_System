@@ -21,7 +21,7 @@ namespace HR.SQLServerDAL
             }
         }
 
-        public SelectModel EmployeeListSelect(int pageIndex, int pageSize, string orderStr)
+        public SelectModel EmployeeListSelect(int pageIndex, int pageSize, string orderStr, string empName, int corpId, DateTime conStartDate, DateTime conEndDate)
         {
             SelectModel select = new SelectModel();
 
@@ -44,11 +44,18 @@ namespace HR.SQLServerDAL
 
             select.TableName = sb.ToString();
 
-            //sb.Length = 0;
+            sb.Length = 0;
 
-            //sb.AppendFormat(" and di.PositionStatus >{0} ", (int)StatusEnum.已作废);
+            sb.AppendFormat(" emp.EmpStatus ={0} ", (int)StatusEnum.已完成);
+            sb.AppendFormat(" and emp.ConEndDate between '{0}' and '{1}' ", conStartDate, conEndDate);
 
-            //select.WhereStr = sb.ToString();
+            if (!string.IsNullOrEmpty(empName))
+                sb.AppendFormat(" and emp.EmpName ='%{0}%' ", empName);
+            if(corpId > 0)
+                sb.AppendFormat(" and emp.CorpId ={0} ", corpId);
+            
+
+            select.WhereStr = sb.ToString();
 
             return select;
         }

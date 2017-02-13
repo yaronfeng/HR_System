@@ -69,6 +69,7 @@
     $("#chkIsHandBook").jqxCheckBox({ disabled: true });
     $("#chkIsResidentPermit").jqxCheckBox({ disabled: true });
     $("#chkIsBirthIns").jqxCheckBox({ disabled: true });
+    $("#chkIsContract").jqxCheckBox();
 
     //获取实体
     var temp = new Object();
@@ -96,6 +97,7 @@
                 $("#txbAddress").val(rtnObj.Address),
                 $("#txbPhone").val(rtnObj.Phone),
                 $("#tmEntryDate").val(new Date(rtnObj.EntryDate)),
+                $("#chkIsContract").val(new Date(rtnObj.IsContract)),
                 $("#tmConStartDate").val(new Date(rtnObj.ConStartDate)),
                 $("#tmConEndDate").val(new Date(rtnObj.ConEndDate)),
                 $("#tmLeaveDate").val(new Date(rtnObj.LeaveDate)),

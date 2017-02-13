@@ -43,7 +43,7 @@ namespace HRSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoadEmployeeList(int pageIndex, int pageSize, string orderField, string sortOrder)
+        public ActionResult LoadEmployeeList(int pageIndex, int pageSize, string orderField, string sortOrder,string empName,int corpId,DateTime conStartDate,DateTime conEndDate)
         {
             switch (orderField)
             {
@@ -54,7 +54,7 @@ namespace HRSite.Controllers
             string orderStr = string.Format("{0} {1}", orderField, sortOrder);
 
             EmployeeBLL employeeBLL = new EmployeeBLL();
-            ResultModel result = employeeBLL.LoadEmployeeList(pageIndex, pageSize, orderStr);
+            ResultModel result = employeeBLL.LoadEmployeeList(pageIndex, pageSize, orderStr, empName, corpId, conStartDate, conEndDate);
 
             System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
             Dictionary<string, object> dic = new Dictionary<string, object>();
@@ -310,6 +310,7 @@ namespace HRSite.Controllers
             rtnEmployee.Address = employee.Address;
             rtnEmployee.Phone = employee.Phone;
             rtnEmployee.EntryDate = employee.EntryDate;
+            rtnEmployee.IsContract = employee.IsContract;
             rtnEmployee.ConStartDate = employee.ConStartDate;
             rtnEmployee.ConEndDate = employee.ConEndDate;
             rtnEmployee.LeaveDate = employee.LeaveDate;

@@ -46,6 +46,10 @@ namespace HR.Model
         /// <summary>
         /// 合同起始日
         /// </summary>
+        public int IsContract { get; set; }
+        /// <summary>
+        /// 合同起始日
+        /// </summary>
         public DateTime ConStartDate { get; set; }
         /// <summary>
         /// 合同截止日

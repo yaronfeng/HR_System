@@ -1,9 +1,16 @@
 ﻿$(document).ready(function () {
+
+    $("#txbEmpName").jqxInput({ minLength: 1, height: 25, width: 200 });
+
     var CorpUrl = "../Corporation/Corps";
     var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "CorpId" }, { name: "CorpName" }], url: CorpUrl };
     var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
     $("#selCorpId").jqxComboBox({ source: CorpDataAdapter, displayMember: "CorpName", valueMember: "CorpId", autoComplete: true, searchMode: "contains", height: 25 });
 
+    var tempDate = new Date();
+    tempDate.setMonth(tempDate.getMonth() - 6);
+    $("#tmConStartDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd", width: 100, value: tempDate });
+    $("#tmConEndDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd", width: 100 });
 
     var url = "../Employee/LoadEmployeeList";
     var source =
@@ -55,7 +62,11 @@
                 pageIndex: data.pagenum,
                 pageSize: data.pagesize,
                 orderField: data.sortdatafield,
-                sortOrder: data.sortorder
+                sortOrder: data.sortorder,
+                empName: $("#txbEmpName").val(),
+                corpId: $("#selCorpId").val() == "" ? 0 : $("#selCorpId").val(),
+                conStartDate: $("#tmConStartDate").val(),
+                conEndDate: $("#tmConEndDate").val(),
             };
 
             var objStr = JSON.stringify(obj);
@@ -117,4 +128,10 @@
           { text: "状态", datafield: "StatusName", width: 90 }
         ]
     });
+
+    $("#btnSearch").click(function () {
+        $("#jqxListGrid").jqxGrid("gotopage", 0);
+        $("#jqxListGrid").jqxGrid("updatebounddata", "rows");
+    });
+
 });

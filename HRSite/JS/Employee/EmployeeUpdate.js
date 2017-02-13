@@ -69,7 +69,7 @@
     $("#chkIsHandBook").jqxCheckBox();
     $("#chkIsResidentPermit").jqxCheckBox();
     $("#chkIsBirthIns").jqxCheckBox();
-
+    $("#chkIsContract").jqxCheckBox();
 
     //校验
     $("#jqxValidator").jqxValidator({
@@ -124,6 +124,7 @@
                 $("#txbAddress").val(rtnObj.Address),
                 $("#txbPhone").val(rtnObj.Phone),
                 $("#tmEntryDate").val(new Date(rtnObj.EntryDate)),
+                $("#chkIsContract").val(new Date(rtnObj.IsContract)),
                 $("#tmConStartDate").val(new Date(rtnObj.ConStartDate)),
                 $("#tmConEndDate").val(new Date(rtnObj.ConEndDate)),
                 $("#tmLeaveDate").val(new Date(rtnObj.LeaveDate)),
@@ -179,6 +180,7 @@
             Address: $("#txbAddress").val(),
             Phone: $("#txbPhone").val(),
             EntryDate: $("#tmEntryDate").val(),
+            IsContract: $("#chkIsContract").val(),
             ConStartDate: $("#tmConStartDate").val(),
             ConEndDate: $("#tmConEndDate").val(),
             LeaveDate: $("#tmLeaveDate").val(),
