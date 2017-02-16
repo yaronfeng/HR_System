@@ -555,6 +555,7 @@
     <Content Include="JS\Corporation\CorporationDetail.js" />
     <Content Include="JS\Corporation\CorporationList.js" />
     <Content Include="JS\Corporation\CorporationUpdate.js" />
+    <Content Include="JS\EmployeeSalary\EmployeeSalaryList.js" />
     <Content Include="JS\Employee\CalculatePay.js" />
     <Content Include="JS\Employee\EmployeeAdd.js" />
     <Content Include="JS\Employee\EmployeeDetail.js" />

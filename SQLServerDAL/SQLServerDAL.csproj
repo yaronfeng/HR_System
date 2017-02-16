@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CorpBillSQL.cs" />
     <Compile Include="CorporationSQL.cs" />
+    <Compile Include="EmployeeSalarySQL.cs" />
     <Compile Include="EmployeeSQL.cs" />
     <Compile Include="ManagerAccountSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

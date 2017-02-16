@@ -13,6 +13,7 @@ namespace HR.BLL
 {
     public class EmployeeSalaryBLL : Operate
     {
+        private EmployeeSalarySQL sql_insrance = new EmployeeSalarySQL();
         #region 构造函数
         /// <summary>
         /// 构造函数
@@ -569,6 +570,14 @@ namespace HR.BLL
             {
                 return "Usr_EmployeeSalary";
             }
+        }
+
+        public ResultModel LoadEmployeeSalaryList(int pageIndex, int pageSize, string orderStr, string empName, int corpId)
+        {
+            SelectModel select = sql_insrance.EmployeeSalaryListSelect(pageIndex, pageSize, orderStr, empName, corpId);
+            ResultModel result = Load(select);
+
+            return result;
         }
     }
 }

@@ -696,9 +696,9 @@ namespace HR.BLL
             return result;
         }
 
-        public ResultModel LoadEmployeeExpireList(int pageIndex, int pageSize, string orderStr)
+        public ResultModel LoadEmployeeExpireList(int pageIndex, int pageSize, string orderStr, string empName, int corpId, DateTime conStartDate, DateTime conEndDate)
         {
-            SelectModel select = sql_insrance.EmployeeExpireListSelect(pageIndex, pageSize, orderStr);
+            SelectModel select = sql_insrance.EmployeeExpireListSelect(pageIndex, pageSize, orderStr, empName, corpId, conStartDate, conEndDate);
             ResultModel result = Load(select);
 
             return result;
@@ -707,6 +707,14 @@ namespace HR.BLL
         public ResultModel LoadEmployeePayList(int pageIndex, int pageSize, string orderStr, int corpId, DateTime payDate)
         {
             SelectModel select = sql_insrance.EmployeePayListSelect(pageIndex, pageSize, orderStr, corpId, payDate);
+            ResultModel result = Load(select);
+
+            return result;
+        }
+
+        public ResultModel EmployeeExpireDownLoad(int pageIndex, int pageSize, string orderStr, string empName, int corpId, DateTime conStartDate, DateTime conEndDate)
+        {
+            SelectModel select = sql_insrance.EmployeeExpireDownLoadSelect(pageIndex, pageSize, orderStr, empName, corpId, conStartDate, conEndDate);
             ResultModel result = Load(select);
 
             return result;

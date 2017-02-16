@@ -14,7 +14,7 @@ namespace HR.Common
         /// <summary>
         /// 数据状态
         /// </summary>
-        Common.StatusEnum Status { get; set; }
+        int Status { get; set; }
 
         /// <summary>
         /// 表名

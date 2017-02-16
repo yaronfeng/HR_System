@@ -8,7 +8,7 @@ namespace HR.Common
 {
     public abstract class MasterModel : IModel
     {
-        public StatusEnum Status { get; set; }
+        public int Status { get; set; }
 
         public string TableName { get; }
 

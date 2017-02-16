@@ -6,7 +6,9 @@ using System.Web.Mvc;
 using HR.Model;
 using HR.BLL;
 using HR.Common;
-
+using System.Text;
+using System.Data;
+using System.Collections;
 
 namespace HRSite.Controllers
 {
@@ -43,7 +45,7 @@ namespace HRSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoadEmployeeList(int pageIndex, int pageSize, string orderField, string sortOrder,string empName,int corpId,DateTime conStartDate,DateTime conEndDate)
+        public ActionResult LoadEmployeeList(int pageIndex, int pageSize, string orderField, string sortOrder, string empName, int corpId, DateTime conStartDate, DateTime conEndDate)
         {
             switch (orderField)
             {
@@ -67,7 +69,7 @@ namespace HRSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoadEmployeeExpireList(int pageIndex, int pageSize, string orderField, string sortOrder)
+        public ActionResult LoadEmployeeExpireList(int pageIndex, int pageSize, string orderField, string sortOrder, string empName, int corpId, DateTime conStartDate, DateTime conEndDate)
         {
             switch (orderField)
             {
@@ -78,7 +80,7 @@ namespace HRSite.Controllers
             string orderStr = string.Format("{0} {1}", orderField, sortOrder);
 
             EmployeeBLL employeeBLL = new EmployeeBLL();
-            ResultModel result = employeeBLL.LoadEmployeeExpireList(pageIndex, pageSize, orderStr);
+            ResultModel result = employeeBLL.LoadEmployeeExpireList(pageIndex, pageSize, orderStr, empName, corpId, conStartDate, conEndDate);
 
             System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
             Dictionary<string, object> dic = new Dictionary<string, object>();
@@ -91,7 +93,7 @@ namespace HRSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoadEmployeeSalaryList(int pageIndex, int pageSize, string orderField, string sortOrder,int empId)
+        public ActionResult LoadEmployeeSalaryByEmpIdList(int pageIndex, int pageSize, string orderField, string sortOrder, int empId)
         {
             switch (orderField)
             {
@@ -102,7 +104,7 @@ namespace HRSite.Controllers
             string orderStr = string.Format("{0} {1}", orderField, sortOrder);
 
             EmployeeBLL employeeBLL = new EmployeeBLL();
-            ResultModel result = employeeBLL.LoadEmployeeSalaryList(pageIndex, pageSize, orderStr,empId);
+            ResultModel result = employeeBLL.LoadEmployeeSalaryList(pageIndex, pageSize, orderStr, empId);
 
             System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
             Dictionary<string, object> dic = new Dictionary<string, object>();
@@ -125,7 +127,7 @@ namespace HRSite.Controllers
         /// <param name="payDate"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult LoadEmployeePayList(int pageIndex, int pageSize, string orderField, string sortOrder,int corpId,DateTime payDate)
+        public ActionResult LoadEmployeePayList(int pageIndex, int pageSize, string orderField, string sortOrder, int corpId, DateTime payDate)
         {
             switch (orderField)
             {
@@ -146,6 +148,59 @@ namespace HRSite.Controllers
             result.ReturnValue = jsonStr;
 
             return Json(result);
+        }
+
+        public ActionResult EmployeeDownLoad(string empName, int corpId, DateTime conStartDate, DateTime conEndDate)
+        {
+            EmployeeBLL employeeBLL = new EmployeeBLL();
+            ResultModel result = employeeBLL.EmployeeExpireDownLoad(0, 500, "EmpId", empName, corpId, conStartDate, conEndDate);
+
+            System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
+
+            string excelName = DateTime.Now.ToString("yyyyMMdd");
+            ExportToExcel("application/vnd.ms-excel", excelName + ".xls", dt);
+
+            result.ResultStatus = 0;
+
+            return Json(result);
+        }
+
+        //输入HTTP头，然后把指定的流输出到指定的文件名，然后指定文件类型
+        public void ExportToExcel(string FileType, string FileName, DataTable dt)
+        {
+            System.Web.HttpContext.Current.Response.ContentType = FileType;
+            System.Web.HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.GetEncoding("gb2312");
+            System.Web.HttpContext.Current.Response.Charset = "gb2312";
+            System.Web.HttpContext.Current.Response.AppendHeader("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode(FileName, System.Text.Encoding.UTF8).ToString());
+
+            System.IO.StringWriter tw = new System.IO.StringWriter();
+            //System.Web.HttpContext.Current.Response.Output.Write(dt.ToString());
+            string ls_item = string.Empty;
+            DataRow[] myRow = dt.Select();
+            int i = 0;
+            int cl = dt.Columns.Count;
+            ls_item += "序号\t姓名\t企业\t性别\t身份证\t手机号\t合同起始日\t合同截止日\t应发工资\t学历\t缴费区域\t邮箱\n";
+            foreach (DataRow row in myRow)
+            {
+                for (i = 0; i < cl; i++)
+                {
+                    if (i == (cl - 1))
+                    {
+                        ls_item += row[i].ToString() + "\n";
+                    }
+                    else
+                    {
+                        ls_item += row[i].ToString() + "\t";
+                    }
+                }
+                System.Web.HttpContext.Current.Response.Output.Write(ls_item);
+                ls_item = string.Empty;
+            }
+            /*乱码BUG修改 20140505*/
+            //如果采用以上代码导出时出现内容乱码，可将以下所注释的代码覆盖掉上面【System.Web.HttpContext.Current.Response.Output.Write(ExcelContent.ToString());】即可实现。
+            //System.Web.HttpContext.Current.Response.Write("<meta http-equiv=\"content-type\" content=\"application/ms-excel; charset=utf-8\"/>" + ExcelContent.ToString());
+            System.Web.HttpContext.Current.Response.Flush();
+            System.Web.HttpContext.Current.Response.End();
         }
 
         [HttpPost]

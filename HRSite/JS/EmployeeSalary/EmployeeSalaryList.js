@@ -1,4 +1,5 @@
 ﻿$(document).ready(function () {
+
     $("#txbEmpName").jqxInput({ minLength: 1, height: 25, width: 200 });
 
     var CorpUrl = "../Corporation/Corps";
@@ -6,12 +7,7 @@
     var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
     $("#selCorpId").jqxComboBox({ source: CorpDataAdapter, displayMember: "CorpName", valueMember: "CorpId", autoComplete: true, searchMode: "contains", height: 25 });
 
-    var tempDate = new Date();
-    tempDate.setMonth(tempDate.getMonth() - 6);
-    $("#tmConStartDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd", width: 100, value: tempDate });
-    $("#tmConEndDate").jqxDateTimeInput({ formatString: "yyyy-MM-dd", width: 100 });
-
-    var url = "../Employee/LoadEmployeeExpireList";
+    var url = "../EmployeeSalary/LoadEmployeeSalaryList";
     var source =
     {
         datatype: "json",
@@ -66,7 +62,6 @@
                 corpId: $("#selCorpId").val() == "" ? 0 : $("#selCorpId").val(),
                 conStartDate: $("#tmConStartDate").val(),
                 conEndDate: $("#tmConEndDate").val(),
-
             };
 
             var objStr = JSON.stringify(obj);
@@ -91,6 +86,8 @@
         var item = $("#jqxListGrid").jqxGrid("getrowdata", row);
         var cellHtml = "<div style=\"overflow: hidden; text-overflow: ellipsis; padding:0px 0px 2px 10px; margin:4px 0px 0px 5px;\">";
         cellHtml += "<a target=\"_self\" href=\"EmployeeDetail?id=" + value + "\">明细</a>";
+        cellHtml += "&nbsp;&nbsp;&nbsp<a target=\"_self\" href=\"EmployeeUpdate?id=" + value + "\">修改</a>";
+
         cellHtml += "</div>";
         return cellHtml;
     }
@@ -110,7 +107,7 @@
             return args.data;
         },
         columns: [
-          { text: "操作", datafield: "EmpId", cellsrenderer: cellsrenderer, width: 70, sortable: false, enabletooltips: false, menu: false, resizable: false, pinned: true },
+          { text: "操作", datafield: "EmpId", cellsrenderer: cellsrenderer, width: 100, sortable: false, enabletooltips: false, menu: false, resizable: false, pinned: true },
           { text: "序号", cellsrenderer: numberrenderer, width: 40, sortable: false, enabletooltips: false, menu: false, resizable: false, pinned: true },
           { text: "姓名", datafield: "EmpName", pinned: true, width: 90 },
           { text: "所属企业", datafield: "CorpName", pinned: true, width: 120 },
@@ -131,17 +128,5 @@
         $("#jqxListGrid").jqxGrid("gotopage", 0);
         $("#jqxListGrid").jqxGrid("updatebounddata", "rows");
     });
+
 });
-
-//发送邮件 操作
-function DownLoadEmployee() {
-
-    if (!confirm("确定导出操作吗?")) { return; }
-
-    var empName = $("#txbEmpName").val();
-    var corpId = $("#selCorpId").val() == "" ? 0 : $("#selCorpId").val();
-    var conStartDate = $("#tmConStartDate").val();
-    var conEndDate = $("#tmConEndDate").val();
-
-    window.location.href = "/Employee/EmployeeDownLoad?empName=" + empName + "&corpId=" + corpId + "&conStartDate=" + conStartDate + "&conEndDate=" + conEndDate
-}

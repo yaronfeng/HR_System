@@ -9,21 +9,37 @@
 
 <div class="am-cf am-padding am-padding-bottom-0">
     <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">合同到期列表</strong> / <small>Table</small></div>
+    <div class="am-align-right">
+        <button type="button" class="am-btn am-btn-primary" id="btnDownLoad" onclick="DownLoadEmployee();"><span class="am-icon-download"></span>导出</button>
+        <button type="button" class="am-btn am-btn-primary" id="btnSearch"><span class="am-icon-search"></span>搜索</button>
+    </div>
 </div>
 <hr>
 <div class="am-g">
-    <div class="am-u-sm-12 am-u-md-3">
-        <div class="am-form-group">
-            <div class="txb" id="selCorpId">
+    <div class="am-u-sm-12 am-u-sm-centered">
+        <div class="am-panel am-panel-default">
+            <div class="Inquire">
+                <!---001 start-->
+                <ul>
+                    <li>
+                        <span>姓名：</span>
+                        <div class="txb">
+                            <input type="text" id="txbEmpName" />
+                        </div>
+                    </li>
+                    <li>
+                        <span>所属企业：</span>
+                        <div class="txb" id="selCorpId">
+                        </div>
+                    </li>
+                    <li>
+                        <span>合同日期：</span>
+                        <div class="txb" id="tmConStartDate"></div>
+                        <span>至</span>
+                        <div class="txb" id="tmConEndDate"></div>
+                    </li>
+                </ul>
             </div>
-        </div>
-    </div>
-    <div class="am-u-sm-12 am-u-md-3">
-        <div class="am-input-group am-input-group-sm">
-            <input type="text" class="am-form-field">
-            <span class="am-input-group-btn">
-                <button class="am-btn am-btn-default" type="button" id="btnSearch">搜索</button>
-            </span>
         </div>
     </div>
 </div>

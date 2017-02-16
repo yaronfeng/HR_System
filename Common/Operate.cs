@@ -339,7 +339,7 @@ namespace HR.Common
                 SqlParameter returnValue = new SqlParameter();
 
                 if ((int)obj.Status == 0)
-                    obj.Status = StatusEnum.已完成;
+                    obj.Status = (int)StatusEnum.已完成;
 
                 int i = SqlHelper.ExecuteNonQuery(ConnectString, CommandType.StoredProcedure, this.InsertName, CreateInsertParameters(obj, ref returnValue).ToArray());
 
