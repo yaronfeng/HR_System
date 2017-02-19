@@ -720,6 +720,13 @@ namespace HR.BLL
             return result;
         }
 
+        public ResultModel<Employee> GetEmployeeByCardNo(string cardNo)
+        {
+            string cmdText = string.Format(" select * from dbo.Usr_Employee where CardNo = '{0}'", cardNo);
+            ResultModel<Employee> result = this.Load<Employee>(System.Data.CommandType.Text, cmdText);
+            return result;
+        }
+
         public override string TableName
         {
             get

@@ -579,5 +579,12 @@ namespace HR.BLL
 
             return result;
         }
+
+        public ResultModel<EmployeeSalary> LoadEmployeeSalaryCheckOne(int empId,DateTime payDate)
+        {
+            string cmdText = string.Format(" select * from Usr_EmployeeSalary where EmpId = {0} and datediff(month,[PayDate],'{1}')= 0  ", empId, payDate);
+            ResultModel<EmployeeSalary> result = this.Load<EmployeeSalary>(System.Data.CommandType.Text, cmdText);
+            return result;
+        }
     }
 }

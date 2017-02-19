@@ -666,6 +666,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="uploads\" />
     <Folder Include="Views\CommBase\" />
     <Folder Include="Views\Send\" />
   </ItemGroup>

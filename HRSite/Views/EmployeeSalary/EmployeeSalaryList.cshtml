@@ -10,7 +10,8 @@
 <div class="am-cf am-padding am-padding-bottom-0">
     <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">员工薪资</strong></div>
     <div class="am-align-right">
-        <a class="am-btn am-btn-danger" href="/Employee/EmployeeAdd"><span class="am-icon-plus"></span> 导入</a>
+        
+        <button type="button" class="am-btn am-btn-danger" id="btnUpload" onclick="OpenWindow()"><span class="am-icon-plus"></span> 导入</button>
         <button type="button" class="am-btn am-btn-primary" id="btnSearch"><span class="am-icon-search"></span>搜索</button>
     </div>
 </div>
@@ -44,4 +45,16 @@
     </div>
 </div>
 
-
+<div id="filewindow">
+    <div id="windowHeader">
+        <span>
+            附件列表
+        </span>
+    </div>
+    <div id="customWindowContent" style="overflow: hidden">
+        <form id="form1" enctype="multipart/form-data" method="post" action="/EmployeeSalary/EmpUpLoadFile">
+            <input type="file" id="empuploadfile" name="uploadfile" />
+            <button type="submit" class="am-btn am-btn-primary" id="btnCreate">确定</button>
+        </form>
+    </div>
+</div>
