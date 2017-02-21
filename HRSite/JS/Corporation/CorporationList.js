@@ -1,5 +1,10 @@
 ﻿$(document).ready(function () {
 
+    var CorpUrl = "../Corporation/Corps";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "CorpId" }, { name: "CorpName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selCorpId").jqxComboBox({ source: CorpDataAdapter, displayMember: "CorpName", valueMember: "CorpId", autoComplete: true, searchMode: "contains", height: 25 });
+
     var url = "../Corporation/LoadCorporationList";
     var source =
     {
@@ -46,7 +51,8 @@
                 pageIndex: data.pagenum,
                 pageSize: data.pagesize,
                 orderField: data.sortdatafield,
-                sortOrder: data.sortorder
+                sortOrder: data.sortorder,
+                corpId: $("#selCorpId").val() == "" ? 0 : $("#selCorpId").val()
             };
 
             var objStr = JSON.stringify(obj);
@@ -102,5 +108,10 @@
           { text: "缴费城市", datafield: "PayCity", width: 90 },
           { text: "状态", datafield: "StatusName", width: 90 }
         ]
+    });
+
+    $("#btnSearch").click(function () {
+        $("#jqxListGrid").jqxGrid("gotopage", 0);
+        $("#jqxListGrid").jqxGrid("updatebounddata", "rows");
     });
 });

@@ -171,10 +171,10 @@ namespace HRSite.Controllers
                     return Json(result);
             }
 
-            result.Message = "员工薪资发放成功";
-            result.ReturnValue = "";
-            result.ResultStatus = 0;
-            return Json(result);
+            //result.Message = "员工薪资发放成功";
+            //result.ReturnValue = "";
+            //result.ResultStatus = 0;
+            return RedirectToAction("EmployeeSalaryList");
 
         }
         public DataSet ExcelToDS(string Path)

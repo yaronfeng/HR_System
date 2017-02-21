@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    var CorpUrl = "../Supplier/Suppliers";
+    var CorpSource = { type: "POST", datatype: "json", datafields: [{ name: "SupId" }, { name: "SupName" }], url: CorpUrl };
+    var CorpDataAdapter = new $.jqx.dataAdapter(CorpSource);
+    $("#selSupId").jqxComboBox({ source: CorpDataAdapter, displayMember: "SupName", valueMember: "SupId", autoComplete: true, searchMode: "contains", height: 25 });
 
     var url = "../Supplier/LoadSupplierList";
     var source =
@@ -48,7 +52,8 @@
                 pageIndex: data.pagenum,
                 pageSize: data.pagesize,
                 orderField: data.sortdatafield,
-                sortOrder: data.sortorder
+                sortOrder: data.sortorder,
+                supId: $("#selSupId").val() == "" ? 0 : $("#selSupId").val()
             };
 
             var objStr = JSON.stringify(obj);
@@ -107,5 +112,9 @@
           { text: "服务费", datafield: "ServiceAmount", width: 90 },
           { text: "状态", datafield: "StatusName", width: 90 }
         ]
+    });
+    $("#btnSearch").click(function () {
+        $("#jqxListGrid").jqxGrid("gotopage", 0);
+        $("#jqxListGrid").jqxGrid("updatebounddata", "rows");
     });
 });

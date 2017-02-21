@@ -20,7 +20,7 @@ namespace HR.SQLServerDAL
                 return SQLConnString.GetConnSting();
             }
         }
-        public SelectModel CorporationListSelect(int pageIndex, int pageSize, string orderStr)
+        public SelectModel CorporationListSelect(int pageIndex, int pageSize, string orderStr,int corpId)
         {
             SelectModel select = new SelectModel();
 
@@ -40,11 +40,12 @@ namespace HR.SQLServerDAL
 
             select.TableName = sb.ToString();
 
-            //sb.Length = 0;
+            sb.Length = 0;
 
-            //sb.AppendFormat(" and di.PositionStatus >{0} ", (int)StatusEnum.已作废);
+            if(corpId> 0)
+                sb.AppendFormat(" corp.CorpId = {0} ", corpId);
 
-            //select.WhereStr = sb.ToString();
+            select.WhereStr = sb.ToString();
 
             return select;
         }

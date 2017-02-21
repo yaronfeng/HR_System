@@ -42,7 +42,7 @@ namespace HRSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoadCorporationList(int pageIndex, int pageSize, string orderField, string sortOrder)
+        public ActionResult LoadCorporationList(int pageIndex, int pageSize, string orderField, string sortOrder,int corpId)
         {
             switch (orderField)
             {
@@ -53,7 +53,7 @@ namespace HRSite.Controllers
             string orderStr = string.Format("{0} {1}", orderField, sortOrder);
 
             CorporationBLL corporationBLL = new CorporationBLL();
-            ResultModel result = corporationBLL.LoadCorporationList(pageIndex, pageSize, orderStr);
+            ResultModel result = corporationBLL.LoadCorporationList(pageIndex, pageSize, orderStr,corpId);
 
             System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
             Dictionary<string, object> dic = new Dictionary<string, object>();

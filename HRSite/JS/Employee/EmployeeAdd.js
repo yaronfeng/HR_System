@@ -2,6 +2,16 @@
     //绑定
     $("#txbEmpName").jqxInput({ minLength: 1, height: 25, width: 200 });
     $("#txbCardNo").jqxInput({ minLength: 1, height: 25, width: 200 });
+    $("#txbCardNo").on("change", function (event) {
+        var cardNo = $("#txbCardNo").val();
+        //获取性别
+        if (parseInt(cardNo.substr(16, 1)) % 2 == 1) {
+            $("#selSex").val(1000);
+        } else {
+            $("#selSex").val(1001);
+        }
+    });
+
     $("#txbAddress").jqxInput({ minLength: 1, height: 25, width: 200 });
     $("#txbPhone").jqxInput({ minLength: 1, height: 25, width: 200 });
     $("#txbPhone").jqxInput({ minLength: 1, height: 25, width: 200 });

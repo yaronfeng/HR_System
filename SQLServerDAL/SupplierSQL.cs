@@ -21,7 +21,7 @@ namespace HR.SQLServerDAL
             }
         }
 
-        public SelectModel SupplierListSelect(int pageIndex, int pageSize, string orderStr)
+        public SelectModel SupplierListSelect(int pageIndex, int pageSize, string orderStr,int supId)
         {
             SelectModel select = new SelectModel();
 
@@ -40,11 +40,11 @@ namespace HR.SQLServerDAL
 
             select.TableName = sb.ToString();
 
-            //sb.Length = 0;
+            sb.Length = 0;
+            if(supId>0)
+                sb.AppendFormat(" sup.SupId = {0} ", supId);
 
-            //sb.AppendFormat(" and di.PositionStatus >{0} ", (int)StatusEnum.已作废);
-
-            //select.WhereStr = sb.ToString();
+            select.WhereStr = sb.ToString();
 
             return select;
         }

@@ -419,9 +419,9 @@ namespace HR.BLL
             return paras;
         }
 
-        public ResultModel LoadCorporationList(int pageIndex, int pageSize, string orderStr)
+        public ResultModel LoadCorporationList(int pageIndex, int pageSize, string orderStr,int corpId)
         {
-            SelectModel select = sql_insrance.CorporationListSelect(pageIndex, pageSize, orderStr);
+            SelectModel select = sql_insrance.CorporationListSelect(pageIndex, pageSize, orderStr, corpId);
             ResultModel result = Load(select);
 
             return result;

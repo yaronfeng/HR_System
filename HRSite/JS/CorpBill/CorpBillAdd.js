@@ -1,4 +1,8 @@
 ﻿var optList = new Array();
+var unOptList = new Array();
+
+var optSource = null;
+var unOptSource = null;
 
 $(document).ready(function () {
     var id = $("#hidId").val();
@@ -192,7 +196,14 @@ $(document).ready(function () {
         return "<div style=\"text-align: center; margin-top: 5px;\">" + (1 + row) + "</div>";
     }
 
-    $("#jqxListGrid").jqxGrid(
+    var optCellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties) {
+        var cellHtml = "<div style=\"overflow: hidden; text-overflow: ellipsis;padding:0px 0px 2px 10px; margin:0px 0px 0px 5px;\">";
+        cellHtml += "<input type=\"button\" class=\"jqx-button jqx-button-jm jqx-widget jqx-widget-jm\" value =\"取消\" onclick=\"bntRemoveClick(" + row + ");\" />"
+        cellHtml += "</div>";
+        return cellHtml;
+    }
+
+    $("#jqxOptGrid").jqxGrid(
     {
         width: "98%",
         source: optDataAdapter,
@@ -210,6 +221,7 @@ $(document).ready(function () {
             return args.data;
         },
         columns: [
+          { text: "操作", datafield: "EmpSalaryId", cellsrenderer: optCellsrenderer, width: 70, sortable: false, enabletooltips: false, menu: false, resizable: false, pinned: true },
           { text: "序号", cellsrenderer: numberrenderer, width: 40, sortable: false, enabletooltips: false, menu: false, resizable: false, editable: false, pinned: true },
           { text: "姓名", datafield: "EmpName", pinned: true, width: 90, editable: false },
           { text: "工资月", datafield: "PayDate", cellsformat: "yyyy-MM",type:"date", pinned: true, width: 70, editable: false },
@@ -251,6 +263,89 @@ $(document).ready(function () {
         ]
     });
 
+    //未选列表
+    unOptSource =
+    {
+        datatype: "json",
+        localdata: unOptList
+    };
+    var unOptDataAdapter = new $.jqx.dataAdapter(unOptSource, {
+        contentType: "application/json; charset=utf-8",
+        loadError: function (xhr, status, error) {
+            alert(error);
+        }
+    });
+
+    var unOptNumberrenderer = function (row, column, value) {
+        return "<div style=\"text-align: center; margin-top: 5px;\">" + (1 + row) + "</div>";
+    }
+
+    var unOptCellsrenderer = function (row, columnfield, value, defaulthtml, columnproperties) {
+        var cellHtml = "<div style=\"overflow: hidden; text-overflow: ellipsis;  padding:0px 0px 2px 10px; margin:4px 0px 0px 5px;\">";
+        cellHtml += "<input type=\"button\" class=\"jqx-button jqx-button-jm jqx-widget jqx-widget-jm\" value =\"添加\" onclick=\"bntAddClick(" + row + ");\" />"
+        cellHtml += "</div>";
+        return cellHtml;
+    }
+
+    $("#jqxUnOptGrid").jqxGrid(
+    {
+        width: "98%",
+        source: unOptDataAdapter,
+        autoheight: true,
+        virtualmode: true,
+        sorttogglestates: 1,
+        columnsresize: true,
+        showaggregates: true,
+        editable: false,
+        sortable: true,
+        enabletooltips: true,
+        showstatusbar: true,
+        statusbarheight: 25,
+        rendergridrows: function (args) {
+            return args.data;
+        },
+        columns: [
+          { text: "操作", datafield: "EmpSalaryId", cellsrenderer: unOptCellsrenderer, width: 70, sortable: false, enabletooltips: false, menu: false, resizable: false, pinned: true },
+          { text: "序号", cellsrenderer: unOptNumberrenderer, width: 40, sortable: false, enabletooltips: false, menu: false, resizable: false, editable: false, pinned: true },
+          { text: "姓名", datafield: "EmpName", pinned: true, width: 90, editable: false },
+          { text: "工资月", datafield: "PayDate", cellsformat: "yyyy-MM", type: "date", pinned: true, width: 70, editable: false },
+          { text: "缴费区域", datafield: "PayCityName", width: 70, pinned: true, editable: false },
+          { text: "养老保险", columngroup: 'CorpDetails', datafield: "CorpPensionIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "医疗保险", columngroup: 'CorpDetails', datafield: "CorpMedicalIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "失业保险", columngroup: 'CorpDetails', datafield: "CorpUnempIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "工伤保险", columngroup: 'CorpDetails', datafield: "CorpInjuryIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "生育保险", columngroup: 'CorpDetails', datafield: "CorpBirthIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "残疾人保险", columngroup: 'CorpDetails', datafield: "CorpDisabledIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "大病保险", columngroup: 'CorpDetails', datafield: "CorpIllnessIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "取暖费", columngroup: 'CorpDetails', datafield: "CorpHeatAmount", width: 70, cellsformat: "d2", editable: false },
+          { text: "公积金", columngroup: 'CorpDetails', datafield: "CorpHouseFund", width: 70, cellsformat: "d2", editable: false },
+          { text: "补充工伤", columngroup: 'CorpDetails', datafield: "CorpRepInjuryIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "合计", columngroup: 'CorpDetails', datafield: "CorpTotal", width: 70, cellsformat: "d2", editable: false },
+          { text: "养老保险", columngroup: 'EmpDetails', datafield: "EmpPensionIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "医疗保险", columngroup: 'EmpDetails', datafield: "EmpMedicalIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "失业保险", columngroup: 'EmpDetails', datafield: "EmpUnempIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "工伤保险", columngroup: 'EmpDetails', datafield: "EmpInjuryIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "生育保险", columngroup: 'EmpDetails', datafield: "EmpBirthIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "残疾人保险", columngroup: 'EmpDetails', datafield: "EmpDisabledIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "大病保险", columngroup: 'EmpDetails', datafield: "EmpIllnessIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "取暖费", columngroup: 'EmpDetails', datafield: "EmpHeatAmount", width: 70, cellsformat: "d2", editable: false },
+          { text: "公积金", columngroup: 'EmpDetails', datafield: "EmpHouseFund", width: 70, cellsformat: "d2", editable: false },
+          { text: "补充工伤", columngroup: 'EmpDetails', datafield: "EmpRepInjuryIns", width: 70, cellsformat: "d2", editable: false },
+          { text: "合计", columngroup: 'EmpDetails', datafield: "EmpTotal", width: 70, cellsformat: "d2", editable: false },
+          { text: "个调税", datafield: "PersonalTax", width: 70, cellsformat: "d2" },
+          { text: "应发工资", datafield: "TotalAmount", width: 70, editable: false, cellsformat: "d2" },
+          { text: "社保补交", datafield: "RepairAmount", width: 70, cellsformat: "d2" },
+          { text: "税前工资", datafield: "GrossAmount", width: 70, editable: false, cellsformat: "d2" },
+          { text: "实发工资", datafield: "FinalAmount", width: 70, editable: false, cellsformat: "d2" },
+          { text: "服务费", datafield: "ServiceAmount", width: 70, cellsformat: "d2" },
+          { text: "补收/退款", datafield: "RefundAmount", width: 70, cellsformat: "d2" },
+          { text: "合计", datafield: "AllTotalAmount", width: 70, editable: false, cellsformat: "d2" },
+        ],
+        columngroups: [
+            { text: '企业', align: 'center', name: 'CorpDetails' },
+            { text: '个人', align: 'center', name: 'EmpDetails' }
+        ]
+    });
     //加载列表完毕
 
     $("#btnCreate").click(function () {
@@ -301,3 +396,28 @@ $(document).ready(function () {
         });
     });
 });
+
+function bntRemoveClick(row) {
+
+    var item = optList[row];
+    optList.splice(row, 1);
+    unOptList.push(item);
+
+    optSource.localdata = optList;
+    $("#jqxOptGrid").jqxGrid("updatebounddata", "rows");
+    unOptSource.url = unOptList;
+    $("#jqxUnOptGrid").jqxGrid("updatebounddata", "rows");
+
+}
+
+function bntAddClick(row) {
+
+    var item = unOptList[row];
+    unOptList.splice(row, 1);
+    optList.push(item);
+
+    optSource.localdata = optList;
+    $("#jqxOptGrid").jqxGrid("updatebounddata", "rows");
+    unOptSource.url = unOptList;
+    $("#jqxUnOptGrid").jqxGrid("updatebounddata", "rows");
+}

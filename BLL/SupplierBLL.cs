@@ -15,9 +15,9 @@ namespace HR.BLL
     {
         private SupplierSQL sql_insrance = new SupplierSQL();
 
-        public ResultModel LoadSupplierList(int pageIndex, int pageSize, string orderStr)
+        public ResultModel LoadSupplierList(int pageIndex, int pageSize, string orderStr,int supId)
         {
-            SelectModel select = sql_insrance.SupplierListSelect(pageIndex, pageSize, orderStr);
+            SelectModel select = sql_insrance.SupplierListSelect(pageIndex, pageSize, orderStr, supId);
             ResultModel result = Load(select);
 
             return result;

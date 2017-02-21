@@ -79,7 +79,7 @@ namespace HRSite.Controllers
         }
 
         [HttpPost]
-        public ActionResult LoadSupplierList(int pageIndex, int pageSize, string orderField, string sortOrder)
+        public ActionResult LoadSupplierList(int pageIndex, int pageSize, string orderField, string sortOrder,int supId)
         {
             switch (orderField)
             {
@@ -90,7 +90,7 @@ namespace HRSite.Controllers
             string orderStr = string.Format("{0} {1}", orderField, sortOrder);
 
             SupplierBLL supplierBLL = new SupplierBLL();
-            ResultModel result = supplierBLL.LoadSupplierList(pageIndex, pageSize, orderStr);
+            ResultModel result = supplierBLL.LoadSupplierList(pageIndex, pageSize, orderStr, supId);
 
             System.Data.DataTable dt = result.ReturnValue as System.Data.DataTable;
             Dictionary<string, object> dic = new Dictionary<string, object>();
